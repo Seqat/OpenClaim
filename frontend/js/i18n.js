@@ -54,6 +54,7 @@ export const translations = {
         empty_title: "Fırsat Bulunamadı",
         empty_desc: "Aradığınız kriterlere uygun ücretsiz oyun veya fırsat bulunamadı. Filtreleri temizleyerek tekrar deneyebilirsiniz.",
         empty_reset_btn: "Filtreleri Temizle",
+        results_count: "{count} sonuç bulundu",
         
         // Error State
         error_title: "Veri Yüklenemedi",
@@ -111,6 +112,7 @@ export const translations = {
         empty_title: "No Deals Found",
         empty_desc: "No free games or deals match your search criteria. Try clearing filters and searching again.",
         empty_reset_btn: "Clear Filters",
+        results_count: "{count} results found",
         
         // Error State
         error_title: "Failed to Load Data",

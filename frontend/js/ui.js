@@ -97,6 +97,11 @@ export function updateStatsRibbon() {
     if (amazonCountEl) amazonCountEl.textContent = amazon;
 }
 
+function safeUrl(url, fallback = '#') {
+    const s = String(url || '').trim();
+    return /^https?:\/\//i.test(s) ? s : fallback;
+}
+
 /**
  * Generate HTML string for single game card
  */
@@ -117,13 +122,14 @@ export function createGameCardHTML(game) {
 
     const platformImgTag = `<img src="${logoUrl}" alt="${platformLabel}" class="platform-icon" />`;
 
-    const hasImage = Boolean(game.image_url && game.image_url.trim() !== '');
-    const imageSrc = hasImage ? escapeAttribute(game.image_url) : '';
+    const validatedImage = safeUrl(game.image_url, '');
+    const hasImage = Boolean(validatedImage);
+    const imageSrc = hasImage ? escapeAttribute(validatedImage) : '';
 
-    const storeUrl = escapeAttribute(game.store_url || '#');
+    const storeUrl = escapeAttribute(safeUrl(game.store_url));
     const safeTitle = escapeHTML(game.title || 'Game');
     const endDateAttr = game.end_date ? escapeAttribute(game.end_date) : '';
-    const claimAria = escapeAttribute((t.card_claim_aria || '').replace('{title}', safeTitle));
+    const claimAria = escapeAttribute((t.card_claim_aria || '').replace('{title}', game.title || 'Game'));
 
     return `
         <article class="game-card" data-id="${escapeAttribute(game.id || '')}">
@@ -134,7 +140,6 @@ export function createGameCardHTML(game) {
                         alt="${safeTitle}" 
                         class="card-img" 
                         loading="lazy" 
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                     >
                 ` : ''}
                 <div class="card-img-fallback" style="${hasImage ? 'display: none;' : 'display: flex;'}">
@@ -183,6 +188,14 @@ export function createGameCardHTML(game) {
     `;
 }
 
+let cachedTimerEls = null;
+
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        updateAllTimers();
+    }
+});
+
 /**
  * Render game cards grid/list
  */
@@ -190,14 +203,33 @@ export function renderGames(onResetFilters) {
     const { gridContainer } = getElements();
     if (!gridContainer) return;
     const processed = getProcessedGames();
+    const t = translations[state.currentLang] || translations.TR;
+
+    const statusEl = document.getElementById('results-status');
+    if (statusEl) {
+        const statusText = (t.results_count || '{count} results found').replace('{count}', processed.length);
+        statusEl.textContent = statusText;
+    }
 
     if (processed.length === 0) {
+        cachedTimerEls = null;
         renderEmptyState(onResetFilters);
         return;
     }
 
     gridContainer.innerHTML = processed.map(game => createGameCardHTML(game)).join('');
+
+    const cardImgs = gridContainer.querySelectorAll('.card-img');
+    cardImgs.forEach(img => {
+        img.addEventListener('error', () => {
+            img.style.display = 'none';
+            if (img.nextElementSibling) {
+                img.nextElementSibling.style.display = 'flex';
+            }
+        });
+    });
     
+    cachedTimerEls = null;
     // Immediately update timers for newly rendered cards
     updateAllTimers();
 }
@@ -214,7 +246,12 @@ export function startTimerLoop() {
  * Update countdown text on all displayed cards
  */
 export function updateAllTimers() {
-    const timerEls = document.querySelectorAll('.countdown-badge');
+    if (document.hidden) return;
+
+    if (!cachedTimerEls) {
+        cachedTimerEls = document.querySelectorAll('.countdown-badge');
+    }
+    const timerEls = cachedTimerEls;
     const now = Date.now();
     const t = translations[state.currentLang] || translations.TR;
 
@@ -274,6 +311,7 @@ export function updateAllTimers() {
  * Render empty state when search/filter returns zero games
  */
 export function renderEmptyState(onResetFilters) {
+    cachedTimerEls = null;
     const { gridContainer } = getElements();
     if (!gridContainer) return;
     const t = translations[state.currentLang] || translations.TR;

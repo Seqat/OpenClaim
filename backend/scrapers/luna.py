@@ -28,6 +28,15 @@ def clean_amazon_title(title: str) -> str:
     return cleaned.strip()
 
 
+def build_amazon_id(store_url: str, fallback_title: str) -> str:
+    """store_url içindeki amzn1.pg.item.<uuid> parçasından stabil ID üretir."""
+    m = re.search(r"(amzn1\.pg\.item\.[0-9a-f-]+)", store_url or "", re.IGNORECASE)
+    if m:
+        return f"amazon-{m.group(1)}"
+    slug = re.sub(r"[^a-z0-9]+", "-", (fallback_title or "").casefold()).strip("-")
+    return f"amazon-{slug}" if slug else "amazon-unknown"
+
+
 async def fetch_detail_page_end_date(
     context: Any,
     item: Dict[str, Any],
@@ -235,9 +244,9 @@ async def fetch_amazon_games() -> List[Dict[str, Any]]:
             ]
             end_dates = await asyncio.gather(*tasks)
 
-            for idx, (item, end_date) in enumerate(zip(raw_items, end_dates)):
+            for item, end_date in zip(raw_items, end_dates):
                 games.append({
-                    "id": f"amazon-game-{idx + 1}",
+                    "id": build_amazon_id(item["store_url"], item["title"]),
                     "title": item["title"],
                     "platform": "Amazon Luna / Prime",
                     "store_url": item["store_url"],

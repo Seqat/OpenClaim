@@ -1,3 +1,2 @@
-playwright
-requests
-beautifulsoup4
+playwright~=1.49
+requests~=2.32

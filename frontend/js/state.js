@@ -21,7 +21,7 @@ export const state = {
  */
 export function getInitialLanguage() {
     try {
-        const saved = localStorage.getItem('openclaim_lang') || localStorage.getItem('lootradar_lang');
+        const saved = localStorage.getItem('openclaim_lang');
         if (saved && (saved === 'TR' || saved === 'EN')) {
             return saved;
         }
