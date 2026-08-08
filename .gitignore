@@ -21,3 +21,6 @@ __pycache__/
 Thumbs.db
 
 .directory
+
+.antigravityrules
+PROJECT_SPEC.md
