@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OpenClaim - Steam, Epic Games ve Amazon Prime / Luna platformlarındaki ücretsiz oyunları anlık takip edin.">
+    <title>OpenClaim | Anlık Ücretsiz Oyun Takibi</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="frontend/css/base.css">
+    <link rel="stylesheet" href="frontend/css/components.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="brand-container">
+                <!-- Clean Text Logo -->
+                <a href="#" class="logo" aria-label="OpenClaim Ana Sayfa">
+                    <span class="logo-text">OpenClaim</span>
+                </a>
+
+                <div class="header-right">
+                    <div class="stats-ribbon" id="stats-ribbon">
+                        <div class="stat-item">
+                            <span data-i18n="stat_total">Toplam Fırsat:</span>
+                            <span class="stat-value" id="total-count">0</span>
+                        </div>
+                        <span class="stat-divider"></span>
+                        <div class="stat-item">
+                            <span data-i18n="stat_steam">Steam:</span>
+                            <span class="stat-value" id="steam-count">0</span>
+                        </div>
+                        <span class="stat-divider"></span>
+                        <div class="stat-item">
+                            <span data-i18n="stat_epic">Epic:</span>
+                            <span class="stat-value" id="epic-count">0</span>
+                        </div>
+                        <span class="stat-divider"></span>
+                        <div class="stat-item">
+                            <span data-i18n="stat_amazon">Amazon:</span>
+                            <span class="stat-value" id="amazon-count">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Language Toggle (TR / EN) -->
+                    <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Dil Seçimi / Language Switcher">
+                        <button type="button" class="lang-opt active" data-lang-btn="TR" aria-label="Türkçe"><span class="lang-flag">🇹🇷</span> TR</button>
+                        <button type="button" class="lang-opt" data-lang-btn="EN" aria-label="English"><span class="lang-flag">🇬🇧</span> EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Controls Card: Search, Sort, Platform Filters & View Toggle (Sticky Bar) -->
+            <div class="controls-card">
+                <!-- Search Input -->
+                <div class="search-wrapper">
+                    <input 
+                        type="search" 
+                        id="search-input" 
+                        class="search-input" 
+                        placeholder="Oyun adı veya platform ara..." 
+                        data-i18n-placeholder="search_placeholder"
+                        aria-label="Oyun arama"
+                        data-i18n-aria="search_aria"
+                        autocomplete="off"
+                    >
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <button type="button" id="clear-search-btn" class="clear-search-btn" aria-label="Aramayı temizle" data-i18n-aria="clear_search_aria">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Sort Select Dropdown -->
+                <div class="sort-wrapper">
+                    <label for="sort-select" class="sort-label" data-i18n="sort_label">Sıralama:</label>
+                    <select id="sort-select" class="sort-select" aria-label="Oyun sıralama" data-i18n-aria="sort_label">
+                        <option value="smart" data-i18n="sort_smart">Akıllı Sıralama</option>
+                        <option value="alphabetical" data-i18n="sort_alphabetical">Alfabetik (A-Z)</option>
+                        <option value="expiring" data-i18n="sort_expiring">Bitiş Süresine Göre</option>
+                    </select>
+                </div>
+
+                <!-- Right Group: Platform Filters & View Mode Toggle -->
+                <div class="controls-right-group">
+                    <!-- Platform Filters -->
+                    <div class="filter-tabs" id="filter-tabs" role="tablist" aria-label="Platform Filtresi">
+                        <button type="button" class="filter-btn active" data-platform="all" role="tab" aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                            </svg>
+                            <span data-i18n="filter_all">Tümü</span>
+                        </button>
+                        <button type="button" class="filter-btn" data-platform="steam" role="tab" aria-selected="false">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/steam.svg" alt="Steam" class="platform-icon" />
+                            <span data-i18n="filter_steam">Steam</span>
+                        </button>
+                        <button type="button" class="filter-btn" data-platform="epic" role="tab" aria-selected="false">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/epicgames.svg" alt="Epic Games" class="platform-icon" />
+                            <span data-i18n="filter_epic">Epic Games</span>
+                        </button>
+                        <button type="button" class="filter-btn" data-platform="amazon" role="tab" aria-selected="false">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonluna.svg" alt="Amazon Luna / Prime" class="platform-icon" />
+                            <span data-i18n="filter_amazon">Amazon Luna / Prime</span>
+                        </button>
+                    </div>
+
+                    <!-- View Toggle (Grid / List Mode) -->
+                    <div class="view-toggle" id="view-toggle" role="group" aria-label="Görünüm Seçimi">
+                        <button type="button" class="view-btn active" data-view="grid" aria-label="Kart Görünümü" data-i18n-aria="grid_view_aria" aria-pressed="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="view-btn" data-view="list" aria-label="Liste Görünümü" data-i18n-aria="list_view_aria" aria-pressed="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid/List Games Container -->
+            <div class="games-grid" id="games-grid" aria-live="polite">
+                <!-- Skeleton cards loaded initially -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button type="button" id="back-to-top" class="back-to-top" aria-label="En üste dön" data-i18n-aria="back_to_top_aria">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <footer class="footer">
+        <div class="container">
+            <p data-i18n="footer_text">OpenClaim &copy; 2026. Steam, Epic Games ve Amazon Prime / Luna veri akışlarıyla otomatik güncellenir.</p>
+        </div>
+    </footer>
+
+    <!-- App ES6 Module JavaScript -->
+    <script type="module" src="frontend/js/app.js"></script>
+</body>
+</html>

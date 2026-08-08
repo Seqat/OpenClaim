@@ -1,0 +1,480 @@
+/* ==========================================================================
+   OpenClaim - UI Components (Cards, Badges, Buttons, Skeleton & Back to Top)
+   ========================================================================== */
+
+/* Platform Icons */
+.platform-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    vertical-align: middle;
+    flex-shrink: 0;
+    filter: brightness(0) invert(0.9);
+    transition: var(--transition-fast);
+}
+
+.filter-btn.active .platform-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Games Container (Grid Mode - Default) */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+/* Game Card Structure */
+.game-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.game-card:hover {
+    background-color: var(--bg-card-hover);
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+}
+
+/* Card Top Image */
+.card-media {
+    position: relative;
+    width: 100%;
+    padding-top: 52%;
+    background: #0f172a;
+    overflow: hidden;
+}
+
+.card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-img-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #1e293b;
+    color: var(--text-muted);
+    padding: 1rem;
+    text-align: center;
+}
+
+.card-img-fallback svg {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 0.4rem;
+    opacity: 0.4;
+}
+
+/* Card Content Body */
+.card-body {
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-info-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Meta Bar Under Image: Left Platform, Right Countdown Badge */
+.card-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+}
+
+/* Platform Badges - Matte Pastel */
+.platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.platform-badge .platform-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.platform-badge.steam {
+    background-color: var(--platform-steam-bg);
+    color: var(--platform-steam-text);
+    border: 1px solid var(--platform-steam-border);
+}
+
+.platform-badge.epic {
+    background-color: var(--platform-epic-bg);
+    color: var(--platform-epic-text);
+    border: 1px solid var(--platform-epic-border);
+}
+
+.platform-badge.amazon {
+    background-color: var(--platform-amazon-bg);
+    color: var(--platform-amazon-text);
+    border: 1px solid var(--platform-amazon-border);
+}
+
+/* Countdown Badge (Right Side) */
+.countdown-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #0f172a;
+    color: #94a3b8;
+    border: 1px solid var(--border-color);
+}
+
+.countdown-badge.urgent {
+    background: #451a03;
+    color: #fdba74;
+    border-color: #78350f;
+}
+
+.countdown-badge.no-expiry {
+    background: #064e3b;
+    color: #a7f3d0;
+    border-color: #065f46;
+}
+
+.countdown-badge.expired {
+    background: #451212;
+    color: #fca5a5;
+    border-color: #7f1d1d;
+}
+
+/* Title in Middle */
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.9rem;
+}
+
+/* Card Actions Section */
+.card-actions-row {
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Outlined Button */
+.claim-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.claim-btn svg {
+    width: 14px;
+    height: 14px;
+    color: var(--text-secondary);
+    transition: transform var(--transition-fast);
+}
+
+.claim-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    color: #ffffff;
+}
+
+.claim-btn:hover svg {
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+/* ==========================================================================
+   List View Mode (.view-list)
+   ========================================================================== */
+.games-grid.view-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.games-grid.view-list .game-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+}
+
+.games-grid.view-list .game-card:hover {
+    transform: translateY(-1px);
+}
+
+.games-grid.view-list .card-media {
+    width: 96px;
+    height: 54px;
+    padding-top: 0;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.games-grid.view-list .card-body {
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.games-grid.view-list .card-info-section {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.games-grid.view-list .card-meta-row {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.games-grid.view-list .card-title {
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 0;
+    min-height: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+.games-grid.view-list .card-actions-row {
+    margin-top: 0;
+    width: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.games-grid.view-list .claim-btn {
+    width: auto;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* Skeleton Loading State */
+.skeleton-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton-media {
+    width: 100%;
+    height: 160px;
+    background: #111827;
+}
+
+.skeleton-body {
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex: 1;
+}
+
+.skeleton-line {
+    height: 14px;
+    border-radius: 4px;
+    background: #1e293b;
+}
+
+.skeleton-line.meta { height: 22px; width: 100%; }
+.skeleton-line.title { height: 22px; width: 80%; }
+.skeleton-line.btn { height: 38px; border-radius: var(--radius-md); margin-top: auto; }
+
+/* Empty & Error States */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    margin: 1.5rem 0;
+}
+
+.empty-icon {
+    width: 52px;
+    height: 52px;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+}
+
+.empty-desc {
+    color: var(--text-secondary);
+    max-width: 440px;
+    margin: 0 auto 1.25rem;
+    font-size: 0.9rem;
+}
+
+.reset-filter-btn {
+    padding: 0.55rem 1.1rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.reset-filter-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 99;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(22, 30, 46, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-sticky);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: #1e293b;
+    border-color: #3b82f6;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.back-to-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Components Responsive Adjustments */
+@media (max-width: 768px) {
+    .games-grid.view-list .game-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .games-grid.view-list .card-media {
+        width: 100%;
+        height: 140px;
+    }
+
+    .games-grid.view-list .card-body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .games-grid.view-list .card-info-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .games-grid.view-list .claim-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .back-to-top {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 40px;
+        height: 40px;
+    }
+}
