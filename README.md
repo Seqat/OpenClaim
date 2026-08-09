@@ -5,6 +5,7 @@
 ---
 
 <a name="english"></a>
+
 ## 🌐 English
 
 An open-source web application that automatically tracks free game deals across Steam, Epic Games Store, and Amazon Luna / Prime Gaming via automated pipelines.
@@ -123,6 +124,7 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 <a name="türkçe"></a>
+
 ## 🇹🇷 Türkçe
 
 Steam, Epic Games Store ve Amazon Luna / Prime Gaming platformlarındaki ücretsiz oyun fırsatlarını otomatize pipeline ile takip eden açık kaynaklı web uygulaması.
