@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-09T16:36:58Z",
-  "count": 54,
+  "generated_at": "2026-08-09T20:34:32Z",
+  "count": 51,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d",
@@ -228,15 +228,6 @@
       "is_permanent": true
     },
     {
-      "id": "steam-3740",
-      "title": "Breathedge",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/breathedge-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a761420d949f.jpg",
-      "end_date": "2026-08-09T23:59:00Z",
-      "is_permanent": false
-    },
-    {
       "id": "steam-3486",
       "title": "Chop Shop Playtest",
       "platform": "Steam",
@@ -397,24 +388,6 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a4becdd3a999.jpg",
       "end_date": null,
       "is_permanent": true
-    },
-    {
-      "id": "steam-3583",
-      "title": "GRASS Playtest Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/grass-playtest-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/69e11021033ba.jpg",
-      "end_date": "2026-08-09T23:59:59Z",
-      "is_permanent": false
-    },
-    {
-      "id": "steam-3730",
-      "title": "Moonlighter",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/moonlighter-steam-giveawaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a737f9add28e.jpg",
-      "end_date": "2026-08-09T23:59:00Z",
-      "is_permanent": false
     },
     {
       "id": "steam-42",
