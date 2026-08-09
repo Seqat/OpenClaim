@@ -32,7 +32,7 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
     games = []
     
     headers = {
-        "User-Agent": "LootRadar/1.0 (+https://github.com)"
+        "User-Agent": "OpenClaim/1.0 (+https://github.com/Seqat/OpenClaim)"
     }
     
     try:
@@ -50,7 +50,6 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
 
             platforms_str = str(item.get("platforms", "")).lower()
             title_raw = str(item.get("title", ""))
-            giveaway_type = str(item.get("type", "")).lower()
             
             platform = None
             if "steam" in platforms_str or "steam" in title_raw.lower():
@@ -71,8 +70,7 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
             )
             image_url = item.get("image") or item.get("thumbnail") or ""
             end_date = parse_iso_date(item.get("end_date"))
-            
-            is_permanent = True if giveaway_type in ["game", "full game", ""] else True
+            is_permanent = end_date is None
 
             games.append({
                 "id": str(game_id),

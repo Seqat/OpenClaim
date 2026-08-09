@@ -1,479 +1,483 @@
-[
-  {
-    "id": "amazon-game-4",
-    "title": "Escape Academy",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/escape-academy-epic/dp/amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d?ingress=amzn&ref_=SM_EscapeAcademy_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61JtNHneJ0L._FMwebp_.jpg",
-    "end_date": "2026-08-19T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-5",
-    "title": "FRAMED Collection",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/framed-collection-gog/dp/amzn1.pg.item.a06a5d0e-0f33-4a10-82e2-8ed97d4a8f03?ingress=amzn&ref_=SM_FRAMEDCollection_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61B8-TFosTL._FMwebp_.jpg",
-    "end_date": "2026-08-19T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-14",
-    "title": "Hiveswap Friendsim",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/hiveswap-friendsim-gog/dp/amzn1.pg.item.8e0d3ee4-446f-435e-bfb4-33fe97d25af8?ingress=amzn&ref_=SM_HiveswapFriendsim_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/71medzxldpL._FMwebp_.jpg",
-    "end_date": "2026-09-09T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-1",
-    "title": "In Sound Mind",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/in-sound-mind-aga/dp/amzn1.pg.item.1a5c5cac-5445-48ba-89f6-91c4e0068399?ingress=amzn&ref_=SM_InSoundMind_S02_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/71kbMOzFopL._FMwebp_.jpg",
-    "end_date": "2026-09-23T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-12",
-    "title": "Lethal Honor - Order of the Apocalypse",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/lethal-honor-order-of-the-apocalypse-epic/dp/amzn1.pg.item.f610100a-1240-41f8-84dd-767c2df675b4?ingress=amzn&ref_=SM_LethalHonorOrderoftheApocalypse_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/71l1WrZXPKL._FMwebp_.jpg",
-    "end_date": "2026-08-12T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-2",
-    "title": "Mystic Academy: Escape Room",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/mystic-academy-escape-room-gog/dp/amzn1.pg.item.61f57a96-121c-443f-8432-652773456072?ingress=amzn&ref_=SM_MysticAcademyEscapeRoom_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/615CGVWetCL._FMwebp_.jpg",
-    "end_date": "2026-08-22T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-3",
-    "title": "Poly Vita",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/poly-vita-legacy/dp/amzn1.pg.item.54ad3d4e-b323-4092-a8d1-f64e5de67cbc?ingress=amzn&ref_=SM_PolyVita_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/516Sd8pdnRL._FMwebp_.jpg",
-    "end_date": "2026-08-19T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-13",
-    "title": "Right and Down",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/right-and-down-gog/dp/amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9?ingress=amzn&ref_=SM_RightandDown_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61Uch1TJ2PL._FMwebp_.jpg",
-    "end_date": "2026-09-05T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-11",
-    "title": "Space Grunts",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/space-grunts-gog/dp/amzn1.pg.item.d6b4b6c3-ad9d-4e5d-9914-48c500b7be97?ingress=amzn&ref_=SM_SpaceGrunts_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61DiyE4APYL._FMwebp_.jpg",
-    "end_date": "2026-08-19T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-9",
-    "title": "Space Grunts 2",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/space-grunts-2-gog/dp/amzn1.pg.item.f92a0c83-29ce-4767-819b-e417b1f238f8?ingress=amzn&ref_=SM_SpaceGrunts2_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/71rrqKQpjoL._FMwebp_.jpg",
-    "end_date": "2026-09-16T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-7",
-    "title": "Space Grunts: Chrono Shard",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/space-grunts-chrono-shard-epic/dp/amzn1.pg.item.dbfe54c6-6298-46ec-808d-49d3915b9734?ingress=amzn&ref_=SM_SpaceGruntsChronoShard_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61XogOE11tL._FMwebp_.jpg",
-    "end_date": "2026-09-23T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-6",
-    "title": "Still There",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/still-there-gog/dp/amzn1.pg.item.67c6d7c2-3050-431b-ae6d-91f34ad7d313?ingress=amzn&ref_=SM_StillThere_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61ItZ16R3UL._FMwebp_.jpg",
-    "end_date": "2026-08-12T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-8",
-    "title": "Terraforming Mars",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/terraforming-mars-aga/dp/amzn1.pg.item.805ab02d-bcd9-4d95-81ad-6c495def553e?ingress=amzn&ref_=SM_TerraformingMars_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61tkaj+A6uL._FMwebp_.jpg",
-    "end_date": "2026-08-26T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-15",
-    "title": "Weakless",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/weakless-gog/dp/amzn1.pg.item.35aae84a-f566-4890-8fd3-492318a39036?ingress=amzn&ref_=SM_Weakless_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/61K5ceKpDkL._FMwebp_.jpg",
-    "end_date": "2026-10-28T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-10",
-    "title": "XCOM: Chimera Squad",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/xcom-chimera-squad-gog/dp/amzn1.pg.item.aa22d9f6-a898-4be7-a6df-50c3561b41b9?ingress=amzn&ref_=SM_XCOMChimeraSquad_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/71cWh9H+3GL._FMwebp_.jpg",
-    "end_date": "2026-08-31T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "amazon-game-16",
-    "title": "Zoria: Age of Shattering",
-    "platform": "Amazon Luna / Prime",
-    "store_url": "https://luna.amazon.com/claims/zoria-age-of-shattering-gog/dp/amzn1.pg.item.ec074069-a977-4885-b5b0-6f972d17abb7?ingress=amzn&ref_=SM_ZoriaAgeofShattering_S01_FGWP_CRWN",
-    "image_url": "https://m.media-amazon.com/images/I/71wrc6fjoEL._FMwebp_.jpg",
-    "end_date": "2026-10-28T23:59:59Z",
-    "is_permanent": false
-  },
-  {
-    "id": "epicgames-3732",
-    "title": "Beacon Pines",
-    "platform": "Epic Games",
-    "store_url": "https://www.gamerpower.com/open/beacon-pines-epic-games-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a74a4382f00e.jpg",
-    "end_date": "2026-08-13T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "epicgames-3373",
-    "title": "Dominion Synergy Gift Pack",
-    "platform": "Epic Games",
-    "store_url": "https://www.gamerpower.com/open/dominion-synergy-gift-pack-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/691cb27e81a55.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "epicgames-3729",
-    "title": "Project First Contact",
-    "platform": "Epic Games",
-    "store_url": "https://www.gamerpower.com/open/project-first-contact-epic-games-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a7112b81327e.jpg",
-    "end_date": "2026-08-17T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "epicgames-3734",
-    "title": "Spider Fox",
-    "platform": "Epic Games",
-    "store_url": "https://www.gamerpower.com/open/spider-fox-epic-games-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a74a6d662f14.jpg",
-    "end_date": "2026-08-13T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "epicgames-3731",
-    "title": "We Were Here Together",
-    "platform": "Epic Games",
-    "store_url": "https://www.gamerpower.com/open/we-were-here-together-epic-games-giveaway-1",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a74a30f073c6.jpg",
-    "end_date": "2026-08-13T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "epicgames-3737",
-    "title": "happiness market",
-    "platform": "Epic Games",
-    "store_url": "https://www.gamerpower.com/open/happiness-market-epic-games-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a7603857de41.jpg",
-    "end_date": "2026-08-14T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3086",
-    "title": "3on3 FreeStyle: Beginner's Starter Kit",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/3on3-freestyle-beginner-s-starter-kit-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/67b5dc10c00d3.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-2341",
-    "title": "Age of Wonders 4: Special Godir Helmet Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/age-of-wonders-4-special-godir-helmet-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6452677147a74.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3740",
-    "title": "Breathedge",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/breathedge-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a761420d949f.jpg",
-    "end_date": "2026-08-09T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3486",
-    "title": "Chop Shop Playtest",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/chop-shop-playtest-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/698625be7e6bf.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-2856",
-    "title": "DAVE THE DIVER - Godzilla Content Pack",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/dave-the-diver-godzilla-content-pack-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/664f58a123dcd.jpg",
-    "end_date": "2026-12-31T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3381",
-    "title": "DK Online: Season 4 First Steps Pack",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/dk-online-season-4-first-steps-pack-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6925b245ca021.jpg",
-    "end_date": "2026-09-25T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3718",
-    "title": "Deadswitch Combat Vehicle Bundle Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/deadswitch-combat-vehicle-bundle-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a5a2cda80145.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3568",
-    "title": "Deadswitch Combat: Soldier Bundle",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/deadswitch-combat-soldier-bundle-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/69d44cc9b09a2.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3488",
-    "title": "Deadswitch Combat: Weapons Skins Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/deadswitch-combat-weapons-skins-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/698b912713a1b.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-1231",
-    "title": "Destiny 2: Be True Emblem Code",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/destiny-2-be-true-emblem-code",
-    "image_url": "https://www.gamerpower.com/offers/1b/618d609d2ebbc.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3723",
-    "title": "DragonSword: Awakening - Abyssal Direwolf",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/dragonsword-awakening-abyssal-direwolf-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a678fd0be9b0.jpg",
-    "end_date": "2026-08-31T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-152",
-    "title": "Dream of Mirror Online Summer Fun DLC Pack Steam Keys",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/domo-summer-fun-dlc-steam-keys",
-    "image_url": "https://www.gamerpower.com/offers/1b/5iia55fd841fb.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3739",
-    "title": "Drop Loot (Playtest) Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/drop-loot-playtest-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a7612ab0b8e8.jpg",
-    "end_date": "2026-08-14T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3293",
-    "title": "DungeonLoot: Open Beta Has Arrived!",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/dungeonloot-open-beta-has-arrived",
-    "image_url": "https://www.gamerpower.com/offers/1b/68d2ea0b968f7.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3716",
-    "title": "Dwarven Realms",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/dwarven-realms-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a59119a8eb8d.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-2835",
-    "title": "EVERSPACE 2 Decal DLC Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/everspace-2-decal-dlc-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/662fe7544661a.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3482",
-    "title": "Endless Space 2 - Untold Tales DLC",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/endless-space-2-untold-tales-dlc-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/69822af34149c.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-2485",
-    "title": "Exoprimal: Alienware Decal Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/exoprimal-alienware-decal-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/64dd14e5c0a92.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3719",
-    "title": "Fantasy Grounds Dragons NPC Dice Pack Volume 1 Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/fantasy-grounds-dragons-npc-dice-pack-volume-1-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a5a2df1cbecc.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-157",
-    "title": "Free Bomb Bots Arena Gift Pack Keys",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/free-bomb-bots-arena-gift-pack-keys",
-    "image_url": "https://www.gamerpower.com/offers/1b/5ef306bae0876.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3704",
-    "title": "GOALS: AMD Kit",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/goals-amd-kit-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a4becdd3a999.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3583",
-    "title": "GRASS Playtest Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/grass-playtest-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/69e11021033ba.jpg",
-    "end_date": "2026-08-09T23:59:59Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3730",
-    "title": "Moonlighter",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/moonlighter-steam-giveawaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a737f9add28e.jpg",
-    "end_date": "2026-08-09T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-42",
-    "title": "Overstep Skin",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/overstep-skin-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/5ec643f9947fe.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-40",
-    "title": "Payday 2: Free In-game Items",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/payday-2-free-in-game-items-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/5ec63e61562a0.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-27",
-    "title": "SUPER CIRCUIT BREAKERS - PAYNE",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/super-circuit-breakers-payne",
-    "image_url": "https://www.gamerpower.com/offers/1b/5ec629da21645.jpg",
-    "end_date": "2020-05-31T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3738",
-    "title": "Schrodinger's Cat Burglar Pack Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/schrodinger-s-cat-burglar-pack-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a7610e45bc8d.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-1498",
-    "title": "Thunder League Online: Free Points",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/thunder-league-online-free-points-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/627e959acefc2.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-457",
-    "title": "Two Point Hospital: SEGA 60th Items DLC",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/two-point-hospital-sega-60th-items-dlc",
-    "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
-    "end_date": null,
-    "is_permanent": true
-  },
-  {
-    "id": "steam-3632",
-    "title": "World of Tanks Blitz - Welcome Bundle",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/world-of-tanks-blitz-welcome-bundle-steam-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6a0076b2a84f1.jpg",
-    "end_date": "2026-05-15T23:59:00Z",
-    "is_permanent": true
-  },
-  {
-    "id": "steam-2817",
-    "title": "Zero King (Beta) Steam",
-    "platform": "Steam",
-    "store_url": "https://www.gamerpower.com/open/zero-king-beta-steam-key-giveaway",
-    "image_url": "https://www.gamerpower.com/offers/1b/6601b1f21bec2.jpg",
-    "end_date": null,
-    "is_permanent": true
-  }
-]
+{
+  "generated_at": "2026-08-09T00:02:35Z",
+  "count": 53,
+  "games": [
+    {
+      "id": "amazon-amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d",
+      "title": "Escape Academy",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/escape-academy-epic/dp/amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d?ingress=amzn&ref_=SM_EscapeAcademy_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61JtNHneJ0L._FMwebp_.jpg",
+      "end_date": "2026-08-19T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.a06a5d0e-0f33-4a10-82e2-8ed97d4a8f03",
+      "title": "FRAMED Collection",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/framed-collection-gog/dp/amzn1.pg.item.a06a5d0e-0f33-4a10-82e2-8ed97d4a8f03?ingress=amzn&ref_=SM_FRAMEDCollection_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61B8-TFosTL._FMwebp_.jpg",
+      "end_date": "2026-08-19T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.8e0d3ee4-446f-435e-bfb4-33fe97d25af8",
+      "title": "Hiveswap Friendsim",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/hiveswap-friendsim-gog/dp/amzn1.pg.item.8e0d3ee4-446f-435e-bfb4-33fe97d25af8?ingress=amzn&ref_=SM_HiveswapFriendsim_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71medzxldpL._FMwebp_.jpg",
+      "end_date": "2026-09-09T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.1a5c5cac-5445-48ba-89f6-91c4e0068399",
+      "title": "In Sound Mind",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/in-sound-mind-aga/dp/amzn1.pg.item.1a5c5cac-5445-48ba-89f6-91c4e0068399?ingress=amzn&ref_=SM_InSoundMind_S02_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71kbMOzFopL._FMwebp_.jpg",
+      "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.f610100a-1240-41f8-84dd-767c2df675b4",
+      "title": "Lethal Honor - Order of the Apocalypse",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/lethal-honor-order-of-the-apocalypse-epic/dp/amzn1.pg.item.f610100a-1240-41f8-84dd-767c2df675b4?ingress=amzn&ref_=SM_LethalHonorOrderoftheApocalypse_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71l1WrZXPKL._FMwebp_.jpg",
+      "end_date": "2026-08-12T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.61f57a96-121c-443f-8432-652773456072",
+      "title": "Mystic Academy: Escape Room",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/mystic-academy-escape-room-gog/dp/amzn1.pg.item.61f57a96-121c-443f-8432-652773456072?ingress=amzn&ref_=SM_MysticAcademyEscapeRoom_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/615CGVWetCL._FMwebp_.jpg",
+      "end_date": "2026-08-22T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.54ad3d4e-b323-4092-a8d1-f64e5de67cbc",
+      "title": "Poly Vita",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/poly-vita-legacy/dp/amzn1.pg.item.54ad3d4e-b323-4092-a8d1-f64e5de67cbc?ingress=amzn&ref_=SM_PolyVita_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/516Sd8pdnRL._FMwebp_.jpg",
+      "end_date": "2026-08-19T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9",
+      "title": "Right and Down",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/right-and-down-gog/dp/amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9?ingress=amzn&ref_=SM_RightandDown_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61Uch1TJ2PL._FMwebp_.jpg",
+      "end_date": "2026-09-05T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.d6b4b6c3-ad9d-4e5d-9914-48c500b7be97",
+      "title": "Space Grunts",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/space-grunts-gog/dp/amzn1.pg.item.d6b4b6c3-ad9d-4e5d-9914-48c500b7be97?ingress=amzn&ref_=SM_SpaceGrunts_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61DiyE4APYL._FMwebp_.jpg",
+      "end_date": "2026-08-19T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.f92a0c83-29ce-4767-819b-e417b1f238f8",
+      "title": "Space Grunts 2",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/space-grunts-2-gog/dp/amzn1.pg.item.f92a0c83-29ce-4767-819b-e417b1f238f8?ingress=amzn&ref_=SM_SpaceGrunts2_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71rrqKQpjoL._FMwebp_.jpg",
+      "end_date": "2026-09-16T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.dbfe54c6-6298-46ec-808d-49d3915b9734",
+      "title": "Space Grunts: Chrono Shard",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/space-grunts-chrono-shard-epic/dp/amzn1.pg.item.dbfe54c6-6298-46ec-808d-49d3915b9734?ingress=amzn&ref_=SM_SpaceGruntsChronoShard_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61XogOE11tL._FMwebp_.jpg",
+      "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.67c6d7c2-3050-431b-ae6d-91f34ad7d313",
+      "title": "Still There",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/still-there-gog/dp/amzn1.pg.item.67c6d7c2-3050-431b-ae6d-91f34ad7d313?ingress=amzn&ref_=SM_StillThere_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61ItZ16R3UL._FMwebp_.jpg",
+      "end_date": "2026-08-12T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.805ab02d-bcd9-4d95-81ad-6c495def553e",
+      "title": "Terraforming Mars",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/terraforming-mars-aga/dp/amzn1.pg.item.805ab02d-bcd9-4d95-81ad-6c495def553e?ingress=amzn&ref_=SM_TerraformingMars_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61tkaj+A6uL._FMwebp_.jpg",
+      "end_date": "2026-08-26T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.35aae84a-f566-4890-8fd3-492318a39036",
+      "title": "Weakless",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/weakless-gog/dp/amzn1.pg.item.35aae84a-f566-4890-8fd3-492318a39036?ingress=amzn&ref_=SM_Weakless_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61K5ceKpDkL._FMwebp_.jpg",
+      "end_date": "2026-10-28T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.aa22d9f6-a898-4be7-a6df-50c3561b41b9",
+      "title": "XCOM: Chimera Squad",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/xcom-chimera-squad-gog/dp/amzn1.pg.item.aa22d9f6-a898-4be7-a6df-50c3561b41b9?ingress=amzn&ref_=SM_XCOMChimeraSquad_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71cWh9H+3GL._FMwebp_.jpg",
+      "end_date": "2026-08-31T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.ec074069-a977-4885-b5b0-6f972d17abb7",
+      "title": "Zoria: Age of Shattering",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/zoria-age-of-shattering-gog/dp/amzn1.pg.item.ec074069-a977-4885-b5b0-6f972d17abb7?ingress=amzn&ref_=SM_ZoriaAgeofShattering_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71wrc6fjoEL._FMwebp_.jpg",
+      "end_date": "2026-10-28T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3732",
+      "title": "Beacon Pines",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/beacon-pines-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a74a4382f00e.jpg",
+      "end_date": "2026-08-13T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3373",
+      "title": "Dominion Synergy Gift Pack",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/dominion-synergy-gift-pack-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/691cb27e81a55.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "epicgames-3729",
+      "title": "Project First Contact",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/project-first-contact-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7112b81327e.jpg",
+      "end_date": "2026-08-17T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3734",
+      "title": "Spider Fox",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/spider-fox-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a74a6d662f14.jpg",
+      "end_date": "2026-08-13T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3731",
+      "title": "We Were Here Together",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/we-were-here-together-epic-games-giveaway-1",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a74a30f073c6.jpg",
+      "end_date": "2026-08-13T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3737",
+      "title": "happiness market",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/happiness-market-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7603857de41.jpg",
+      "end_date": "2026-08-14T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3086",
+      "title": "3on3 FreeStyle: Beginner's Starter Kit",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/3on3-freestyle-beginner-s-starter-kit-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/67b5dc10c00d3.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-2341",
+      "title": "Age of Wonders 4: Special Godir Helmet Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/age-of-wonders-4-special-godir-helmet-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6452677147a74.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3740",
+      "title": "Breathedge",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/breathedge-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a761420d949f.jpg",
+      "end_date": "2026-08-09T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3486",
+      "title": "Chop Shop Playtest",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/chop-shop-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/698625be7e6bf.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-2856",
+      "title": "DAVE THE DIVER - Godzilla Content Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/dave-the-diver-godzilla-content-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/664f58a123dcd.jpg",
+      "end_date": "2026-12-31T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3381",
+      "title": "DK Online: Season 4 First Steps Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/dk-online-season-4-first-steps-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6925b245ca021.jpg",
+      "end_date": "2026-09-25T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3718",
+      "title": "Deadswitch Combat Vehicle Bundle Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/deadswitch-combat-vehicle-bundle-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a5a2cda80145.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3568",
+      "title": "Deadswitch Combat: Soldier Bundle",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/deadswitch-combat-soldier-bundle-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/69d44cc9b09a2.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3488",
+      "title": "Deadswitch Combat: Weapons Skins Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/deadswitch-combat-weapons-skins-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/698b912713a1b.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-1231",
+      "title": "Destiny 2: Be True Emblem Code",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/destiny-2-be-true-emblem-code",
+      "image_url": "https://www.gamerpower.com/offers/1b/618d609d2ebbc.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3723",
+      "title": "DragonSword: Awakening - Abyssal Direwolf",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/dragonsword-awakening-abyssal-direwolf-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a678fd0be9b0.jpg",
+      "end_date": "2026-08-31T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-152",
+      "title": "Dream of Mirror Online Summer Fun DLC Pack Steam Keys",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/domo-summer-fun-dlc-steam-keys",
+      "image_url": "https://www.gamerpower.com/offers/1b/5iia55fd841fb.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3739",
+      "title": "Drop Loot (Playtest) Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/drop-loot-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7612ab0b8e8.jpg",
+      "end_date": "2026-08-14T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3293",
+      "title": "DungeonLoot: Open Beta Has Arrived!",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/dungeonloot-open-beta-has-arrived",
+      "image_url": "https://www.gamerpower.com/offers/1b/68d2ea0b968f7.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3716",
+      "title": "Dwarven Realms",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/dwarven-realms-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a59119a8eb8d.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-2835",
+      "title": "EVERSPACE 2 Decal DLC Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/everspace-2-decal-dlc-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/662fe7544661a.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3482",
+      "title": "Endless Space 2 - Untold Tales DLC",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/endless-space-2-untold-tales-dlc-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/69822af34149c.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-2485",
+      "title": "Exoprimal: Alienware Decal Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/exoprimal-alienware-decal-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/64dd14e5c0a92.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3719",
+      "title": "Fantasy Grounds Dragons NPC Dice Pack Volume 1 Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/fantasy-grounds-dragons-npc-dice-pack-volume-1-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a5a2df1cbecc.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-157",
+      "title": "Free Bomb Bots Arena Gift Pack Keys",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/free-bomb-bots-arena-gift-pack-keys",
+      "image_url": "https://www.gamerpower.com/offers/1b/5ef306bae0876.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3704",
+      "title": "GOALS: AMD Kit",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/goals-amd-kit-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a4becdd3a999.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3583",
+      "title": "GRASS Playtest Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/grass-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/69e11021033ba.jpg",
+      "end_date": "2026-08-09T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3730",
+      "title": "Moonlighter",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/moonlighter-steam-giveawaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a737f9add28e.jpg",
+      "end_date": "2026-08-09T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-42",
+      "title": "Overstep Skin",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/overstep-skin-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/5ec643f9947fe.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-40",
+      "title": "Payday 2: Free In-game Items",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/payday-2-free-in-game-items-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/5ec63e61562a0.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-27",
+      "title": "SUPER CIRCUIT BREAKERS - PAYNE",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/super-circuit-breakers-payne",
+      "image_url": "https://www.gamerpower.com/offers/1b/5ec629da21645.jpg",
+      "end_date": "2020-05-31T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-3738",
+      "title": "Schrodinger's Cat Burglar Pack Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/schrodinger-s-cat-burglar-pack-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7610e45bc8d.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-1498",
+      "title": "Thunder League Online: Free Points",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/thunder-league-online-free-points-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/627e959acefc2.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-457",
+      "title": "Two Point Hospital: SEGA 60th Items DLC",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/two-point-hospital-sega-60th-items-dlc",
+      "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
+      "end_date": null,
+      "is_permanent": true
+    },
+    {
+      "id": "steam-3632",
+      "title": "World of Tanks Blitz - Welcome Bundle",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/world-of-tanks-blitz-welcome-bundle-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a0076b2a84f1.jpg",
+      "end_date": "2026-05-15T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "steam-2817",
+      "title": "Zero King (Beta) Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/zero-king-beta-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6601b1f21bec2.jpg",
+      "end_date": null,
+      "is_permanent": true
+    }
+  ]
+}

@@ -11,6 +11,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23161e2e'/%3E%3Ctext x='50%25' y='65%25' font-size='50' font-weight='bold' font-family='sans-serif' fill='%232563eb' text-anchor='middle'%3EOC%3C/text%3E%3C/svg%3E">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seqat.github.io/OpenClaim/">
+    <meta property="og:title" content="OpenClaim | Anlık Ücretsiz Oyun Takibi">
+    <meta property="og:description" content="OpenClaim - Steam, Epic Games ve Amazon Prime / Luna platformlarındaki ücretsiz oyunları anlık takip edin.">
+    <meta property="og:image" content="https://seqat.github.io/OpenClaim/docs/screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaim | Anlık Ücretsiz Oyun Takibi">
+    <meta name="twitter:description" content="OpenClaim - Steam, Epic Games ve Amazon Prime / Luna platformlarındaki ücretsiz oyunları anlık takip edin.">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="frontend/css/base.css">
     <link rel="stylesheet" href="frontend/css/components.css">
@@ -134,8 +149,11 @@
                 </div>
             </div>
 
+            <!-- Results Status for Screen Readers -->
+            <p id="results-status" class="sr-only" role="status" aria-live="polite"></p>
+
             <!-- Grid/List Games Container -->
-            <div class="games-grid" id="games-grid" aria-live="polite">
+            <div class="games-grid" id="games-grid">
                 <!-- Skeleton cards loaded initially -->
             </div>
         </div>

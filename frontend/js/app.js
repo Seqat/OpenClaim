@@ -35,8 +35,17 @@ async function initApp() {
     setupEventListeners();
 
     try {
-        const data = await fetchGamesData();
-        state.games = data;
+        const { games, generatedAt } = await fetchGamesData();
+        state.games = games;
+
+        if (generatedAt) {
+            const footerP = document.querySelector('footer p');
+            if (footerP) {
+                const formattedDate = new Date(generatedAt).toLocaleString();
+                footerP.textContent += ` · Son güncelleme: ${formattedDate}`;
+            }
+        }
+
         updateStatsRibbon();
         renderGames(resetAllFilters);
         startTimerLoop();
@@ -68,6 +77,14 @@ function resetAllFilters() {
     renderGames(resetAllFilters);
 }
 
+function debounce(fn, delay = 150) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
 function setupEventListeners() {
     const {
         searchInput,
@@ -79,12 +96,16 @@ function setupEventListeners() {
         backToTopBtn
     } = getElements();
 
-    // Search Input Listener
+    // Search Input Listener with 150ms Debounce
     if (searchInput) {
+        const debouncedRender = debounce(() => {
+            renderGames(resetAllFilters);
+        }, 150);
+
         searchInput.addEventListener('input', (e) => {
             state.searchQuery = e.target.value.trim().toLowerCase();
             toggleClearSearchButton();
-            renderGames(resetAllFilters);
+            debouncedRender();
         });
     }
 

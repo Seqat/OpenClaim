@@ -20,23 +20,40 @@ def parse_iso_date(date_str: Optional[str]) -> Optional[str]:
     if not date_str or str(date_str).upper() in ["N/A", "NONE", "UNKNOWN", "UNSPECIFIED"]:
         return None
     
-    formats = [
-        "%Y-%m-%d %H:%M:%S",
-        "%Y-%m-%dT%H:%M:%SZ",
-        "%Y-%m-%dT%H:%M:%S.%fZ",
-        "%Y-%m-%d",
-    ]
+    clean_str = str(date_str).strip()
+    dt = None
     
-    for fmt in formats:
-        try:
-            dt = datetime.strptime(str(date_str).strip(), fmt)
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=timezone.utc)
-            return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-        except ValueError:
-            continue
-            
-    return None
+    try:
+        iso_input = clean_str
+        if iso_input.endswith("Z") or iso_input.endswith("z"):
+            iso_input = iso_input[:-1] + "+00:00"
+        dt = datetime.fromisoformat(iso_input)
+    except (ValueError, TypeError):
+        dt = None
+
+    if dt is None:
+        formats = [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%dT%H:%M:%SZ",
+            "%Y-%m-%dT%H:%M:%S.%fZ",
+            "%Y-%m-%d",
+        ]
+        for fmt in formats:
+            try:
+                dt = datetime.strptime(clean_str, fmt)
+                break
+            except ValueError:
+                continue
+
+    if dt is None:
+        return None
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    else:
+        dt = dt.astimezone(timezone.utc)
+
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def parse_detail_page_end_date(text: str) -> Optional[str]:
@@ -71,14 +88,7 @@ def parse_detail_page_end_date(text: str) -> Optional[str]:
     m_in_days = re.search(r"\((?:in\s+)?(\d+)\s*(?:days?|gün)\s*(?:left|kaldı)?\)", text, re.IGNORECASE)
     if m_in_days:
         days = int(m_in_days.group(1))
-        dt = now + timedelta(days=days)
-        return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    # 4. Fallback to generic day/hour regex
-    m_days = re.search(r"(\d+)\s*(?:gün|days?)(?:\s*(?:kaldı|left|içinde|sona|kalan))?", text, re.IGNORECASE)
-    if m_days:
-        days = int(m_days.group(1))
-        dt = now + timedelta(days=days)
+        dt = (now + timedelta(days=days)).replace(hour=23, minute=59, second=59, microsecond=0)
         return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     return None

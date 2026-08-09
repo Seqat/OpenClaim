@@ -7,40 +7,40 @@
     --bg-dark: #0b0f17;
     --bg-card: #161e2e;
     --bg-card-hover: #1e293b;
-    --bg-controls: rgba(15, 23, 42, 0.95);
-    
+    --bg-controls: #0f172a;
+
     /* Borders */
     --border-color: #283448;
     --border-hover: #374151;
     --border-sticky: #334155;
-    
+
     /* Text Colors - High Contrast, Low Fatigue */
     --text-primary: #f3f4f6;
     --text-secondary: #9ca3af;
     --text-muted: #6b7280;
-    
+
     /* Platform Colors (Matte Pastel Palette) */
     --platform-steam-bg: #1e293b;
     --platform-steam-text: #93c5fd;
     --platform-steam-border: #334155;
-    
+
     --platform-epic-bg: #27272a;
     --platform-epic-text: #e4e4e7;
     --platform-epic-border: #3f3f46;
-    
+
     --platform-amazon-bg: #2e1065;
     --platform-amazon-text: #ddd6fe;
     --platform-amazon-border: #4c1d95;
-    
+
     /* Status Badges */
     --badge-permanent-bg: #064e3b;
     --badge-permanent-text: #a7f3d0;
     --badge-temporary-bg: #78350f;
     --badge-temporary-text: #fde68a;
-    
+
     /* Typography */
     --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    
+
     /* Transitions & Corners */
     --radius-lg: 12px;
     --radius-md: 8px;
@@ -50,7 +50,9 @@
 }
 
 /* Reset & Base Styles */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -68,6 +70,19 @@ body {
     min-height: 100vh;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Screen Reader Only Utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 /* Container */

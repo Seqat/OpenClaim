@@ -4,13 +4,18 @@ on:
   schedule:
     # Run every 4 hours
     - cron: '0 */4 * * *'
-    # Run specifically on Thursdays at 15:10 UTC for weekly Epic Games rotation
-    - cron: '10 15 * * 4'
+    # Run specifically on Thursdays at 15:20 and 15:50 UTC for weekly Epic Games rotation
+    - cron: '20 15 * * 4'
+    - cron: '50 15 * * 4'
   workflow_dispatch:
 
 jobs:
   fetch-games:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: fetch-games
+      cancel-in-progress: false
     permissions:
       contents: write
 
@@ -45,7 +50,12 @@ jobs:
           if [ -n "$(git status --porcelain games.json)" ]; then
             git add games.json
             git commit -m "chore: update games.json [skip ci]"
+            git pull --rebase
             git push
           else
             echo "No changes in games.json to commit."
           fi
+
+      - name: Report failure
+        if: failure()
+        run: echo "::error::Fetch pipeline failed - games.json korundu, güncellenmedi"
