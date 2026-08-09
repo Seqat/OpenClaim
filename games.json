@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-09T08:45:11Z",
-  "count": 53,
+  "generated_at": "2026-08-09T12:53:53Z",
+  "count": 54,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d",
@@ -153,6 +153,15 @@
       "store_url": "https://www.gamerpower.com/open/beacon-pines-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a74a4382f00e.jpg",
       "end_date": "2026-08-13T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3741",
+      "title": "Cat Named Mojave",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/cat-named-mojave-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a787392bb2f0.jpg",
+      "end_date": "2026-08-15T23:59:00Z",
       "is_permanent": false
     },
     {
