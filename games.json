@@ -1,7 +1,16 @@
 {
-  "generated_at": "2026-08-13T16:57:58Z",
-  "count": 47,
+  "generated_at": "2026-08-13T20:45:01Z",
+  "count": 50,
   "games": [
+    {
+      "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
+      "title": "Airship: Kingdoms Adrift",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/airship-kingdoms-adrift-epic/dp/amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a?ingress=amzn&ref_=SM_AirshipKingdomsAdrift_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61cRKEvPVuL._FMwebp_.jpg",
+      "end_date": "2026-09-16T23:59:59Z",
+      "is_permanent": false
+    },
     {
       "id": "amazon-amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d",
       "title": "Escape Academy",
@@ -57,21 +66,21 @@
       "is_permanent": false
     },
     {
+      "id": "amazon-amzn1.pg.item.ea4a762d-4616-4f5d-af80-61c76ea1abd3",
+      "title": "Pyramids and Aliens: Escape Room",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/pyramids-and-aliens-escape-room-gog/dp/amzn1.pg.item.ea4a762d-4616-4f5d-af80-61c76ea1abd3?ingress=amzn&ref_=SM_PyramidsandAliensEscapeRoom_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61HkpR+WthL._FMwebp_.jpg",
+      "end_date": "2026-09-16T23:59:59Z",
+      "is_permanent": false
+    },
+    {
       "id": "amazon-amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9",
       "title": "Right and Down",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/right-and-down-gog/dp/amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9?ingress=amzn&ref_=SM_RightandDown_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61Uch1TJ2PL._FMwebp_.jpg",
       "end_date": "2026-09-05T23:59:59Z",
-      "is_permanent": false
-    },
-    {
-      "id": "amazon-amzn1.pg.item.d6b4b6c3-ad9d-4e5d-9914-48c500b7be97",
-      "title": "Space Grunts",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/space-grunts-gog/dp/amzn1.pg.item.d6b4b6c3-ad9d-4e5d-9914-48c500b7be97?ingress=amzn&ref_=SM_SpaceGrunts_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61DiyE4APYL._FMwebp_.jpg",
-      "end_date": "2026-08-19T23:59:59Z",
       "is_permanent": false
     },
     {
@@ -90,6 +99,15 @@
       "store_url": "https://luna.amazon.com/claims/space-grunts-chrono-shard-epic/dp/amzn1.pg.item.dbfe54c6-6298-46ec-808d-49d3915b9734?ingress=amzn&ref_=SM_SpaceGruntsChronoShard_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61XogOE11tL._FMwebp_.jpg",
       "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false
+    },
+    {
+      "id": "amazon-amzn1.pg.item.2e34e997-a137-48b3-9b5c-ad2eb51c45f7",
+      "title": "Steelrising",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/steelrising-epic/dp/amzn1.pg.item.2e34e997-a137-48b3-9b5c-ad2eb51c45f7?ingress=amzn&ref_=SM_Steelrising_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61DPcXOKEcL._FMwebp_.jpg",
+      "end_date": "2026-09-16T23:59:59Z",
       "is_permanent": false
     },
     {
@@ -253,6 +271,15 @@
       "image_url": "https://www.gamerpower.com/offers/1b/698b912713a1b.jpg",
       "end_date": null,
       "is_permanent": true
+    },
+    {
+      "id": "steam-3524",
+      "title": "Deponia",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/deponia-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/69af0087172d3.jpg",
+      "end_date": "2026-08-20T23:59:00Z",
+      "is_permanent": false
     },
     {
       "id": "steam-1231",
