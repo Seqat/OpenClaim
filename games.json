@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-12T20:47:18Z",
-  "count": 48,
+  "generated_at": "2026-08-13T02:04:50Z",
+  "count": 49,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d",
@@ -171,6 +171,15 @@
       "store_url": "https://www.gamerpower.com/open/spider-fox-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a74a6d662f14.jpg",
       "end_date": "2026-08-13T23:59:00Z",
+      "is_permanent": false
+    },
+    {
+      "id": "epicgames-3742",
+      "title": "Targeted – 10 Days",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/targeted-10-days-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7ce767b76aa.jpg",
+      "end_date": "2026-08-31T23:59:00Z",
       "is_permanent": false
     },
     {
