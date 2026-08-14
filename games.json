@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-14T16:55:08Z",
-  "count": 50,
+  "generated_at": "2026-08-14T20:32:56Z",
+  "count": 49,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -213,16 +213,6 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3737",
-      "title": "happiness market",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/happiness-market-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7603857de41.jpg",
-      "end_date": "2026-08-14T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "steam-3086",
       "title": "3on3 FreeStyle: Beginner's Starter Kit",
       "platform": "Steam",
@@ -343,16 +333,6 @@
       "content_type": "dlc"
     },
     {
-      "id": "steam-3739",
-      "title": "Drop Loot (Playtest) Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/drop-loot-playtest-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7612ab0b8e8.jpg",
-      "end_date": "2026-08-14T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "steam-3293",
       "title": "DungeonLoot: Open Beta Has Arrived!",
       "platform": "Steam",
@@ -461,6 +441,15 @@
       "end_date": "2020-05-31T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
+    },
+    {
+      "id": "steam-3746",
+      "title": "Tape 101: Liminal Descent (Playtest) Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/tape-101-liminal-descent-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7f53780aa54.jpg",
+      "end_date": "2026-08-21T23:59:00Z",
+      "is_permanent": false
     },
     {
       "id": "steam-1498",
