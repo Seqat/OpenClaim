@@ -14,6 +14,9 @@ export const PLATFORM_LOGOS = {
     amazon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonluna.svg'
 };
 
+// Generic Gamepad SVG for non-mainstream platforms
+export const GAMEPAD_ICON_SVG = `<svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4m-2-2v4m7-2h.01m3 0h.01"/></svg>`;
+
 // DOM Elements
 export function getElements() {
     return {
@@ -110,17 +113,22 @@ export function createGameCardHTML(game) {
     const isPermanent = game.is_permanent ?? true;
     const t = translations[state.currentLang] || translations.TR;
 
-    let platformLabel = game.platform || 'PC Game';
-    let logoUrl = PLATFORM_LOGOS[platformKey] || PLATFORM_LOGOS.steam;
+    let platformLabel = 'PC';
+    let platformImgTag = '';
+
     if (platformKey === 'steam') {
         platformLabel = 'Steam';
+        platformImgTag = `<img src="${PLATFORM_LOGOS.steam}" alt="Steam" class="platform-icon" />`;
     } else if (platformKey === 'epic') {
         platformLabel = 'Epic Games';
+        platformImgTag = `<img src="${PLATFORM_LOGOS.epic}" alt="Epic Games" class="platform-icon" />`;
     } else if (platformKey === 'amazon') {
         platformLabel = 'Amazon Prime';
+        platformImgTag = `<img src="${PLATFORM_LOGOS.amazon}" alt="Amazon Prime" class="platform-icon" />`;
+    } else {
+        platformLabel = escapeHTML(game.platform || 'PC');
+        platformImgTag = GAMEPAD_ICON_SVG;
     }
-
-    const platformImgTag = `<img src="${logoUrl}" alt="${platformLabel}" class="platform-icon" />`;
 
     const validatedImage = safeUrl(game.image_url, '');
     const hasImage = Boolean(validatedImage);

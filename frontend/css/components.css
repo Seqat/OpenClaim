@@ -141,6 +141,12 @@
     border: 1px solid var(--platform-amazon-border);
 }
 
+.platform-badge.other {
+    background-color: var(--platform-other-bg);
+    color: var(--platform-other-text);
+    border: 1px solid var(--platform-other-border);
+}
+
 /* Countdown Badge (Right Side) */
 .countdown-badge {
     display: inline-flex;
