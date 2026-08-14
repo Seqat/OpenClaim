@@ -4,7 +4,7 @@
  * stats ribbon, view mode toggles, and live countdown timers.
  */
 
-import { state, getProcessedGames, normalizePlatform, saveViewMode } from './state.js';
+import { state, getProcessedGames, normalizePlatform, saveViewMode, saveContentFilter } from './state.js';
 import { translations } from './i18n.js';
 
 // Simple Icons CDN URLs
@@ -25,6 +25,7 @@ export function getElements() {
         clearSearchBtn: document.getElementById('clear-search-btn'),
         sortSelect: document.getElementById('sort-select'),
         filterTabsContainer: document.getElementById('filter-tabs'),
+        contentFilterContainer: document.getElementById('content-filter'),
         viewToggleContainer: document.getElementById('view-toggle'),
         langToggleContainer: document.getElementById('lang-toggle'),
         backToTopBtn: document.getElementById('back-to-top'),
@@ -76,6 +77,23 @@ export function applyViewMode(mode) {
 }
 
 /**
+ * Apply Content Filter ('all', 'games', 'dlc') to toggle buttons and state
+ */
+export function applyContentFilter(filter) {
+    saveContentFilter(filter);
+    const { contentFilterContainer } = getElements();
+
+    if (contentFilterContainer) {
+        const btns = contentFilterContainer.querySelectorAll('.content-btn');
+        btns.forEach(btn => {
+            const isMatch = btn.dataset.contentFilter === state.currentContentFilter;
+            btn.classList.toggle('active', isMatch);
+            btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+        });
+    }
+}
+
+/**
  * Toggle visibility of clear search button
  */
 export function toggleClearSearchButton() {
@@ -111,6 +129,7 @@ function safeUrl(url, fallback = '#') {
 export function createGameCardHTML(game) {
     const platformKey = normalizePlatform(game.platform);
     const isPermanent = game.is_permanent ?? true;
+    const isDLC = (game.content_type === 'dlc');
     const t = translations[state.currentLang] || translations.TR;
 
     let platformLabel = 'PC';
@@ -161,9 +180,12 @@ export function createGameCardHTML(game) {
             <div class="card-body">
                 <div class="card-info-section">
                     <div class="card-meta-row">
-                        <div class="platform-badge ${platformKey}">
-                            ${platformImgTag}
-                            <span>${platformLabel}</span>
+                        <div class="card-meta-left">
+                            <div class="platform-badge ${platformKey}">
+                                ${platformImgTag}
+                                <span>${platformLabel}</span>
+                            </div>
+                            ${isDLC ? `<span class="dlc-badge">${escapeHTML(t.card_dlc_badge || 'DLC')}</span>` : ''}
                         </div>
                         <div 
                             class="countdown-badge" 

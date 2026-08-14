@@ -8,6 +8,7 @@
 export const state = {
     games: [],
     currentPlatformFilter: 'all',
+    currentContentFilter: 'all',
     currentSortOption: 'smart',
     currentViewMode: 'grid',
     searchQuery: '',
@@ -56,6 +57,22 @@ export function getInitialViewMode() {
 }
 
 /**
+ * Determine initial content filter priority:
+ * localStorage > Default: 'all'
+ */
+export function getInitialContentFilter() {
+    try {
+        const saved = localStorage.getItem('openclaim_content');
+        if (saved && (saved === 'all' || saved === 'games' || saved === 'dlc')) {
+            return saved;
+        }
+    } catch (e) {
+        console.warn('localStorage read error:', e);
+    }
+    return 'all';
+}
+
+/**
  * Save current language to localStorage
  */
 export function saveLanguage(lang) {
@@ -80,6 +97,18 @@ export function saveViewMode(mode) {
 }
 
 /**
+ * Save current content filter to localStorage
+ */
+export function saveContentFilter(filter) {
+    state.currentContentFilter = (filter === 'games' || filter === 'dlc') ? filter : 'all';
+    try {
+        localStorage.setItem('openclaim_content', state.currentContentFilter);
+    } catch (e) {
+        console.warn('localStorage write error:', e);
+    }
+}
+
+/**
  * Map raw platform string to normalized key: steam | epic | amazon | other
  */
 export function normalizePlatform(platformStr) {
@@ -98,10 +127,19 @@ export function normalizePlatform(platformStr) {
 export function getProcessedGames() {
     const now = Date.now();
 
-    // 1. Filter by Platform & Search Query
+    // 1. Filter by Content Type, Platform & Search Query
     const filtered = state.games.filter(game => {
+        const contentType = game.content_type || 'game';
+
+        // Content type filter applied first
+        if (state.currentContentFilter === 'games' && contentType !== 'game') {
+            return false;
+        }
+        if (state.currentContentFilter === 'dlc' && contentType !== 'dlc') {
+            return false;
+        }
+
         const platformKey = normalizePlatform(game.platform);
-        
         if (state.currentPlatformFilter !== 'all' && platformKey !== state.currentPlatformFilter) {
             return false;
         }

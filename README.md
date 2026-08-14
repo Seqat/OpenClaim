@@ -113,6 +113,7 @@ python -m pytest
    - `image_url`: Game cover image URL (`str`)
    - `end_date`: ISO formatted expiration date or `None` (`Optional[str]`)
    - `is_permanent`: Permanent library vs limited time access (`bool`)
+   - `content_type`: Content type classification (`"game"` or `"dlc"`) (`Optional[str]`)
 4. **Integrate into Pipeline:** Import your new scraper in `backend/main.py`, execute it inside `main()`, and append results to `all_games`.
 
 ---
@@ -232,6 +233,7 @@ Yeni bir platform scraper'ı eklemek için 4 adımlı rehber:
    - `image_url`: Oyun kapak görseli bağlantısı (`str`)
    - `end_date`: ISO formatında bitiş tarihi veya `None` (`Optional[str]`)
    - `is_permanent`: Kalıcı kütüphane mi yoksa süreli erişim mi (`bool`)
+   - `content_type`: İçerik türü sınıflandırması (`"game"` veya `"dlc"`) (`Optional[str]`)
 4. **Pipeline'a Entegre Edin:** `backend/main.py` içinde yeni scraper fonksiyonunu import edin, `main()` içerisinde çağırıp `all_games` listesine ekleyin.
 
 ---

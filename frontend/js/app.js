@@ -5,12 +5,13 @@
  */
 
 import { fetchGamesData } from './api.js';
-import { state, getInitialLanguage, getInitialViewMode } from './state.js';
+import { state, getInitialLanguage, getInitialViewMode, getInitialContentFilter } from './state.js';
 import { setLanguage } from './i18n.js';
 import {
     getElements,
     showSkeletonLoaders,
     applyViewMode,
+    applyContentFilter,
     updateStatsRibbon,
     renderGames,
     startTimerLoop,
@@ -25,12 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
 async function initApp() {
     state.currentLang = getInitialLanguage();
     state.currentViewMode = getInitialViewMode();
+    state.currentContentFilter = getInitialContentFilter();
 
     setLanguage(state.currentLang, () => {
         if (state.games.length > 0) renderGames(resetAllFilters);
     });
 
     applyViewMode(state.currentViewMode);
+    applyContentFilter(state.currentContentFilter);
     showSkeletonLoaders();
     setupEventListeners();
 
@@ -61,9 +64,11 @@ function resetAllFilters() {
     if (searchInput) searchInput.value = '';
     state.searchQuery = '';
     state.currentPlatformFilter = 'all';
+    state.currentContentFilter = 'all';
     state.currentSortOption = 'smart';
     if (sortSelect) sortSelect.value = 'smart';
     toggleClearSearchButton();
+    applyContentFilter('all');
 
     if (filterTabsContainer) {
         const allTabs = filterTabsContainer.querySelectorAll('.filter-btn');
@@ -91,6 +96,7 @@ function setupEventListeners() {
         clearSearchBtn,
         sortSelect,
         filterTabsContainer,
+        contentFilterContainer,
         viewToggleContainer,
         langToggleContainer,
         backToTopBtn
@@ -147,6 +153,19 @@ function setupEventListeners() {
 
             state.currentPlatformFilter = btn.dataset.platform || 'all';
             renderGames(resetAllFilters);
+        });
+    }
+
+    // Content Type Filter Listener (All / Games / DLC)
+    if (contentFilterContainer) {
+        contentFilterContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.content-btn');
+            if (!btn) return;
+            const filter = btn.dataset.contentFilter;
+            if (filter && filter !== state.currentContentFilter) {
+                applyContentFilter(filter);
+                renderGames(resetAllFilters);
+            }
         });
     }
 

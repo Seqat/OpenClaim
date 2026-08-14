@@ -107,6 +107,29 @@
     margin-bottom: 0.85rem;
 }
 
+/* Left Group for Platform & Type Badges */
+.card-meta-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+/* Neutral DLC Chip Badge */
+.dlc-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid var(--border-color);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
 /* Platform Badges - Matte Pastel */
 .platform-badge {
     display: inline-flex;
