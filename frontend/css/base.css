@@ -32,6 +32,10 @@
     --platform-amazon-text: #ddd6fe;
     --platform-amazon-border: #4c1d95;
 
+    --platform-other-bg: #1c2431;
+    --platform-other-text: #cbd5e1;
+    --platform-other-border: #334155;
+
     /* Status Badges */
     --badge-permanent-bg: #064e3b;
     --badge-permanent-text: #a7f3d0;

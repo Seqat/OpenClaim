@@ -19,6 +19,7 @@ export const translations = {
         filter_steam: "Steam",
         filter_epic: "Epic Games",
         filter_amazon: "Amazon Luna / Prime",
+        filter_other: "Diğer",
         
         // Sort Labels
         sort_label: "Sıralama:",
@@ -77,6 +78,7 @@ export const translations = {
         filter_steam: "Steam",
         filter_epic: "Epic Games",
         filter_amazon: "Amazon Luna / Prime",
+        filter_other: "Other",
         
         // Sort Labels
         sort_label: "Sort by:",
