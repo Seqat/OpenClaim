@@ -6,7 +6,7 @@ Fetches Steam and Epic Games giveaways from GamerPower REST API.
 
 import logging
 import re
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 import requests
 
 from backend.utils.date_helpers import parse_iso_date
@@ -14,6 +14,59 @@ from backend.utils.date_helpers import parse_iso_date
 logger = logging.getLogger("gamerpower_scraper")
 
 GAMERPOWER_API_URL = "https://www.gamerpower.com/api/giveaways?platform=pc"
+
+DLC_KEYWORDS_PATTERN = re.compile(
+    r"\b("
+    r"dlc|"
+    r"content\s+pack|"
+    r"gift\s+pack|"
+    r"starter\s+kit|"
+    r"in-game\s+items?|"
+    r"pack|packs|"
+    r"bundle|bundles|"
+    r"skins?|"
+    r"decals?|"
+    r"emblems?|"
+    r"kits?|"
+    r"items?|"
+    r"points|"
+    r"currency|"
+    r"loot|"
+    r"helmets?|"
+    r"dice"
+    r")\b",
+    re.IGNORECASE
+)
+
+PLAYTEST_BETA_PATTERN = re.compile(r"\b(playtest|beta)\b", re.IGNORECASE)
+
+
+def classify_content_type(title: str, gamerpower_type: Optional[str] = None) -> str:
+    """
+    Classify giveaway content type as 'game' or 'dlc'.
+    - 'playtest' or 'beta' in title overrides everything -> 'game'
+    - GamerPower API 'type' field is checked if DLC-like
+    - Title heuristics using regex word boundaries
+    - Default: 'game'
+    """
+    if not title:
+        return "game"
+
+    # 1. Playtest and Beta are games, overriding any DLC keywords
+    if PLAYTEST_BETA_PATTERN.search(title):
+        return "game"
+
+    # 2. GamerPower API type check
+    if gamerpower_type:
+        gp_type_clean = str(gamerpower_type).strip().lower()
+        if gp_type_clean in ("dlc", "in-game content", "loot", "item", "items") or re.search(r"\b(dlc|loot|item|pack|bundle)\b", gp_type_clean):
+            return "dlc"
+
+    # 3. Title heuristics
+    if DLC_KEYWORDS_PATTERN.search(title):
+        return "dlc"
+
+    return "game"
 
 
 def clean_title(title: str) -> str:
@@ -71,6 +124,7 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
             image_url = item.get("image") or item.get("thumbnail") or ""
             end_date = parse_iso_date(item.get("end_date"))
             is_permanent = end_date is None
+            content_type = classify_content_type(title_raw, item.get("type"))
 
             games.append({
                 "id": str(game_id),
@@ -79,7 +133,8 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
                 "store_url": store_url,
                 "image_url": image_url,
                 "end_date": end_date,
-                "is_permanent": is_permanent
+                "is_permanent": is_permanent,
+                "content_type": content_type
             })
 
         logger.info(f"Retrieved {len(games)} Steam & Epic Games from GamerPower.")

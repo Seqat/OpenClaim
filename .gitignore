@@ -21,7 +21,7 @@ __pycache__/
 Thumbs.db
 
 .directory
-.agents
+.agents/
 .antigravityrules
 PROJECT_SPEC.md
 AGENTS.md

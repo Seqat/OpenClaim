@@ -252,7 +252,8 @@ async def fetch_amazon_games() -> List[Dict[str, Any]]:
                     "store_url": item["store_url"],
                     "image_url": item["image_url"],
                     "end_date": end_date,
-                    "is_permanent": False
+                    "is_permanent": False,
+                    "content_type": "game"
                 })
 
             await browser.close()

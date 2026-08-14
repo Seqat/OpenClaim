@@ -75,43 +75,11 @@
 
     <main class="main-content">
         <div class="container">
-            <!-- Controls Card: Search, Sort, Platform Filters & View Toggle (Sticky Bar) -->
+            <!-- Controls Card: 2-Tier Sticky Bar -->
             <div class="controls-card">
-                <!-- Search Input -->
-                <div class="search-wrapper">
-                    <input 
-                        type="search" 
-                        id="search-input" 
-                        class="search-input" 
-                        placeholder="Oyun adı veya platform ara..." 
-                        data-i18n-placeholder="search_placeholder"
-                        aria-label="Oyun arama"
-                        data-i18n-aria="search_aria"
-                        autocomplete="off"
-                    >
-                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <button type="button" id="clear-search-btn" class="clear-search-btn" aria-label="Aramayı temizle" data-i18n-aria="clear_search_aria">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Sort Select Dropdown -->
-                <div class="sort-wrapper">
-                    <label for="sort-select" class="sort-label" data-i18n="sort_label">Sıralama:</label>
-                    <select id="sort-select" class="sort-select" aria-label="Oyun sıralama" data-i18n-aria="sort_label">
-                        <option value="smart" data-i18n="sort_smart">Akıllı Sıralama</option>
-                        <option value="alphabetical" data-i18n="sort_alphabetical">Alfabetik (A-Z)</option>
-                        <option value="expiring" data-i18n="sort_expiring">Bitiş Süresine Göre</option>
-                    </select>
-                </div>
-
-                <!-- Right Group: Platform Filters & View Mode Toggle -->
-                <div class="controls-right-group">
-                    <!-- Platform Filters -->
+                <!-- Top Row: Primary Categorical Filters (Platform Tabs + Content Filter) -->
+                <div class="controls-row primary-filters">
+                    <!-- Platform Filter Tabs -->
                     <div class="filter-tabs" id="filter-tabs" role="tablist" aria-label="Platform Filtresi">
                         <button type="button" class="filter-btn active" data-platform="all" role="tab" aria-selected="true">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
@@ -140,18 +108,63 @@
                         </button>
                     </div>
 
-                    <!-- View Toggle (Grid / List Mode) -->
-                    <div class="view-toggle" id="view-toggle" role="group" aria-label="Görünüm Seçimi">
-                        <button type="button" class="view-btn active" data-view="grid" aria-label="Kart Görünümü" data-i18n-aria="grid_view_aria" aria-pressed="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                    <!-- Content Type Filter (All / Games / DLC) -->
+                    <div class="content-filter" id="content-filter" role="group" aria-label="İçerik türü filtresi" data-i18n-aria="content_filter_aria">
+                        <button type="button" class="content-btn active" data-content-filter="all" aria-pressed="true" data-i18n="content_all">Tümü</button>
+                        <button type="button" class="content-btn" data-content-filter="games" aria-pressed="false" data-i18n="content_games">Oyunlar</button>
+                        <button type="button" class="content-btn" data-content-filter="dlc" aria-pressed="false" data-i18n="content_dlc">DLC &amp; Eşyalar</button>
+                    </div>
+                </div>
+
+                <!-- Bottom Row: Utility Bar (Search + Sort + View Toggle) -->
+                <div class="controls-row utility-bar">
+                    <!-- Search Input -->
+                    <div class="search-wrapper">
+                        <input 
+                            type="search" 
+                            id="search-input" 
+                            class="search-input" 
+                            placeholder="Oyun adı veya platform ara..." 
+                            data-i18n-placeholder="search_placeholder"
+                            aria-label="Oyun arama"
+                            data-i18n-aria="search_aria"
+                            autocomplete="off"
+                        >
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <button type="button" id="clear-search-btn" class="clear-search-btn" aria-label="Aramayı temizle" data-i18n-aria="clear_search_aria">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
-                        <button type="button" class="view-btn" data-view="list" aria-label="Liste Görünümü" data-i18n-aria="list_view_aria" aria-pressed="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
-                            </svg>
-                        </button>
+                    </div>
+
+                    <!-- Right Utility Actions: Sort + View Mode Toggle -->
+                    <div class="utility-actions">
+                        <!-- Sort Select Dropdown -->
+                        <div class="sort-wrapper">
+                            <label for="sort-select" class="sort-label" data-i18n="sort_label">Sıralama:</label>
+                            <select id="sort-select" class="sort-select" aria-label="Oyun sıralama" data-i18n-aria="sort_label">
+                                <option value="smart" data-i18n="sort_smart">Akıllı Sıralama</option>
+                                <option value="alphabetical" data-i18n="sort_alphabetical">Alfabetik (A-Z)</option>
+                                <option value="expiring" data-i18n="sort_expiring">Bitiş Süresine Göre</option>
+                            </select>
+                        </div>
+
+                        <!-- View Toggle (Grid / List Mode) -->
+                        <div class="view-toggle" id="view-toggle" role="group" aria-label="Görünüm Seçimi">
+                            <button type="button" class="view-btn active" data-view="grid" aria-label="Kart Görünümü" data-i18n-aria="grid_view_aria" aria-pressed="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="view-btn" data-view="list" aria-label="Liste Görünümü" data-i18n-aria="list_view_aria" aria-pressed="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

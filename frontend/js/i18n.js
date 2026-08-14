@@ -21,6 +21,12 @@ export const translations = {
         filter_amazon: "Amazon Luna / Prime",
         filter_other: "Diğer",
         
+        // Content Filter Labels
+        content_filter_aria: "İçerik türü filtresi",
+        content_all: "Tümü",
+        content_games: "Oyunlar",
+        content_dlc: "DLC & Eşyalar",
+
         // Sort Labels
         sort_label: "Sıralama:",
         sort_smart: "Akıllı Sıralama",
@@ -36,6 +42,7 @@ export const translations = {
         card_time_left: "Kalan Süre:",
         card_permanent_badge: "Kalıcı Kütüphane",
         card_temporary_badge: "Süreli Erişim",
+        card_dlc_badge: "DLC",
         card_claim_btn: "Mağazaya Git",
         card_claim_aria: "{title} mağaza sayfasına git",
         
@@ -79,6 +86,12 @@ export const translations = {
         filter_epic: "Epic Games",
         filter_amazon: "Amazon Luna / Prime",
         filter_other: "Other",
+
+        // Content Filter Labels
+        content_filter_aria: "Content type filter",
+        content_all: "All",
+        content_games: "Games",
+        content_dlc: "DLC & Items",
         
         // Sort Labels
         sort_label: "Sort by:",
@@ -95,6 +108,7 @@ export const translations = {
         card_time_left: "Time Left:",
         card_permanent_badge: "Permanent Library",
         card_temporary_badge: "Limited Access",
+        card_dlc_badge: "DLC",
         card_claim_btn: "Go to Store",
         card_claim_aria: "Go to store page for {title}",
         
