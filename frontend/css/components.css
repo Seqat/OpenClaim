@@ -27,6 +27,7 @@
 
 /* Game Card Structure */
 .game-card {
+    position: relative;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
@@ -211,6 +212,12 @@
     text-decoration: none;
     cursor: pointer;
     transition: var(--transition-fast);
+}
+
+.claim-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
 }
 
 .claim-btn svg {
