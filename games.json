@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-14T20:32:56Z",
-  "count": 49,
+  "generated_at": "2026-08-15T01:18:15Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -320,7 +320,7 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a678fd0be9b0.jpg",
       "end_date": "2026-08-31T23:59:00Z",
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "dlc"
     },
     {
       "id": "steam-152",
@@ -433,23 +433,14 @@
       "content_type": "dlc"
     },
     {
-      "id": "steam-27",
-      "title": "SUPER CIRCUIT BREAKERS - PAYNE",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/super-circuit-breakers-payne",
-      "image_url": "https://www.gamerpower.com/offers/1b/5ec629da21645.jpg",
-      "end_date": "2020-05-31T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "steam-3746",
       "title": "Tape 101: Liminal Descent (Playtest) Steam",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/tape-101-liminal-descent-playtest-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a7f53780aa54.jpg",
       "end_date": "2026-08-21T23:59:00Z",
-      "is_permanent": false
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "steam-1498",
@@ -469,16 +460,6 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
-    },
-    {
-      "id": "steam-3632",
-      "title": "World of Tanks Blitz - Welcome Bundle",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/world-of-tanks-blitz-welcome-bundle-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a0076b2a84f1.jpg",
-      "end_date": "2026-05-15T23:59:00Z",
-      "is_permanent": false,
       "content_type": "dlc"
     },
     {
