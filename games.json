@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T20:29:09Z",
+  "generated_at": "2026-08-18T01:18:12Z",
   "count": 46,
   "games": [
     {
@@ -183,16 +183,6 @@
       "content_type": "dlc"
     },
     {
-      "id": "epicgames-3729",
-      "title": "Project First Contact",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/project-first-contact-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7112b81327e.jpg",
-      "end_date": "2026-08-17T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "epicgames-3742",
       "title": "Targeted – 10 Days",
       "platform": "Epic Games",
@@ -321,6 +311,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "steam-3739",
+      "title": "Drop Loot (Playtest) Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/drop-loot-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a7612ab0b8e8.jpg",
+      "end_date": "2026-08-22T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "steam-3293",
