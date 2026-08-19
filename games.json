@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-19T12:50:24Z",
-  "count": 46,
+  "generated_at": "2026-08-19T20:29:36Z",
+  "count": 43,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -9,26 +9,6 @@
       "store_url": "https://luna.amazon.com/claims/airship-kingdoms-adrift-epic/dp/amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a?ingress=amzn&ref_=SM_AirshipKingdomsAdrift_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61cRKEvPVuL._FMwebp_.jpg",
       "end_date": "2026-09-16T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d",
-      "title": "Escape Academy",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/escape-academy-epic/dp/amzn1.pg.item.b1e0afe5-c3f4-464b-8731-e174e110ae2d?ingress=amzn&ref_=SM_EscapeAcademy_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61JtNHneJ0L._FMwebp_.jpg",
-      "end_date": "2026-08-19T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.a06a5d0e-0f33-4a10-82e2-8ed97d4a8f03",
-      "title": "FRAMED Collection",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/framed-collection-gog/dp/amzn1.pg.item.a06a5d0e-0f33-4a10-82e2-8ed97d4a8f03?ingress=amzn&ref_=SM_FRAMEDCollection_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61B8-TFosTL._FMwebp_.jpg",
-      "end_date": "2026-08-19T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -59,16 +39,6 @@
       "store_url": "https://luna.amazon.com/claims/mystic-academy-escape-room-gog/dp/amzn1.pg.item.61f57a96-121c-443f-8432-652773456072?ingress=amzn&ref_=SM_MysticAcademyEscapeRoom_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/615CGVWetCL._FMwebp_.jpg",
       "end_date": "2026-08-22T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.54ad3d4e-b323-4092-a8d1-f64e5de67cbc",
-      "title": "Poly Vita",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/poly-vita-legacy/dp/amzn1.pg.item.54ad3d4e-b323-4092-a8d1-f64e5de67cbc?ingress=amzn&ref_=SM_PolyVita_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/516Sd8pdnRL._FMwebp_.jpg",
-      "end_date": "2026-08-19T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
