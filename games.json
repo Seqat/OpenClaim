@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-19T20:29:36Z",
-  "count": 43,
+  "generated_at": "2026-08-20T01:18:13Z",
+  "count": 44,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -151,6 +151,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "epicgames-3750",
+      "title": "Grow And Go: Cozy Deliveries",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/grow-and-go-cozy-deliveries-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a863f21649e6.jpg",
+      "end_date": "2026-08-22T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "epicgames-3742",
