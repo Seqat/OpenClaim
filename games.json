@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-20T16:38:52Z",
-  "count": 46,
+  "generated_at": "2026-08-20T20:30:31Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -63,6 +63,16 @@
       "content_type": "game"
     },
     {
+      "id": "amazon-amzn1.pg.item.727672b5-8661-4f8f-b4ed-a6c40a1248ee",
+      "title": "Royal Romances: Forbidden Magic",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/royal-romances-forbidden-magic-legacy/dp/amzn1.pg.item.727672b5-8661-4f8f-b4ed-a6c40a1248ee?ingress=amzn&ref_=SM_RoyalRomancesForbiddenMagic_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71kuZE5Q3KL._FMwebp_.jpg",
+      "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "amazon-amzn1.pg.item.f92a0c83-29ce-4767-819b-e417b1f238f8",
       "title": "Space Grunts 2",
       "platform": "Amazon Luna / Prime",
@@ -78,6 +88,16 @@
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/space-grunts-chrono-shard-epic/dp/amzn1.pg.item.dbfe54c6-6298-46ec-808d-49d3915b9734?ingress=amzn&ref_=SM_SpaceGruntsChronoShard_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61XogOE11tL._FMwebp_.jpg",
+      "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.cc221e3b-25ab-4e12-b3bd-8eb10ea25824",
+      "title": "Spray Paint Simulator",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/spray-paint-simulator-aga/dp/amzn1.pg.item.cc221e3b-25ab-4e12-b3bd-8eb10ea25824?ingress=amzn&ref_=SM_SprayPaintSimulator_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61RNcKplUuL._FMwebp_.jpg",
       "end_date": "2026-09-23T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
@@ -271,16 +291,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "steam-3524",
-      "title": "Deponia",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/deponia-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/69af0087172d3.jpg",
-      "end_date": "2026-08-20T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
     },
     {
       "id": "steam-1231",
