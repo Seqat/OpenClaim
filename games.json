@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-20T12:52:23Z",
-  "count": 44,
+  "generated_at": "2026-08-20T15:51:45Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -133,12 +133,22 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3743",
-      "title": "Caravan SandWitch",
+      "id": "epicgames-3751",
+      "title": "Albion Online: Epic Mage Bundle",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/caravan-sandwitch-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7ddc052cf6c.jpg",
-      "end_date": "2026-08-20T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/albion-online-epic-mage-bundle-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a8716898dd4e.jpg",
+      "end_date": "2026-08-27T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc"
+    },
+    {
+      "id": "epicgames-3752",
+      "title": "Cardpocalypse",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/cardpocalypse-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a87170ac6118.jpg",
+      "end_date": "2026-08-27T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
