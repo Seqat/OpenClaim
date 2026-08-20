@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-20T15:51:45Z",
-  "count": 45,
+  "generated_at": "2026-08-20T16:14:25Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -141,6 +141,16 @@
       "end_date": "2026-08-27T23:59:00Z",
       "is_permanent": false,
       "content_type": "dlc"
+    },
+    {
+      "id": "epicgames-3754",
+      "title": "Bolmn",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/bolmn-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a871ffdbbd71.jpg",
+      "end_date": "2026-08-27T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "epicgames-3752",
