@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-21T12:51:02Z",
-  "count": 47,
+  "generated_at": "2026-08-21T16:36:45Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -431,16 +431,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "steam-3746",
-      "title": "Tape 101: Liminal Descent (Playtest) Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/tape-101-liminal-descent-playtest-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7f53780aa54.jpg",
-      "end_date": "2026-08-21T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
     },
     {
       "id": "steam-1498",
