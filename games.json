@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-22T16:26:38Z",
-  "count": 46,
+  "generated_at": "2026-08-22T20:24:23Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -29,16 +29,6 @@
       "store_url": "https://luna.amazon.com/claims/in-sound-mind-aga/dp/amzn1.pg.item.1a5c5cac-5445-48ba-89f6-91c4e0068399?ingress=amzn&ref_=SM_InSoundMind_S02_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71kbMOzFopL._FMwebp_.jpg",
       "end_date": "2026-09-23T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.61f57a96-121c-443f-8432-652773456072",
-      "title": "Mystic Academy: Escape Room",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/mystic-academy-escape-room-gog/dp/amzn1.pg.item.61f57a96-121c-443f-8432-652773456072?ingress=amzn&ref_=SM_MysticAcademyEscapeRoom_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/615CGVWetCL._FMwebp_.jpg",
-      "end_date": "2026-08-22T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
