@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-22T20:24:23Z",
-  "count": 45,
+  "generated_at": "2026-08-23T01:24:36Z",
+  "count": 43,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -183,16 +183,6 @@
       "content_type": "dlc"
     },
     {
-      "id": "epicgames-3750",
-      "title": "Grow And Go: Cozy Deliveries",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/grow-and-go-cozy-deliveries-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a863f21649e6.jpg",
-      "end_date": "2026-08-22T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "epicgames-3742",
       "title": "Targeted – 10 Days",
       "platform": "Epic Games",
@@ -311,16 +301,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "steam-3739",
-      "title": "Drop Loot (Playtest) Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/drop-loot-playtest-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7612ab0b8e8.jpg",
-      "end_date": "2026-08-22T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
     },
     {
       "id": "steam-3293",
