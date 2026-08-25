@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T12:50:13Z",
+  "generated_at": "2026-08-25T16:39:19Z",
   "count": 45,
   "games": [
     {
@@ -18,7 +18,7 @@
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/hiveswap-friendsim-gog/dp/amzn1.pg.item.8e0d3ee4-446f-435e-bfb4-33fe97d25af8?ingress=amzn&ref_=SM_HiveswapFriendsim_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71medzxldpL._FMwebp_.jpg",
-      "end_date": "2026-09-09T23:59:59Z",
+      "end_date": null,
       "is_permanent": false,
       "content_type": "game"
     },
@@ -48,7 +48,7 @@
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/right-and-down-gog/dp/amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9?ingress=amzn&ref_=SM_RightandDown_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61Uch1TJ2PL._FMwebp_.jpg",
-      "end_date": "2026-09-05T23:59:59Z",
+      "end_date": null,
       "is_permanent": false,
       "content_type": "game"
     },
