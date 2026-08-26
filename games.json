@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-26T16:49:46Z",
-  "count": 47,
+  "generated_at": "2026-08-26T22:50:09Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -99,16 +99,6 @@
       "store_url": "https://luna.amazon.com/claims/steelrising-epic/dp/amzn1.pg.item.2e34e997-a137-48b3-9b5c-ad2eb51c45f7?ingress=amzn&ref_=SM_Steelrising_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61DPcXOKEcL._FMwebp_.jpg",
       "end_date": "2026-09-16T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.805ab02d-bcd9-4d95-81ad-6c495def553e",
-      "title": "Terraforming Mars",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/terraforming-mars-aga/dp/amzn1.pg.item.805ab02d-bcd9-4d95-81ad-6c495def553e?ingress=amzn&ref_=SM_TerraformingMars_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61tkaj+A6uL._FMwebp_.jpg",
-      "end_date": "2026-08-26T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -291,16 +281,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "steam-3756",
-      "title": "Dokimon Quest",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/dokimon-quest-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a8c7f81e1f39.jpg",
-      "end_date": "2026-08-26T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
     },
     {
       "id": "steam-3723",
