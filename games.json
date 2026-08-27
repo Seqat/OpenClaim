@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-27T08:02:34Z",
-  "count": 45,
+  "generated_at": "2026-08-27T21:55:44Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -9,6 +9,26 @@
       "store_url": "https://luna.amazon.com/claims/airship-kingdoms-adrift-epic/dp/amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a?ingress=amzn&ref_=SM_AirshipKingdomsAdrift_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61cRKEvPVuL._FMwebp_.jpg",
       "end_date": "2026-09-16T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.f156cdf9-2d60-465f-9977-b0fac64e9fc3",
+      "title": "Clash: Artifacts of Chaos",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/clash-artifacts-of-chaos-epic/dp/amzn1.pg.item.f156cdf9-2d60-465f-9977-b0fac64e9fc3?ingress=amzn&ref_=SM_ClashArtifactsofChaos_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61aHIDiDC9L._FMwebp_.jpg",
+      "end_date": "2026-09-30T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.ef222081-3e6c-4949-9e87-aaf2c27b6bc6",
+      "title": "Havendock",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/havendock-aga/dp/amzn1.pg.item.ef222081-3e6c-4949-9e87-aaf2c27b6bc6?ingress=amzn&ref_=SM_Havendock_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71QRar-6mFL._FMwebp_.jpg",
+      "end_date": "2026-10-28T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -133,32 +153,12 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3751",
-      "title": "Albion Online: Epic Mage Bundle",
+      "id": "epicgames-2336",
+      "title": "Breathedge",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/albion-online-epic-mage-bundle-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a8716898dd4e.jpg",
-      "end_date": "2026-08-27T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc"
-    },
-    {
-      "id": "epicgames-3754",
-      "title": "Bolmn",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/bolmn-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a871ffdbbd71.jpg",
-      "end_date": "2026-08-27T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "epicgames-3752",
-      "title": "Cardpocalypse",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/cardpocalypse-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a87170ac6118.jpg",
-      "end_date": "2026-08-27T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/breathedge-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/644a8e3ec8e21.jpg",
+      "end_date": "2026-09-03T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -171,6 +171,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "epicgames-3759",
+      "title": "Rival Stars Horse Racing",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/rival-stars-horse-racing-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a90554f27ee1.jpg",
+      "end_date": "2026-09-03T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "epicgames-3742",
