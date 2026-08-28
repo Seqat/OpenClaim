@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-28T10:05:36Z",
-  "count": 46,
+  "generated_at": "2026-08-28T21:48:16Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -171,6 +171,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "epicgames-3709",
+      "title": "NoRush! - Tower Editions",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/norush-tower-edition-epic-games-giveaways",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a53a044a87b6.jpg",
+      "end_date": "2026-09-09T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "epicgames-3759",
