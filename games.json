@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-30T13:38:37Z",
-  "count": 47,
+  "generated_at": "2026-08-30T19:06:39Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -321,16 +321,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "steam-3739",
-      "title": "Drop Loot (Playtest) Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/drop-loot-playtest-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7612ab0b8e8.jpg",
-      "end_date": null,
-      "is_permanent": true,
-      "content_type": "game"
     },
     {
       "id": "steam-3293",
