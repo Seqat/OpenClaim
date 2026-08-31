@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-31T15:56:27Z",
-  "count": 45,
+  "generated_at": "2026-08-31T21:21:36Z",
+  "count": 44,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -129,16 +129,6 @@
       "store_url": "https://luna.amazon.com/claims/weakless-gog/dp/amzn1.pg.item.35aae84a-f566-4890-8fd3-492318a39036?ingress=amzn&ref_=SM_Weakless_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61K5ceKpDkL._FMwebp_.jpg",
       "end_date": "2026-10-28T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.aa22d9f6-a898-4be7-a6df-50c3561b41b9",
-      "title": "XCOM: Chimera Squad",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/xcom-chimera-squad-gog/dp/amzn1.pg.item.aa22d9f6-a898-4be7-a6df-50c3561b41b9?ingress=amzn&ref_=SM_XCOMChimeraSquad_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/71cWh9H+3GL._FMwebp_.jpg",
-      "end_date": "2026-08-31T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
