@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-31T04:16:35Z",
-  "count": 46,
+  "generated_at": "2026-08-31T15:56:27Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -189,16 +189,6 @@
       "store_url": "https://www.gamerpower.com/open/rival-stars-horse-racing-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a90554f27ee1.jpg",
       "end_date": "2026-09-03T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "epicgames-3742",
-      "title": "Targeted – 10 Days",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/targeted-10-days-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a7ce767b76aa.jpg",
-      "end_date": "2026-08-31T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
