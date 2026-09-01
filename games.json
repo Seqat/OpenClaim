@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-01T04:02:14Z",
-  "count": 44,
+  "generated_at": "2026-09-01T19:16:20Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -283,16 +283,6 @@
       "content_type": "dlc"
     },
     {
-      "id": "steam-3723",
-      "title": "DragonSword: Awakening - Abyssal Direwolf",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/dragonsword-awakening-abyssal-direwolf-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a678fd0be9b0.jpg",
-      "end_date": "2026-08-31T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc"
-    },
-    {
       "id": "steam-152",
       "title": "Dream of Mirror Online Summer Fun DLC Pack Steam Keys",
       "platform": "Steam",
@@ -380,16 +370,6 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a4becdd3a999.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
-    },
-    {
-      "id": "steam-3757",
-      "title": "Microsoft Flight Simulator Suite: Themes Reimagined",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/microsoft-flight-simulator-suite-themes-reimagined-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a8c8ad5c73a9.jpg",
-      "end_date": "2026-09-01T23:59:00Z",
-      "is_permanent": false,
       "content_type": "dlc"
     },
     {
