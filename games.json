@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-02T08:31:04Z",
-  "count": 42,
+  "generated_at": "2026-09-02T16:09:28Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -179,16 +179,6 @@
       "store_url": "https://www.gamerpower.com/open/rival-stars-horse-racing-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a90554f27ee1.jpg",
       "end_date": "2026-09-03T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "epicgames-3555",
-      "title": "Together After Dark",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/together-after-dark-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/69cafab460c8e.jpg",
-      "end_date": "2026-09-02T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
