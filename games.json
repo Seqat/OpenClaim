@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-03T08:39:31Z",
-  "count": 41,
+  "generated_at": "2026-09-03T15:58:09Z",
+  "count": 40,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -143,12 +143,12 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-2336",
-      "title": "Breathedge",
+      "id": "epicgames-3763",
+      "title": "Alone With You",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/breathedge-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/644a8e3ec8e21.jpg",
-      "end_date": "2026-09-03T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/alone-with-you-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a998bd861dec.jpg",
+      "end_date": "2026-09-10T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -169,16 +169,6 @@
       "store_url": "https://www.gamerpower.com/open/norush-tower-edition-epic-games-giveaways",
       "image_url": "https://www.gamerpower.com/offers/1b/6a53a044a87b6.jpg",
       "end_date": "2026-09-09T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "epicgames-3759",
-      "title": "Rival Stars Horse Racing",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/rival-stars-horse-racing-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a90554f27ee1.jpg",
-      "end_date": "2026-09-03T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
