@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-04T08:34:01Z",
-  "count": 41,
+  "generated_at": "2026-09-04T15:55:38Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -159,6 +159,16 @@
       "store_url": "https://www.gamerpower.com/open/alone-with-you-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a998bd861dec.jpg",
       "end_date": "2026-09-10T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "epicgames-3766",
+      "title": "Beach Invasion 1944",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/beach-invasion-1944-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6a9acdcbb2177.jpg",
+      "end_date": "2026-09-07T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
