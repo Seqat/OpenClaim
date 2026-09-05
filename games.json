@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T14:46:16Z",
+  "generated_at": "2026-09-05T17:59:12Z",
   "count": 42,
   "games": [
     {
@@ -73,22 +73,22 @@
       "content_type": "game"
     },
     {
-      "id": "amazon-amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9",
-      "title": "Right and Down",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/right-and-down-gog/dp/amzn1.pg.item.8fe59485-dd11-4558-9a36-8a9d367b10e9?ingress=amzn&ref_=SM_RightandDown_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61Uch1TJ2PL._FMwebp_.jpg",
-      "end_date": "2026-09-05T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "amazon-amzn1.pg.item.727672b5-8661-4f8f-b4ed-a6c40a1248ee",
       "title": "Royal Romances: Forbidden Magic",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/royal-romances-forbidden-magic-legacy/dp/amzn1.pg.item.727672b5-8661-4f8f-b4ed-a6c40a1248ee?ingress=amzn&ref_=SM_RoyalRomancesForbiddenMagic_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71kuZE5Q3KL._FMwebp_.jpg",
       "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.f92a0c83-29ce-4767-819b-e417b1f238f8",
+      "title": "Space Grunts 2",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/space-grunts-2-gog/dp/amzn1.pg.item.f92a0c83-29ce-4767-819b-e417b1f238f8?ingress=amzn&ref_=SM_SpaceGrunts2_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71rrqKQpjoL._FMwebp_.jpg",
+      "end_date": "2026-09-16T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
