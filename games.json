@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-09T16:05:57Z",
-  "count": 41,
+  "generated_at": "2026-09-09T22:20:10Z",
+  "count": 39,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -29,16 +29,6 @@
       "store_url": "https://luna.amazon.com/claims/havendock-aga/dp/amzn1.pg.item.ef222081-3e6c-4949-9e87-aaf2c27b6bc6?ingress=amzn&ref_=SM_Havendock_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71QRar-6mFL._FMwebp_.jpg",
       "end_date": "2026-10-28T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.8e0d3ee4-446f-435e-bfb4-33fe97d25af8",
-      "title": "Hiveswap Friendsim",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/hiveswap-friendsim-gog/dp/amzn1.pg.item.8e0d3ee4-446f-435e-bfb4-33fe97d25af8?ingress=amzn&ref_=SM_HiveswapFriendsim_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/71medzxldpL._FMwebp_.jpg",
-      "end_date": "2026-09-09T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -171,16 +161,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "epicgames-3709",
-      "title": "NoRush! - Tower Editions",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/norush-tower-edition-epic-games-giveaways",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a53a044a87b6.jpg",
-      "end_date": "2026-09-09T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
     },
     {
       "id": "steam-3086",
