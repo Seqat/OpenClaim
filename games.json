@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-08T22:26:05Z",
-  "count": 42,
+  "generated_at": "2026-09-09T03:35:47Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -271,16 +271,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
-    },
-    {
-      "id": "steam-3768",
-      "title": "Doomspire Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/doomspire-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aa03d0696b15.jpg",
-      "end_date": null,
-      "is_permanent": true,
-      "content_type": "game"
     },
     {
       "id": "steam-152",
