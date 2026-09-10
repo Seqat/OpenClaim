@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-10T08:43:37Z",
-  "count": 39,
+  "generated_at": "2026-09-10T15:59:16Z",
+  "count": 40,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -143,12 +143,12 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3763",
-      "title": "Alone With You",
+      "id": "epicgames-3774",
+      "title": "Astral Ascent",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/alone-with-you-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6a998bd861dec.jpg",
-      "end_date": "2026-09-10T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/astral-ascent-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aa2c8331c791.jpg",
+      "end_date": "2026-09-17T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -161,6 +161,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "epicgames-3773",
+      "title": "Luftrausers",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/luftrausers-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aa2c633c21e7.jpg",
+      "end_date": "2026-09-17T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "steam-3086",
