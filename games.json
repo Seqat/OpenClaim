@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-14T09:40:03Z",
-  "count": 42,
+  "generated_at": "2026-09-14T17:52:28Z",
+  "count": 44,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -223,6 +223,16 @@
       "content_type": "game"
     },
     {
+      "id": "steam-3776",
+      "title": "Crystal Crisis",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/crystal-crisis-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aa7d795dadd3.jpg",
+      "end_date": "2026-09-22T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "steam-2856",
       "title": "DAVE THE DIVER - Godzilla Content Pack",
       "platform": "Steam",
@@ -248,6 +258,16 @@
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/deadswitch-combat-vehicle-bundle-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a5a2cda80145.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "dlc"
+    },
+    {
+      "id": "steam-3777",
+      "title": "Deadswitch Combat: Attachment Skins Bundle Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/deadswitch-combat-attachment-skins-bundle-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aa824361c069.jpg",
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
