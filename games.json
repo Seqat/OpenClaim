@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-15T09:16:13Z",
-  "count": 44,
+  "generated_at": "2026-09-15T16:29:37Z",
+  "count": 43,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
@@ -258,16 +258,6 @@
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/deadswitch-combat-vehicle-bundle-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a5a2cda80145.jpg",
-      "end_date": null,
-      "is_permanent": true,
-      "content_type": "dlc"
-    },
-    {
-      "id": "steam-3777",
-      "title": "Deadswitch Combat: Attachment Skins Bundle Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/deadswitch-combat-attachment-skins-bundle-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aa824361c069.jpg",
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
