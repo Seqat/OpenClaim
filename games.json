@@ -1,17 +1,7 @@
 {
-  "generated_at": "2026-09-16T16:20:30Z",
-  "count": 43,
+  "generated_at": "2026-09-16T22:42:16Z",
+  "count": 41,
   "games": [
-    {
-      "id": "amazon-amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a",
-      "title": "Airship: Kingdoms Adrift",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/airship-kingdoms-adrift-epic/dp/amzn1.pg.item.aa62d067-6b98-4929-bc49-3ccdd11d888a?ingress=amzn&ref_=SM_AirshipKingdomsAdrift_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61cRKEvPVuL._FMwebp_.jpg",
-      "end_date": "2026-09-16T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
       "title": "Botany Manor",
@@ -83,16 +73,6 @@
       "content_type": "game"
     },
     {
-      "id": "amazon-amzn1.pg.item.ea4a762d-4616-4f5d-af80-61c76ea1abd3",
-      "title": "Pyramids and Aliens: Escape Room",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/pyramids-and-aliens-escape-room-gog/dp/amzn1.pg.item.ea4a762d-4616-4f5d-af80-61c76ea1abd3?ingress=amzn&ref_=SM_PyramidsandAliensEscapeRoom_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61HkpR+WthL._FMwebp_.jpg",
-      "end_date": "2026-09-16T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "amazon-amzn1.pg.item.727672b5-8661-4f8f-b4ed-a6c40a1248ee",
       "title": "Royal Romances: Forbidden Magic",
       "platform": "Amazon Luna / Prime",
@@ -119,16 +99,6 @@
       "store_url": "https://luna.amazon.com/claims/spray-paint-simulator-aga/dp/amzn1.pg.item.cc221e3b-25ab-4e12-b3bd-8eb10ea25824?ingress=amzn&ref_=SM_SprayPaintSimulator_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61RNcKplUuL._FMwebp_.jpg",
       "end_date": "2026-09-23T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.2e34e997-a137-48b3-9b5c-ad2eb51c45f7",
-      "title": "Steelrising",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/steelrising-epic/dp/amzn1.pg.item.2e34e997-a137-48b3-9b5c-ad2eb51c45f7?ingress=amzn&ref_=SM_Steelrising_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61DPcXOKEcL._FMwebp_.jpg",
-      "end_date": "2026-09-16T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -401,6 +371,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "steam-3779",
+      "title": "Space Menace",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/space-menace-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aaad50c2b7d4.jpg",
+      "end_date": "2026-09-23T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "steam-1498",
