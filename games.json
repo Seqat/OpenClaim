@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T09:17:09Z",
-  "count": 41,
+  "generated_at": "2026-09-17T16:27:49Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -133,16 +133,6 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3774",
-      "title": "Astral Ascent",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/astral-ascent-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aa2c8331c791.jpg",
-      "end_date": "2026-09-17T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -153,12 +143,22 @@
       "content_type": "dlc"
     },
     {
-      "id": "epicgames-3773",
-      "title": "Luftrausers",
+      "id": "epicgames-3781",
+      "title": "Mindcop",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/luftrausers-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aa2c633c21e7.jpg",
-      "end_date": "2026-09-17T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/mindcop-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aac007c3171a.jpg",
+      "end_date": "2026-09-24T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "epicgames-3782",
+      "title": "Shogun Showdown",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/shogun-showdown-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aac02328ba2e.jpg",
+      "end_date": "2026-09-24T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -291,6 +291,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "game"
+    },
+    {
+      "id": "steam-3780",
+      "title": "Dying Light: The Beast - Discharge Weapon Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/dying-light-the-beast-discharge-weapon-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aabf82917b1f.jpg",
+      "end_date": "2026-09-24T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc"
     },
     {
       "id": "steam-2835",
