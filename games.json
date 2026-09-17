@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T16:27:49Z",
-  "count": 42,
+  "generated_at": "2026-09-17T19:05:23Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -29,6 +29,16 @@
       "store_url": "https://luna.amazon.com/claims/doom-doom-ii-gog/dp/amzn1.pg.item.db1d5024-9037-4d32-9543-37a9577e7d86?ingress=amzn&ref_=SM_DOOMDOOMII_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71nc4vF+r7L._FMwebp_.jpg",
       "end_date": "2026-10-14T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.1c490f2e-c698-4077-94a6-6a69c98945e2",
+      "title": "DOOM Eternal",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/doom-eternal-microsoft/dp/amzn1.pg.item.1c490f2e-c698-4077-94a6-6a69c98945e2?ingress=amzn&ref_=SM_DOOMEternal_S02_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71dBSw0a0OL._FMwebp_.jpg",
+      "end_date": "2026-10-21T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -73,6 +83,16 @@
       "content_type": "game"
     },
     {
+      "id": "amazon-amzn1.pg.item.2cf2cac0-6b4d-4b5e-9064-2005dad4ede7",
+      "title": "RiMS Racing",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/rims-racing-epic/dp/amzn1.pg.item.2cf2cac0-6b4d-4b5e-9064-2005dad4ede7?ingress=amzn&ref_=SM_RimsRacing_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61mTwPrcqsL._FMwebp_.jpg",
+      "end_date": "2026-10-21T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "amazon-amzn1.pg.item.727672b5-8661-4f8f-b4ed-a6c40a1248ee",
       "title": "Royal Romances: Forbidden Magic",
       "platform": "Amazon Luna / Prime",
@@ -99,6 +119,16 @@
       "store_url": "https://luna.amazon.com/claims/spray-paint-simulator-aga/dp/amzn1.pg.item.cc221e3b-25ab-4e12-b3bd-8eb10ea25824?ingress=amzn&ref_=SM_SprayPaintSimulator_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61RNcKplUuL._FMwebp_.jpg",
       "end_date": "2026-09-23T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.11e467f2-b0e3-4a1e-9dee-4cd723e92ee9",
+      "title": "Wall World 2",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/wall-world-2-aga/dp/amzn1.pg.item.11e467f2-b0e3-4a1e-9dee-4cd723e92ee9?ingress=amzn&ref_=SM_WallWorld2_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71wVd0xq9oL._FMwebp_.jpg",
+      "end_date": "2026-10-21T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
