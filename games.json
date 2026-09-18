@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-18T16:00:14Z",
-  "count": 45,
+  "generated_at": "2026-09-18T19:00:28Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -251,6 +251,16 @@
       "end_date": "2026-09-25T23:59:00Z",
       "is_permanent": false,
       "content_type": "dlc"
+    },
+    {
+      "id": "steam-3784",
+      "title": "Deadshot",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/deadshot-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/bbb.jpg",
+      "end_date": "2026-09-23T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "steam-3718",
