@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T09:43:54Z",
-  "count": 46,
+  "generated_at": "2026-09-21T17:59:21Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -418,6 +418,16 @@
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/payday-2-free-in-game-items-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/5ec63e61562a0.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "dlc"
+    },
+    {
+      "id": "steam-3785",
+      "title": "RIDE 6 Welcome Bikes Pack Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/ride-6-welcome-bikes-pack-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ab15f524c039.jpg",
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
