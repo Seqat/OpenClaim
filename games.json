@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-22T09:08:22Z",
-  "count": 47,
+  "generated_at": "2026-09-22T16:29:20Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -220,16 +220,6 @@
       "image_url": "https://www.gamerpower.com/offers/1b/698625be7e6bf.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "game"
-    },
-    {
-      "id": "steam-3776",
-      "title": "Crystal Crisis",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/crystal-crisis-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aa7d795dadd3.jpg",
-      "end_date": "2026-09-22T23:59:00Z",
-      "is_permanent": false,
       "content_type": "game"
     },
     {
