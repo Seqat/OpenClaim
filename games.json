@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-22T16:29:20Z",
-  "count": 46,
+  "generated_at": "2026-09-22T22:47:19Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -441,6 +441,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "steam-3786",
+      "title": "Truck Town: Kids and Toddlers Driving Game",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/truck-town-kids-and-toddlers-driving-game-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ab2babf233e6.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "game"
     },
     {
       "id": "steam-457",
