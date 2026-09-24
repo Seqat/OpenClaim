@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T09:05:05Z",
+  "generated_at": "2026-09-24T16:41:13Z",
   "count": 40,
   "games": [
     {
@@ -123,6 +123,16 @@
       "content_type": "game"
     },
     {
+      "id": "epicgames-3029",
+      "title": "Astrea: Six Sided Oracles",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/astrea-six-sided-oracles-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6765967d0be6d.jpg",
+      "end_date": "2026-10-01T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -133,22 +143,12 @@
       "content_type": "dlc"
     },
     {
-      "id": "epicgames-3781",
-      "title": "Mindcop",
+      "id": "epicgames-3790",
+      "title": "Mechabellum",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/mindcop-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aac007c3171a.jpg",
-      "end_date": "2026-09-24T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "epicgames-3782",
-      "title": "Shogun Showdown",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/shogun-showdown-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aac02328ba2e.jpg",
-      "end_date": "2026-09-24T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/mechabellum-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ab53cef0ee78.jpg",
+      "end_date": "2026-10-01T23:59:00Z",
       "is_permanent": false,
       "content_type": "game"
     },
