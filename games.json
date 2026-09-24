@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-24T16:41:13Z",
-  "count": 40,
+  "generated_at": "2026-09-24T19:14:37Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -63,6 +63,26 @@
       "content_type": "game"
     },
     {
+      "id": "amazon-amzn1.pg.item.351cbaa9-ac70-4e47-93b6-1a4cb7dd38c8",
+      "title": "High on Life",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/high-on-life-epic/dp/amzn1.pg.item.351cbaa9-ac70-4e47-93b6-1a4cb7dd38c8?ingress=amzn&ref_=SM_HighonLife_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/71INHIzOrjL._FMwebp_.jpg",
+      "end_date": "2026-10-28T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.d7de294d-c66d-4445-824d-ec9292fa1acb",
+      "title": "Hue",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/hue-epic/dp/amzn1.pg.item.d7de294d-c66d-4445-824d-ec9292fa1acb?ingress=amzn&ref_=SM_HUE_S03_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/51wrFI7IjlL._FMwebp_.jpg",
+      "end_date": "2026-10-28T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "amazon-amzn1.pg.item.1197607b-4bcd-4aba-a43d-0103afdf7d76",
       "title": "Just Die Already",
       "platform": "Amazon Luna / Prime",
@@ -79,6 +99,16 @@
       "store_url": "https://luna.amazon.com/claims/rims-racing-epic/dp/amzn1.pg.item.2cf2cac0-6b4d-4b5e-9064-2005dad4ede7?ingress=amzn&ref_=SM_RimsRacing_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61mTwPrcqsL._FMwebp_.jpg",
       "end_date": "2026-10-21T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.6cd3cd34-9ede-48df-bf9a-cc154ed97525",
+      "title": "The Da Vinci Cryptex",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/the-da-vinci-cryptex-legacy/dp/amzn1.pg.item.6cd3cd34-9ede-48df-bf9a-cc154ed97525?ingress=amzn&ref_=SM_TheDaVinciCryptex_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61TVgjd+7sL._FMwebp_.jpg",
+      "end_date": "2026-10-28T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -271,16 +301,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "game"
-    },
-    {
-      "id": "steam-3780",
-      "title": "Dying Light: The Beast - Discharge Weapon Pack",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/dying-light-the-beast-discharge-weapon-pack-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aabf82917b1f.jpg",
-      "end_date": "2026-09-24T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc"
     },
     {
       "id": "steam-2835",
