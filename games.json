@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-25T16:46:34Z",
-  "count": 42,
+  "generated_at": "2026-09-25T23:09:21Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -219,16 +219,6 @@
       "store_url": "https://www.gamerpower.com/open/dave-the-diver-godzilla-content-pack-steam-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/664f58a123dcd.jpg",
       "end_date": "2026-12-31T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc"
-    },
-    {
-      "id": "steam-3381",
-      "title": "DK Online: Season 4 First Steps Pack",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/dk-online-season-4-first-steps-pack-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6925b245ca021.jpg",
-      "end_date": "2026-09-25T23:59:00Z",
       "is_permanent": false,
       "content_type": "dlc"
     },
