@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T14:45:15Z",
+  "generated_at": "2026-09-30T20:37:38Z",
   "count": 41,
   "games": [
     {
@@ -9,16 +9,6 @@
       "store_url": "https://luna.amazon.com/claims/botany-manor-epic/dp/amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d?ingress=amzn&ref_=SM_BotanyManor_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61zBIjsmwwL._FMwebp_.jpg",
       "end_date": "2026-10-14T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.f156cdf9-2d60-465f-9977-b0fac64e9fc3",
-      "title": "Clash: Artifacts of Chaos",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/clash-artifacts-of-chaos-epic/dp/amzn1.pg.item.f156cdf9-2d60-465f-9977-b0fac64e9fc3?ingress=amzn&ref_=SM_ClashArtifactsofChaos_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61aHIDiDC9L._FMwebp_.jpg",
-      "end_date": "2026-09-30T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -351,6 +341,16 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc"
+    },
+    {
+      "id": "steam-3795",
+      "title": "No Brakes Club Playtest Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/no-brakes-club-playtest-steam-keys",
+      "image_url": "https://www.gamerpower.com/offers/1b/nobrakesclub.jpg",
+      "end_date": "2026-10-18T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
     },
     {
       "id": "steam-42",
