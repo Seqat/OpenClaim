@@ -4,6 +4,7 @@ GamerPower Scraper Module
 Fetches Steam and Epic Games giveaways from GamerPower REST API.
 """
 
+import html
 import logging
 import re
 from typing import Dict, List, Any, Optional
@@ -69,6 +70,49 @@ def classify_content_type(title: str, gamerpower_type: Optional[str] = None) -> 
     return "game"
 
 
+NOTICE_PATTERNS = {
+    "alienware_arena": re.compile(
+        r"\balienware\s*arena\b|\balienware\s+account\b|(?-i:\bARP\b)",
+        re.IGNORECASE
+    ),
+    "amd_account": re.compile(r"\bAMD\s+account\b", re.IGNORECASE),
+    "dungeonloot_account": re.compile(r"\bdungeon\s*loot\b", re.IGNORECASE),
+    "newsletter_signup": re.compile(
+        r"\bsubscribe\b[^.\n]{0,40}\bnewsletter\b|\bnewsletter\b[^.\n]{0,40}\bsign[\s-]?up\b",
+        re.IGNORECASE
+    ),
+    "redeem_in_game": re.compile(
+        r"redeem\s+(?:this\s+)?(?:key|code)\s+(?:in-?game|inside\s+the\s+game)|\bnot\s+steam\s+keys?\b",
+        re.IGNORECASE
+    ),
+}
+
+HTML_TAG_PATTERN = re.compile(r"<[^>]+>")
+
+
+def detect_notices(
+    title: Optional[str],
+    description: Optional[str],
+    instructions: Optional[str],
+) -> List[str]:
+    """
+    Detect extra requirements a giveaway likely has (accounts, newsletter, in-game redeem).
+    - Only description and instructions are searched; 'title' is accepted but unused,
+      since brand-flavoured item names (e.g. 'Alienware Decal') say nothing about requirements
+    - HTML tags are stripped and entities unescaped so URLs in href attributes can't match
+    - Returns a deduplicated, sorted list of notice codes ([] if none)
+    """
+    haystack = html.unescape(
+        HTML_TAG_PATTERN.sub(" ", f"{description or ''}\n{instructions or ''}")
+    )
+    if not haystack.strip():
+        return []
+
+    return sorted(
+        code for code, pattern in NOTICE_PATTERNS.items() if pattern.search(haystack)
+    )
+
+
 def clean_title(title: str) -> str:
     """Clean giveaway title by stripping store suffix strings like (Steam) Giveaway."""
     if not title:
@@ -125,6 +169,7 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
             end_date = parse_iso_date(item.get("end_date"))
             is_permanent = end_date is None
             content_type = classify_content_type(title_raw, item.get("type"))
+            notices = detect_notices(title_raw, item.get("description"), item.get("instructions"))
 
             games.append({
                 "id": str(game_id),
@@ -134,7 +179,8 @@ def fetch_gamerpower_games() -> List[Dict[str, Any]]:
                 "image_url": image_url,
                 "end_date": end_date,
                 "is_permanent": is_permanent,
-                "content_type": content_type
+                "content_type": content_type,
+                "notices": notices
             })
 
         logger.info(f"Retrieved {len(games)} Steam & Epic Games from GamerPower.")

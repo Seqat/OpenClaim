@@ -45,6 +45,13 @@ export const translations = {
         card_dlc_badge: "DLC",
         card_claim_btn: "Mağazaya Git",
         card_claim_aria: "{title} mağaza sayfasına git",
+
+        // Card Notices (hedged: the data is heuristic)
+        notice_alienware_arena: "Ücretsiz Alienware Arena hesabı (ve ARP puanı) gerekebilir",
+        notice_amd_account: "AMD hesabı gerekebilir",
+        notice_dungeonloot_account: "Ücretsiz DungeonLoot hesabı gerekebilir",
+        notice_newsletter_signup: "Bülten aboneliği gerekebilir",
+        notice_redeem_in_game: "Anahtarın Steam yerine oyun içinde kullanılması gerekebilir",
         
         // Countdown Statuses
         timer_unlimited: "♾️ Kalıcı",
@@ -111,6 +118,13 @@ export const translations = {
         card_dlc_badge: "DLC",
         card_claim_btn: "Go to Store",
         card_claim_aria: "Go to store page for {title}",
+
+        // Card Notices (hedged: the data is heuristic)
+        notice_alienware_arena: "May require a free Alienware Arena account (and ARP points)",
+        notice_amd_account: "May require an AMD account",
+        notice_dungeonloot_account: "May require a free DungeonLoot account",
+        notice_newsletter_signup: "May require a newsletter signup",
+        notice_redeem_in_game: "Key may need to be redeemed in-game, not on Steam",
         
         // Countdown Statuses
         timer_unlimited: "♾️ Permanent",
