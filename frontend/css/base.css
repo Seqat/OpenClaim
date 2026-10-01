@@ -42,6 +42,11 @@
     --badge-temporary-bg: #78350f;
     --badge-temporary-text: #fde68a;
 
+    /* Giveaway Notices (muted amber) */
+    --notice-bg: rgba(120, 53, 15, 0.22);
+    --notice-border: var(--badge-temporary-bg);
+    --notice-text: var(--badge-temporary-text);
+
     /* Typography */
     --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 

@@ -114,6 +114,7 @@ python -m pytest
    - `end_date`: ISO formatted expiration date or `None` (`Optional[str]`)
    - `is_permanent`: Permanent library vs limited time access (`bool`)
    - `content_type`: Content type classification (`"game"` or `"dlc"`) (`Optional[str]`)
+   - `notices`: Optional list of notice codes for extra requirements, e.g. `"alienware_arena"`, `"newsletter_signup"`; missing or empty means none, unknown codes are ignored by the frontend (`Optional[List[str]]`)
 4. **Integrate into Pipeline:** Import your new scraper in `backend/main.py`, execute it inside `main()`, and append results to `all_games`.
 
 ---
@@ -234,6 +235,7 @@ Yeni bir platform scraper'ı eklemek için 4 adımlı rehber:
    - `end_date`: ISO formatında bitiş tarihi veya `None` (`Optional[str]`)
    - `is_permanent`: Kalıcı kütüphane mi yoksa süreli erişim mi (`bool`)
    - `content_type`: İçerik türü sınıflandırması (`"game"` veya `"dlc"`) (`Optional[str]`)
+   - `notices`: Ek gereksinimler için isteğe bağlı bildirim kodları listesi, örn. `"alienware_arena"`, `"newsletter_signup"`; alanın olmaması veya boş olması gereksinim olmadığı anlamına gelir, bilinmeyen kodlar arayüz tarafından yok sayılır (`Optional[List[str]]`)
 4. **Pipeline'a Entegre Edin:** `backend/main.py` içinde yeni scraper fonksiyonunu import edin, `main()` içerisinde çağırıp `all_games` listesine ekleyin.
 
 ---
