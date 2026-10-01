@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-01T04:41:23Z",
-  "count": 41,
+  "generated_at": "2026-10-01T13:55:27Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -150,7 +150,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6765967d0be6d.jpg",
       "end_date": "2026-10-01T23:59:00Z",
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "epicgames-3373",
@@ -160,7 +161,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/691cb27e81a55.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "epicgames-3790",
@@ -170,7 +174,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6ab53cef0ee78.jpg",
       "end_date": "2026-10-01T23:59:00Z",
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "steam-3086",
@@ -180,7 +185,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/67b5dc10c00d3.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-2341",
@@ -190,7 +196,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6452677147a74.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "newsletter_signup"
+      ]
     },
     {
       "id": "steam-3486",
@@ -200,7 +209,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/698625be7e6bf.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-2856",
@@ -210,7 +222,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/664f58a123dcd.jpg",
       "end_date": "2026-12-31T23:59:00Z",
       "is_permanent": false,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-3718",
@@ -220,7 +233,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a5a2cda80145.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-3568",
@@ -230,7 +246,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/69d44cc9b09a2.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-3488",
@@ -240,7 +259,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/698b912713a1b.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-1231",
@@ -250,7 +272,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/618d609d2ebbc.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-152",
@@ -260,7 +283,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5iia55fd841fb.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-3293",
@@ -270,7 +296,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/68d2ea0b968f7.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": [
+        "dungeonloot_account"
+      ]
     },
     {
       "id": "steam-3716",
@@ -280,7 +309,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a59119a8eb8d.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-2835",
@@ -290,7 +322,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/662fe7544661a.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-3482",
@@ -300,7 +335,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/69822af34149c.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-2485",
@@ -310,7 +346,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/64dd14e5c0a92.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-3719",
@@ -320,7 +359,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a5a2df1cbecc.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-157",
@@ -330,7 +372,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5ef306bae0876.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "redeem_in_game"
+      ]
     },
     {
       "id": "steam-3704",
@@ -340,7 +385,21 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6a4becdd3a999.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "amd_account"
+      ]
+    },
+    {
+      "id": "steam-3796",
+      "title": "MXGP 26 - Scrubdesignz Liveries",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/mxgp-26-scrubdesignz-liveries-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6abe621aa0493.jpg",
+      "end_date": "2026-10-15T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-3795",
@@ -350,7 +409,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/nobrakesclub.jpg",
       "end_date": "2026-10-18T23:59:59Z",
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": [
+        "dungeonloot_account"
+      ]
     },
     {
       "id": "steam-42",
@@ -360,7 +422,11 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5ec643f9947fe.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena",
+        "redeem_in_game"
+      ]
     },
     {
       "id": "steam-40",
@@ -370,7 +436,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5ec63e61562a0.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-3785",
@@ -380,7 +447,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6ab15f524c039.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-1498",
@@ -390,7 +460,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/627e959acefc2.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-457",
@@ -400,7 +473,8 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc"
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-2817",
@@ -410,7 +484,10 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6601b1f21bec2.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": [
+        "alienware_arena"
+      ]
     }
   ]
 }
