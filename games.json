@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-01T13:55:27Z",
-  "count": 42,
+  "generated_at": "2026-10-01T15:14:41Z",
+  "count": 40,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -143,17 +143,6 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3029",
-      "title": "Astrea: Six Sided Oracles",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/astrea-six-sided-oracles-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6765967d0be6d.jpg",
-      "end_date": "2026-10-01T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -165,17 +154,6 @@
       "notices": [
         "alienware_arena"
       ]
-    },
-    {
-      "id": "epicgames-3790",
-      "title": "Mechabellum",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/mechabellum-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ab53cef0ee78.jpg",
-      "end_date": "2026-10-01T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
     },
     {
       "id": "steam-3086",
