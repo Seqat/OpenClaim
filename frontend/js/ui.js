@@ -123,6 +123,32 @@ function safeUrl(url, fallback = '#') {
     return /^https?:\/\//i.test(s) ? s : fallback;
 }
 
+// Known notice codes -> i18n keys. Unknown codes from games.json are ignored.
+const NOTICE_I18N_KEYS = {
+    alienware_arena: 'notice_alienware_arena',
+    amd_account: 'notice_amd_account',
+    dungeonloot_account: 'notice_dungeonloot_account',
+    newsletter_signup: 'notice_newsletter_signup',
+    redeem_in_game: 'notice_redeem_in_game'
+};
+
+const NOTICE_ICON_SVG = `<svg class="notice-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>`;
+
+/**
+ * Translated notice lines for a game. Missing/null/non-array `notices`
+ * (older games.json) and unknown codes yield no lines.
+ */
+function getNoticeLines(game, t) {
+    const codes = Array.isArray(game.notices) ? game.notices : [];
+    const lines = [];
+    for (const code of new Set(codes)) {
+        if (typeof code !== 'string' || !Object.hasOwn(NOTICE_I18N_KEYS, code)) continue;
+        const text = t[NOTICE_I18N_KEYS[code]];
+        if (text) lines.push(text);
+    }
+    return lines;
+}
+
 /**
  * Generate HTML string for single game card
  */
@@ -157,6 +183,10 @@ export function createGameCardHTML(game) {
     const safeTitle = escapeHTML(game.title || 'Game');
     const endDateAttr = game.end_date ? escapeAttribute(game.end_date) : '';
     const claimAria = escapeAttribute((t.card_claim_aria || '').replace('{title}', game.title || 'Game'));
+    const noticeLines = getNoticeLines(game, t);
+    const noticesHTML = noticeLines.length
+        ? `<ul class="card-notices">${noticeLines.map(line => `<li class="card-notice">${NOTICE_ICON_SVG}<span>${escapeHTML(line)}</span></li>`).join('')}</ul>`
+        : '';
 
     return `
         <article class="game-card" data-id="${escapeAttribute(game.id || '')}">
@@ -178,7 +208,7 @@ export function createGameCardHTML(game) {
             </div>
 
             <div class="card-body">
-                <div class="card-info-section">
+                <div class="card-info-section${noticesHTML ? ' has-notices' : ''}">
                     <div class="card-meta-row">
                         <div class="card-meta-left">
                             <div class="platform-badge ${platformKey}">
@@ -197,6 +227,7 @@ export function createGameCardHTML(game) {
                     </div>
 
                     <h3 class="card-title" title="${safeTitle}">${safeTitle}</h3>
+                    ${noticesHTML}
                 </div>
 
                 <div class="card-actions-row">

@@ -217,6 +217,42 @@
     min-height: 2.9rem;
 }
 
+/* Giveaway Notices (hedged requirement hints under the title) */
+.card-info-section.has-notices .card-title {
+    margin-bottom: 0.6rem;
+    min-height: 0;
+}
+
+.card-notices {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.card-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding: 0.3rem 0.55rem;
+    background: var(--notice-bg);
+    border: 1px solid var(--notice-border);
+    border-radius: var(--radius-sm);
+    color: var(--notice-text);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.card-notice .notice-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
 /* Card Actions Section */
 .card-actions-row {
     margin-top: auto;
@@ -328,6 +364,23 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     flex: 1;
+}
+
+/* Row layout: notices wrap onto their own line under meta + title */
+.games-grid.view-list .card-info-section.has-notices {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+}
+
+.games-grid.view-list .card-info-section.has-notices .card-title {
+    margin-bottom: 0;
+}
+
+.games-grid.view-list .card-notices {
+    flex: 0 0 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
 }
 
 .games-grid.view-list .card-actions-row {
@@ -495,6 +548,12 @@
     .games-grid.view-list .card-info-section {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .games-grid.view-list .card-notices {
+        flex: 0 0 auto;
+        flex-direction: column;
+        margin: 0.5rem 0 0;
     }
 
     .games-grid.view-list .claim-btn {
