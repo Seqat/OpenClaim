@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-01T15:14:41Z",
-  "count": 40,
+  "generated_at": "2026-10-01T20:22:34Z",
+  "count": 44,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -9,6 +9,16 @@
       "store_url": "https://luna.amazon.com/claims/botany-manor-epic/dp/amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d?ingress=amzn&ref_=SM_BotanyManor_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61zBIjsmwwL._FMwebp_.jpg",
       "end_date": "2026-10-14T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.b095156c-1207-49f0-801a-75ac03b74def",
+      "title": "DOOM",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/doom-gog/dp/amzn1.pg.item.b095156c-1207-49f0-801a-75ac03b74def?ingress=amzn&ref_=SM_DOOM_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/719F0+ORfML._FMwebp_.jpg",
+      "end_date": "2026-11-04T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -39,6 +49,16 @@
       "store_url": "https://luna.amazon.com/claims/drop-duchy-epic/dp/amzn1.pg.item.2cb13abe-d709-4d5c-8d65-35bdc91d3b4d?ingress=amzn&ref_=SM_DropDuchy_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/716shnC4--L._FMwebp_.jpg",
       "end_date": "2026-10-14T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.9d2ad65c-0963-4e2d-93e6-75ad2a4bfc87",
+      "title": "Five Nights at Freddy's: Into the Pit",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/five-nights-at-freddys-into-the-pit-epic/dp/amzn1.pg.item.9d2ad65c-0963-4e2d-93e6-75ad2a4bfc87?ingress=amzn&ref_=SM_FiveNightsatFreddysIntothePit_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/512d8D3cCVL._FMwebp_.jpg",
+      "end_date": "2026-11-04T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -143,6 +163,17 @@
       "content_type": "game"
     },
     {
+      "id": "epicgames-3798",
+      "title": "BURIED STARS",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/buried-stars-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6abe774ebcab0.jpg",
+      "end_date": "2026-10-08T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -154,6 +185,17 @@
       "notices": [
         "alienware_arena"
       ]
+    },
+    {
+      "id": "epicgames-3797",
+      "title": "System Shock 2: 25th Anniversary Remaster",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/system-shock-2-25th-anniversary-remaster-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6abe75902a6dd.jpg",
+      "end_date": "2026-10-08T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "steam-3086",
