@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-01T20:51:55Z",
-  "count": 44,
+  "generated_at": "2026-10-02T04:33:07Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -471,6 +471,17 @@
       "notices": [
         "alienware_arena"
       ]
+    },
+    {
+      "id": "steam-3800",
+      "title": "Rotwood: Drakin Armoury Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/rotwood-drakin-armoury-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6abec7b87ff09.jpg",
+      "end_date": "2026-10-15T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-1498",
