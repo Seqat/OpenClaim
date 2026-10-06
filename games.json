@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-05T16:53:46Z",
-  "count": 45,
+  "generated_at": "2026-10-06T01:11:11Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -482,6 +482,19 @@
       "is_permanent": false,
       "content_type": "dlc",
       "notices": []
+    },
+    {
+      "id": "steam-3802",
+      "title": "Scallywags Playtest Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/scallywags-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ac3f2b80d4cd.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "game",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-1498",
