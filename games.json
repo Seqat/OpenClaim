@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-07T15:19:29Z",
-  "count": 48,
+  "generated_at": "2026-10-07T21:04:08Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -93,16 +93,6 @@
       "content_type": "game"
     },
     {
-      "id": "amazon-amzn1.pg.item.1197607b-4bcd-4aba-a43d-0103afdf7d76",
-      "title": "Just Die Already",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/just-die-already-epic/dp/amzn1.pg.item.1197607b-4bcd-4aba-a43d-0103afdf7d76?ingress=amzn&ref_=SM_JustDieAlready_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61BPgsBdPBL._FMwebp_.jpg",
-      "end_date": "2026-10-07T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "amazon-amzn1.pg.item.2cf2cac0-6b4d-4b5e-9064-2005dad4ede7",
       "title": "RiMS Racing",
       "platform": "Amazon Luna / Prime",
@@ -129,16 +119,6 @@
       "store_url": "https://luna.amazon.com/claims/wall-world-2-aga/dp/amzn1.pg.item.11e467f2-b0e3-4a1e-9dee-4cd723e92ee9?ingress=amzn&ref_=SM_WallWorld2_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71wVd0xq9oL._FMwebp_.jpg",
       "end_date": "2026-10-21T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.77edd2b0-e0d7-41b2-87f7-8ef5541701e4",
-      "title": "War Hospital",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/war-hospital-epic/dp/amzn1.pg.item.77edd2b0-e0d7-41b2-87f7-8ef5541701e4?ingress=amzn&ref_=SM_WarHospital_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61v19g79PoL._FMwebp_.jpg",
-      "end_date": "2026-10-07T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
