@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-07T04:50:08Z",
-  "count": 47,
+  "generated_at": "2026-10-07T15:19:29Z",
+  "count": 48,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -507,6 +507,19 @@
       "content_type": "game",
       "notices": [
         "alienware_arena"
+      ]
+    },
+    {
+      "id": "steam-3804",
+      "title": "Spooky Cats Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/spooky-cats-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ac6201af0cf6.jpg",
+      "end_date": "2026-10-09T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": [
+        "newsletter_signup"
       ]
     },
     {
