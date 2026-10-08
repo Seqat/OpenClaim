@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-08T05:00:25Z",
-  "count": 46,
+  "generated_at": "2026-10-08T15:18:32Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -143,17 +143,6 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3798",
-      "title": "BURIED STARS",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/buried-stars-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6abe774ebcab0.jpg",
-      "end_date": "2026-10-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -165,17 +154,6 @@
       "notices": [
         "alienware_arena"
       ]
-    },
-    {
-      "id": "epicgames-3797",
-      "title": "System Shock 2: 25th Anniversary Remaster",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/system-shock-2-25th-anniversary-remaster-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6abe75902a6dd.jpg",
-      "end_date": "2026-10-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
     },
     {
       "id": "steam-3086",
@@ -402,6 +380,17 @@
       "notices": [
         "amd_account"
       ]
+    },
+    {
+      "id": "steam-3805",
+      "title": "Gear.Club Unlimited 3 - Gear.Club Signature Pack Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/gear-club-unlimited-3-gear-club-signature-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ac77cb55089f.jpg",
+      "end_date": "2026-10-22T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-3796",
