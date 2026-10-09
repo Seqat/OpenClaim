@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-09T15:03:04Z",
-  "count": 50,
+  "generated_at": "2026-10-09T20:37:14Z",
+  "count": 52,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -398,6 +398,17 @@
       ]
     },
     {
+      "id": "steam-3810",
+      "title": "Fireside Feelings",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/fireside-feelings-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ac9213823833.jpg",
+      "end_date": "2026-10-12T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "steam-157",
       "title": "Free Bomb Bots Arena Gift Pack Keys",
       "platform": "Steam",
@@ -444,6 +455,19 @@
       "is_permanent": false,
       "content_type": "dlc",
       "notices": []
+    },
+    {
+      "id": "steam-3811",
+      "title": "Meltdown Playtest Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/meltdown-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ac9440c420f8.jpg",
+      "end_date": "2026-10-16T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-3795",
