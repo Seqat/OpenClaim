@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-12T17:29:19Z",
-  "count": 51,
+  "generated_at": "2026-10-13T01:52:56Z",
+  "count": 49,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -398,17 +398,6 @@
       ]
     },
     {
-      "id": "steam-3810",
-      "title": "Fireside Feelings",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/fireside-feelings-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ac9213823833.jpg",
-      "end_date": "2026-10-12T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "steam-157",
       "title": "Free Bomb Bots Arena Gift Pack Keys",
       "platform": "Steam",
@@ -505,17 +494,6 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc",
-      "notices": []
-    },
-    {
-      "id": "steam-3809",
-      "title": "Pony Island",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/pony-island-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ac7d79b50528.jpg",
-      "end_date": "2026-10-12T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
       "notices": []
     },
     {
