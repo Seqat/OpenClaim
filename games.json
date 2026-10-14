@@ -1,17 +1,7 @@
 {
-  "generated_at": "2026-10-14T16:44:33Z",
-  "count": 50,
+  "generated_at": "2026-10-14T23:01:35Z",
+  "count": 47,
   "games": [
-    {
-      "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
-      "title": "Botany Manor",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/botany-manor-epic/dp/amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d?ingress=amzn&ref_=SM_BotanyManor_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61zBIjsmwwL._FMwebp_.jpg",
-      "end_date": "2026-10-14T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
     {
       "id": "amazon-amzn1.pg.item.82e258e7-827e-46e0-8228-25e9720b48b4",
       "title": "Conarium",
@@ -33,32 +23,12 @@
       "content_type": "game"
     },
     {
-      "id": "amazon-amzn1.pg.item.db1d5024-9037-4d32-9543-37a9577e7d86",
-      "title": "DOOM + DOOM II",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/doom-doom-ii-gog/dp/amzn1.pg.item.db1d5024-9037-4d32-9543-37a9577e7d86?ingress=amzn&ref_=SM_DOOMDOOMII_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/71nc4vF+r7L._FMwebp_.jpg",
-      "end_date": "2026-10-14T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
       "id": "amazon-amzn1.pg.item.1c490f2e-c698-4077-94a6-6a69c98945e2",
       "title": "DOOM Eternal",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/doom-eternal-microsoft/dp/amzn1.pg.item.1c490f2e-c698-4077-94a6-6a69c98945e2?ingress=amzn&ref_=SM_DOOMEternal_S02_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71dBSw0a0OL._FMwebp_.jpg",
       "end_date": "2026-10-21T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.2cb13abe-d709-4d5c-8d65-35bdc91d3b4d",
-      "title": "Drop Duchy",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/drop-duchy-epic/dp/amzn1.pg.item.2cb13abe-d709-4d5c-8d65-35bdc91d3b4d?ingress=amzn&ref_=SM_DropDuchy_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/716shnC4--L._FMwebp_.jpg",
-      "end_date": "2026-10-14T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
