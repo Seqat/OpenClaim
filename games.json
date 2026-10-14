@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-14T09:23:00Z",
-  "count": 49,
+  "generated_at": "2026-10-14T16:44:33Z",
+  "count": 50,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.fe9fbd08-590e-4d6d-9a94-f22f4548c09d",
@@ -554,6 +554,17 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
       "end_date": null,
       "is_permanent": true,
+      "content_type": "dlc",
+      "notices": []
+    },
+    {
+      "id": "steam-3813",
+      "title": "Voidtrain - Big Catch (DLC)",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/voidtrain-big-catch-dlc-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6acf83d86798b.jpg",
+      "end_date": "2026-10-19T23:59:00Z",
+      "is_permanent": false,
       "content_type": "dlc",
       "notices": []
     },
