@@ -1,7 +1,17 @@
 {
-  "generated_at": "2026-10-15T16:29:37Z",
-  "count": 47,
+  "generated_at": "2026-10-15T19:13:12Z",
+  "count": 48,
   "games": [
+    {
+      "id": "amazon-amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a",
+      "title": "Caravan SandWitch",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/caravan-sandwitch-aga/dp/amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a?ingress=amzn&ref_=SM_CaravanSandWitch_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61uVCnb+LJL._FMwebp_.jpg",
+      "end_date": "2026-12-16T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
     {
       "id": "amazon-amzn1.pg.item.82e258e7-827e-46e0-8228-25e9720b48b4",
       "title": "Conarium",
@@ -89,6 +99,16 @@
       "store_url": "https://luna.amazon.com/claims/the-da-vinci-cryptex-legacy/dp/amzn1.pg.item.6cd3cd34-9ede-48df-bf9a-cc154ed97525?ingress=amzn&ref_=SM_TheDaVinciCryptex_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61TVgjd+7sL._FMwebp_.jpg",
       "end_date": "2026-10-28T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.7885fee3-7dda-40c5-8642-596bb1f4a9b3",
+      "title": "Vampire: The Masquerade - Swansong",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/vampire-the-masquerade-swansong-epic/dp/amzn1.pg.item.7885fee3-7dda-40c5-8642-596bb1f4a9b3?ingress=amzn&ref_=SM_VampireTheMasqueradeSwansong_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/51ROEzV9RpL._FMwebp_.jpg",
+      "end_date": "2026-11-18T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -405,17 +425,6 @@
       "notices": []
     },
     {
-      "id": "steam-3796",
-      "title": "MXGP 26 - Scrubdesignz Liveries",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/mxgp-26-scrubdesignz-liveries-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6abe621aa0493.jpg",
-      "end_date": "2026-10-15T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc",
-      "notices": []
-    },
-    {
       "id": "steam-3811",
       "title": "Meltdown Playtest Steam",
       "platform": "Steam",
@@ -480,17 +489,6 @@
       ]
     },
     {
-      "id": "steam-3800",
-      "title": "Rotwood: Drakin Armoury Pack",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/rotwood-drakin-armoury-pack-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6abec7b87ff09.jpg",
-      "end_date": "2026-10-15T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc",
-      "notices": []
-    },
-    {
       "id": "steam-3802",
       "title": "Scallywags Playtest Steam",
       "platform": "Steam",
@@ -502,6 +500,17 @@
       "notices": [
         "alienware_arena"
       ]
+    },
+    {
+      "id": "steam-3818",
+      "title": "Squad Weapon Skins - Recon Team Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/squad-weapon-skins-recon-team-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ad116e31362f.jpg",
+      "end_date": "2026-10-25T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-1498",
