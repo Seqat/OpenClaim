@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T08:56:59Z",
+  "generated_at": "2026-10-15T16:29:37Z",
   "count": 47,
   "games": [
     {
@@ -133,6 +133,28 @@
       "content_type": "game"
     },
     {
+      "id": "epicgames-3817",
+      "title": "Agent A: A puzzle in disguise",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/agent-a-a-puzzle-in-disguise-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ad0eb85db498.jpg",
+      "end_date": "2026-10-22T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3816",
+      "title": "Bad Cheese",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/bad-cheese-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ad0ea7639b78.jpg",
+      "end_date": "2026-10-22T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -144,28 +166,6 @@
       "notices": [
         "alienware_arena"
       ]
-    },
-    {
-      "id": "epicgames-3806",
-      "title": "Out of Sight",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/out-of-sight-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ac7b0593f3d5.jpg",
-      "end_date": "2026-10-15T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3807",
-      "title": "TerraScape",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/terrascape-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ac7b1a7b298e.jpg",
-      "end_date": "2026-10-15T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
     },
     {
       "id": "steam-3086",
