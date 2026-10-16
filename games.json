@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-16T08:49:17Z",
-  "count": 48,
+  "generated_at": "2026-10-16T16:14:53Z",
+  "count": 49,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a",
@@ -383,6 +383,19 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
+    },
+    {
+      "id": "steam-3819",
+      "title": "Fathom Reach Playtest Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/fathom-reach-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ad23bbd018d3.jpg",
+      "end_date": "2026-11-03T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
       "notices": [
         "alienware_arena"
       ]
