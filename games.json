@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-19T09:41:09Z",
-  "count": 47,
+  "generated_at": "2026-10-19T18:27:45Z",
+  "count": 48,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a",
@@ -186,6 +186,17 @@
       "notices": [
         "alienware_arena"
       ]
+    },
+    {
+      "id": "epicgames-3820",
+      "title": "GetHigh.EXE",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/gethigh-exe-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ad63cd807641.jpg",
+      "end_date": "2026-11-02T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "steam-3086",
