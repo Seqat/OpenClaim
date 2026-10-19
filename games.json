@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-18T22:17:02Z",
-  "count": 48,
+  "generated_at": "2026-10-19T03:41:24Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a",
@@ -436,19 +436,6 @@
       "is_permanent": false,
       "content_type": "dlc",
       "notices": []
-    },
-    {
-      "id": "steam-3795",
-      "title": "No Brakes Club Playtest Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/no-brakes-club-playtest-steam-keys",
-      "image_url": "https://www.gamerpower.com/offers/1b/nobrakesclub.jpg",
-      "end_date": "2026-10-18T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": [
-        "dungeonloot_account"
-      ]
     },
     {
       "id": "steam-42",
