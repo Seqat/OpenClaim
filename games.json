@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T09:14:48Z",
+  "generated_at": "2026-10-22T16:47:21Z",
   "count": 45,
   "games": [
     {
@@ -123,28 +123,6 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3817",
-      "title": "Agent A: A puzzle in disguise",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/agent-a-a-puzzle-in-disguise-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ad0eb85db498.jpg",
-      "end_date": "2026-10-22T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3816",
-      "title": "Bad Cheese",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/bad-cheese-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ad0ea7639b78.jpg",
-      "end_date": "2026-10-22T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -164,6 +142,28 @@
       "store_url": "https://www.gamerpower.com/open/gethigh-exe-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6ad63cd807641.jpg",
       "end_date": "2026-11-02T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3823",
+      "title": "Home",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/home",
+      "image_url": "https://www.gamerpower.com/offers/1b/home.jpg",
+      "end_date": "2026-10-29T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3824",
+      "title": "Sker Ritual",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/sker-ritual",
+      "image_url": "https://www.gamerpower.com/offers/1b/sker.jpg",
+      "end_date": "2026-10-29T23:59:59Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
