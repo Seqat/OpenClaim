@@ -1,7 +1,17 @@
 {
-  "generated_at": "2026-10-22T16:47:21Z",
-  "count": 45,
+  "generated_at": "2026-10-22T19:15:12Z",
+  "count": 47,
   "games": [
+    {
+      "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
+      "title": "Ad Infinitum",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/ad-infinitum-epic/dp/amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457?ingress=amzn&ref_=SM_AdInfinitum_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61oHRL5seYL._FMwebp_.jpg",
+      "end_date": "2026-11-25T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
     {
       "id": "amazon-amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a",
       "title": "Caravan SandWitch",
@@ -79,6 +89,16 @@
       "store_url": "https://luna.amazon.com/claims/the-da-vinci-cryptex-legacy/dp/amzn1.pg.item.6cd3cd34-9ede-48df-bf9a-cc154ed97525?ingress=amzn&ref_=SM_TheDaVinciCryptex_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61TVgjd+7sL._FMwebp_.jpg",
       "end_date": "2026-10-28T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5",
+      "title": "Time Travel: Escape Room Game",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/time-travel-escape-room-game-legacy/dp/amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5?ingress=amzn&ref_=SM_TimeTravelEscapeRoomGame_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61MzWa7HYbL._FMwebp_.jpg",
+      "end_date": "2026-11-25T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
