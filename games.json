@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-23T03:50:49Z",
-  "count": 47,
+  "generated_at": "2026-10-23T09:10:17Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -437,17 +437,6 @@
       "notices": [
         "amd_account"
       ]
-    },
-    {
-      "id": "steam-3805",
-      "title": "Gear.Club Unlimited 3 - Gear.Club Signature Pack Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/gear-club-unlimited-3-gear-club-signature-pack-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ac77cb55089f.jpg",
-      "end_date": "2026-10-22T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc",
-      "notices": []
     },
     {
       "id": "steam-42",
