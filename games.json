@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-24T22:17:38Z",
-  "count": 46,
+  "generated_at": "2026-10-25T03:39:09Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -173,6 +173,17 @@
       "store_url": "https://www.gamerpower.com/open/home",
       "image_url": "https://www.gamerpower.com/offers/1b/home.jpg",
       "end_date": "2026-10-29T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3825",
+      "title": "MAFIA HOTEL",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/mafia-hotel-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6add376bc36a0.jpg",
+      "end_date": "2026-11-01T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
