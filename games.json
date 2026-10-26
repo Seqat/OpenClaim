@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-26T09:51:26Z",
-  "count": 46,
+  "generated_at": "2026-10-26T18:23:46Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -521,6 +521,17 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
       "end_date": null,
       "is_permanent": true,
+      "content_type": "dlc",
+      "notices": []
+    },
+    {
+      "id": "steam-3826",
+      "title": "V Rising - Haunted Nights Castle Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/v-rising-haunted-nights-castle-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6adf8f9e94cd7.jpg",
+      "end_date": "2026-11-02T23:59:00Z",
+      "is_permanent": false,
       "content_type": "dlc",
       "notices": []
     },
