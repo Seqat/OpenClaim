@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-26T03:42:03Z",
-  "count": 47,
+  "generated_at": "2026-10-26T09:51:26Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -499,17 +499,6 @@
       "notices": [
         "alienware_arena"
       ]
-    },
-    {
-      "id": "steam-3818",
-      "title": "Squad Weapon Skins - Recon Team Pack",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/squad-weapon-skins-recon-team-pack-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ad116e31362f.jpg",
-      "end_date": "2026-10-25T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc",
-      "notices": []
     },
     {
       "id": "steam-1498",
