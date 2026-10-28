@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-28T04:32:35Z",
-  "count": 47,
+  "generated_at": "2026-10-28T14:55:17Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -195,17 +195,6 @@
       "store_url": "https://www.gamerpower.com/open/sker-ritual",
       "image_url": "https://www.gamerpower.com/offers/1b/sker.jpg",
       "end_date": "2026-10-29T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3822",
-      "title": "Terraspace",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/terraspace-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ad9256e3eef5.jpg",
-      "end_date": "2026-10-27T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
