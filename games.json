@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-29T04:48:13Z",
-  "count": 40,
+  "generated_at": "2026-10-29T15:00:02Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -377,6 +377,17 @@
       "notices": [
         "amd_account"
       ]
+    },
+    {
+      "id": "steam-3831",
+      "title": "Hunting Simulator 3 - Classic American Hunter Pack",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/hunting-simulator-3-classic-american-hunter-pack-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae34f8e4b036.jpg",
+      "end_date": "2026-11-12T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc",
+      "notices": []
     },
     {
       "id": "steam-42",
