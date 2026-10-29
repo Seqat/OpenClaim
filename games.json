@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-29T15:00:02Z",
-  "count": 41,
+  "generated_at": "2026-10-29T20:21:26Z",
+  "count": 44,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -53,12 +53,32 @@
       "content_type": "game"
     },
     {
+      "id": "amazon-amzn1.pg.item.6a6eac09-8806-4c39-95a2-c7cf131f89fc",
+      "title": "Kiborg",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/kiborg-aga/dp/amzn1.pg.item.6a6eac09-8806-4c39-95a2-c7cf131f89fc?ingress=amzn&ref_=SM_Kiborg_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61iIzNs8oiL._FMwebp_.jpg",
+      "end_date": "2026-12-02T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "amazon-amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5",
       "title": "Time Travel: Escape Room Game",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/time-travel-escape-room-game-legacy/dp/amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5?ingress=amzn&ref_=SM_TimeTravelEscapeRoomGame_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61MzWa7HYbL._FMwebp_.jpg",
       "end_date": "2026-11-25T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.1892b601-09dc-470b-9d62-7feac63376a3",
+      "title": "Trash Goblin",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/trash-goblin-epic/dp/amzn1.pg.item.1892b601-09dc-470b-9d62-7feac63376a3?ingress=amzn&ref_=SM_TrashGoblin_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61ltwQb4mLL._FMwebp_.jpg",
+      "end_date": "2026-12-02T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -107,17 +127,6 @@
       "notices": []
     },
     {
-      "id": "epicgames-3823",
-      "title": "Home",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/home",
-      "image_url": "https://www.gamerpower.com/offers/1b/home.jpg",
-      "end_date": "2026-10-29T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3825",
       "title": "MAFIA HOTEL",
       "platform": "Epic Games",
@@ -129,12 +138,12 @@
       "notices": []
     },
     {
-      "id": "epicgames-3824",
-      "title": "Sker Ritual",
+      "id": "epicgames-3426",
+      "title": "Sorry We're Closed",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/sker-ritual",
-      "image_url": "https://www.gamerpower.com/offers/1b/sker.jpg",
-      "end_date": "2026-10-29T23:59:59Z",
+      "store_url": "https://www.gamerpower.com/open/sorry-we-re-closed-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/69481a230819b.jpg",
+      "end_date": "2026-11-05T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
@@ -379,6 +388,17 @@
       ]
     },
     {
+      "id": "steam-3834",
+      "title": "Hexologic",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/hexologic-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae37c96c0b45.jpg",
+      "end_date": "2026-10-31T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "steam-3831",
       "title": "Hunting Simulator 3 - Classic American Hunter Pack",
       "platform": "Steam",
@@ -474,6 +494,19 @@
       "is_permanent": false,
       "content_type": "dlc",
       "notices": []
+    },
+    {
+      "id": "steam-3833",
+      "title": "V Rising - Sinister Evolution Pack Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/v-rising-sinister-evolution-pack-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae37a9b441db.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
     },
     {
       "id": "steam-2817",
