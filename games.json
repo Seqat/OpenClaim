@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-30T14:53:58Z",
-  "count": 43,
+  "generated_at": "2026-10-30T20:29:22Z",
+  "count": 44,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -171,6 +171,17 @@
       "notices": [
         "newsletter_signup"
       ]
+    },
+    {
+      "id": "steam-3836",
+      "title": "Asleep: Act 1",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/asleep-act-1-steam-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae4ceb2e38bb.jpg",
+      "end_date": "2026-11-02T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "steam-3486",
