@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-30T04:47:42Z",
-  "count": 44,
+  "generated_at": "2026-10-30T14:53:58Z",
+  "count": 43,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -494,19 +494,6 @@
       "is_permanent": false,
       "content_type": "dlc",
       "notices": []
-    },
-    {
-      "id": "steam-3833",
-      "title": "V Rising - Sinister Evolution Pack Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/v-rising-sinister-evolution-pack-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae37a9b441db.jpg",
-      "end_date": null,
-      "is_permanent": true,
-      "content_type": "dlc",
-      "notices": [
-        "alienware_arena"
-      ]
     },
     {
       "id": "steam-2817",
