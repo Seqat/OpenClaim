@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-31T19:46:18Z",
-  "count": 46,
+  "generated_at": "2026-10-31T23:10:14Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -419,17 +419,6 @@
       "notices": [
         "amd_account"
       ]
-    },
-    {
-      "id": "steam-3834",
-      "title": "Hexologic",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/hexologic-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae37c96c0b45.jpg",
-      "end_date": "2026-10-31T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
     },
     {
       "id": "steam-3831",
