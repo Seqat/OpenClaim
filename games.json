@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-01T04:52:53Z",
-  "count": 45,
+  "generated_at": "2026-11-01T14:48:25Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -114,6 +114,17 @@
       "notices": [
         "alienware_arena"
       ]
+    },
+    {
+      "id": "epicgames-3839",
+      "title": "Epic World - Hunt For Quest",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/epic-world-hunt-for-quest-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae74d1a29ca6.jpg",
+      "end_date": "2026-11-08T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "epicgames-3820",
