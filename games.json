@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-01T20:18:18Z",
-  "count": 46,
+  "generated_at": "2026-11-02T04:54:10Z",
+  "count": 49,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -103,6 +103,17 @@
       "content_type": "game"
     },
     {
+      "id": "epicgames-3841",
+      "title": "Dark Mystery",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/dark-mystery-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae7c63220dc4.jpg",
+      "end_date": "2026-11-08T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -143,6 +154,28 @@
       "platform": "Epic Games",
       "store_url": "https://www.gamerpower.com/open/gladiator-blades-of-fury-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6ae6414cb0f67.jpg",
+      "end_date": "2026-11-08T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3842",
+      "title": "Highway Driving",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/highway-driving-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae7cab593610.jpg",
+      "end_date": "2026-11-08T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3840",
+      "title": "Horse Racing",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/horse-racing-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6ae7b210288b2.jpg",
       "end_date": "2026-11-08T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
