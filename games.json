@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-02T17:56:23Z",
-  "count": 48,
+  "generated_at": "2026-11-03T02:02:50Z",
+  "count": 45,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -138,17 +138,6 @@
       "notices": []
     },
     {
-      "id": "epicgames-3820",
-      "title": "GetHigh.EXE",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/gethigh-exe-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ad63cd807641.jpg",
-      "end_date": "2026-11-02T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3838",
       "title": "Gladiator: Blades of Fury",
       "platform": "Epic Games",
@@ -226,17 +215,6 @@
       "notices": [
         "newsletter_signup"
       ]
-    },
-    {
-      "id": "steam-3836",
-      "title": "Asleep: Act 1",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/asleep-act-1-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae4ceb2e38bb.jpg",
-      "end_date": "2026-11-02T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
     },
     {
       "id": "steam-3486",
@@ -536,17 +514,6 @@
       "image_url": "https://www.gamerpower.com/offers/1b/5f8d3e01b5dab.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "dlc",
-      "notices": []
-    },
-    {
-      "id": "steam-3826",
-      "title": "V Rising - Haunted Nights Castle Pack",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/v-rising-haunted-nights-castle-pack-steam-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6adf8f9e94cd7.jpg",
-      "end_date": "2026-11-02T23:59:00Z",
-      "is_permanent": false,
       "content_type": "dlc",
       "notices": []
     },
