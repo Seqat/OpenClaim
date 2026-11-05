@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-05T11:57:42Z",
-  "count": 43,
+  "generated_at": "2026-11-05T19:47:41Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -43,6 +43,16 @@
       "content_type": "game"
     },
     {
+      "id": "amazon-amzn1.pg.item.70eff815-88f4-47f9-83e0-8a8d2837c7ad",
+      "title": "Squirrel with a Gun",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/squirrel-with-a-gun-aga/dp/amzn1.pg.item.70eff815-88f4-47f9-83e0-8a8d2837c7ad?ingress=amzn&ref_=SM_SquirrelwithaGun_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61QjFNhMqwL._FMwebp_.jpg",
+      "end_date": "2026-12-09T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "amazon-amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5",
       "title": "Time Travel: Escape Room Game",
       "platform": "Amazon Luna / Prime",
@@ -69,6 +79,16 @@
       "store_url": "https://luna.amazon.com/claims/vampire-the-masquerade-swansong-epic/dp/amzn1.pg.item.7885fee3-7dda-40c5-8642-596bb1f4a9b3?ingress=amzn&ref_=SM_VampireTheMasqueradeSwansong_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/51ROEzV9RpL._FMwebp_.jpg",
       "end_date": "2026-11-18T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.59a0703f-be28-476e-9160-8e56e257dee5",
+      "title": "WRC Generations",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/wrc-generations-epic/dp/amzn1.pg.item.59a0703f-be28-476e-9160-8e56e257dee5?ingress=amzn&ref_=SM_WRCGenerations_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61bWyXTbwQL._FMwebp_.jpg",
+      "end_date": "2026-12-09T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -118,6 +138,17 @@
       "notices": []
     },
     {
+      "id": "epicgames-3845",
+      "title": "Flotsam",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/flotsam-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aeca99004384.jpg",
+      "end_date": "2026-11-12T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "epicgames-3838",
       "title": "Gladiator: Blades of Fury",
       "platform": "Epic Games",
@@ -151,23 +182,23 @@
       "notices": []
     },
     {
+      "id": "epicgames-3844",
+      "title": "Idle Champions of the Forgotten Realms: Morte's Renown Pack",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/idle-champions-of-the-forgotten-realms-morte-s-renown-pack-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aeca8e792684.jpg",
+      "end_date": "2026-11-12T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "dlc",
+      "notices": []
+    },
+    {
       "id": "epicgames-3837",
       "title": "Quiztopia: The Ultimate Trivia",
       "platform": "Epic Games",
       "store_url": "https://www.gamerpower.com/open/quiztopia-the-ultimate-trivia-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6ae64030ca5f5.jpg",
       "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3426",
-      "title": "Sorry We're Closed",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/sorry-we-re-closed-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/69481a230819b.jpg",
-      "end_date": "2026-11-05T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
