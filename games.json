@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-05T21:39:45Z",
-  "count": 46,
+  "generated_at": "2026-11-06T00:59:27Z",
+  "count": 47,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -144,6 +144,17 @@
       "store_url": "https://www.gamerpower.com/open/flotsam-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6aeca99004384.jpg",
       "end_date": "2026-11-12T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3847",
+      "title": "GMH - Good Morning Humans",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/gmh-good-morning-human-epic-games-giveaways",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aed159f0ca1d.jpg",
+      "end_date": "2026-11-08T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
