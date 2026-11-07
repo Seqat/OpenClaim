@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-06T23:59:21Z",
-  "count": 47,
+  "generated_at": "2026-11-07T05:46:17Z",
+  "count": 46,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -450,19 +450,6 @@
       "is_permanent": false,
       "content_type": "dlc",
       "notices": []
-    },
-    {
-      "id": "steam-3843",
-      "title": "Letter Quest: Grimm's Journey Remastered Steam",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/letter-quest-grimm-s-journey-remastered-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aeb27dbc0e38.jpg",
-      "end_date": "2026-11-06T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": [
-        "newsletter_signup"
-      ]
     },
     {
       "id": "steam-42",
