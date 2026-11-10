@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-09T05:04:18Z",
-  "count": 46,
+  "generated_at": "2026-11-10T02:35:24Z",
+  "count": 39,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -103,17 +103,6 @@
       "content_type": "game"
     },
     {
-      "id": "epicgames-3841",
-      "title": "Dark Mystery",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/dark-mystery-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae7c63220dc4.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3373",
       "title": "Dominion Synergy Gift Pack",
       "platform": "Epic Games",
@@ -127,67 +116,12 @@
       ]
     },
     {
-      "id": "epicgames-3839",
-      "title": "Epic World - Hunt For Quest",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/epic-world-hunt-for-quest-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae74d1a29ca6.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
       "id": "epicgames-3845",
       "title": "Flotsam",
       "platform": "Epic Games",
       "store_url": "https://www.gamerpower.com/open/flotsam-epic-games-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6aeca99004384.jpg",
       "end_date": "2026-11-12T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3847",
-      "title": "GMH - Good Morning Humans",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/gmh-good-morning-human-epic-games-giveaways",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aed159f0ca1d.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3838",
-      "title": "Gladiator: Blades of Fury",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/gladiator-blades-of-fury-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae6414cb0f67.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3842",
-      "title": "Highway Driving",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/highway-driving-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae7cab593610.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3840",
-      "title": "Horse Racing",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/horse-racing-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae7b210288b2.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
@@ -201,17 +135,6 @@
       "end_date": "2026-11-12T23:59:00Z",
       "is_permanent": false,
       "content_type": "dlc",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3837",
-      "title": "Quiztopia: The Ultimate Trivia",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/quiztopia-the-ultimate-trivia-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6ae64030ca5f5.jpg",
-      "end_date": "2026-11-08T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "game",
       "notices": []
     },
     {
