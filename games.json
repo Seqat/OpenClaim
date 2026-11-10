@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-10T12:17:52Z",
-  "count": 39,
+  "generated_at": "2026-11-10T21:41:18Z",
+  "count": 40,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -408,6 +408,19 @@
       "end_date": null,
       "is_permanent": true,
       "content_type": "dlc",
+      "notices": [
+        "alienware_arena"
+      ]
+    },
+    {
+      "id": "steam-3848",
+      "title": "RUNZ Playtest Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/runz-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6af35f1968895.jpg",
+      "end_date": "2026-11-17T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
       "notices": [
         "alienware_arena"
       ]
