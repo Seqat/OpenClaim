@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-11T05:06:11Z",
-  "count": 40,
+  "generated_at": "2026-11-11T22:31:16Z",
+  "count": 39,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -19,16 +19,6 @@
       "store_url": "https://luna.amazon.com/claims/caravan-sandwitch-aga/dp/amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a?ingress=amzn&ref_=SM_CaravanSandWitch_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61uVCnb+LJL._FMwebp_.jpg",
       "end_date": "2026-12-16T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game"
-    },
-    {
-      "id": "amazon-amzn1.pg.item.82e258e7-827e-46e0-8228-25e9720b48b4",
-      "title": "Conarium",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/conarium-gog/dp/amzn1.pg.item.82e258e7-827e-46e0-8228-25e9720b48b4?ingress=amzn&ref_=SM_Conarium_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/518dyr4AllL._FMwebp_.jpg",
-      "end_date": "2026-11-11T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
