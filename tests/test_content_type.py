@@ -4,6 +4,7 @@ Unit tests for content type classification heuristic in GamerPower scraper.
 """
 
 import pytest
+
 from backend.scrapers.gamerpower import classify_content_type
 
 
