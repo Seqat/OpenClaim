@@ -9,6 +9,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Test & Coverage Artifacts
+.coverage
+htmlcov/
+test-results/
 
 # IDE / Editor Files
 .vscode/

@@ -34,13 +34,33 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: |
+          echo "version=$(python -c 'import importlib.metadata; print(importlib.metadata.version("playwright"))')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}-
+
       - name: Install Playwright Chromium with system dependencies
         run: |
-          playwright install --with-deps chromium
+          if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+            playwright install --with-deps chromium
+          else
+            playwright install-deps chromium
+          fi
 
       - name: Run backend pipeline
-        run: |
-          python backend/main.py
+        run: python backend/main.py
+
+      - name: Validate generated games.json schema
+        run: python tests/test_games_json_schema.py
 
       - name: Commit and push updated games.json
         run: |
@@ -48,10 +68,18 @@ jobs:
           git config --local user.name "GitHub Action"
           git status
           if [ -n "$(git status --porcelain games.json)" ]; then
-            git add games.json
-            git commit -m "chore: update games.json [skip ci]"
-            git pull --rebase
-            git push
+            tmp_games=$(mktemp)
+            cp games.json "$tmp_games"
+            git checkout -- games.json
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            mv "$tmp_games" games.json
+            if [ -n "$(git status --porcelain games.json)" ]; then
+              git add games.json
+              git commit -m "chore: update games.json [skip ci]"
+              git push
+            else
+              echo "games.json already matches upstream after rebase."
+            fi
           else
             echo "No changes in games.json to commit."
           fi
