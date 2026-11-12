@@ -4,7 +4,7 @@
  */
 
 export async function fetchGamesData() {
-    const response = await fetch(`./games.json?t=${Date.now()}`, { cache: 'no-store' });
+    const response = await fetch('./games.json', { cache: 'no-cache' });
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
     }
@@ -15,7 +15,9 @@ export async function fetchGamesData() {
     if (data && typeof data === 'object') {
         return {
             games: Array.isArray(data.games) ? data.games : [],
-            generatedAt: data.generated_at || null
+            generatedAt: typeof data.generated_at === 'string' && data.generated_at.trim()
+                ? data.generated_at.trim()
+                : null
         };
     }
     return { games: [], generatedAt: null };
