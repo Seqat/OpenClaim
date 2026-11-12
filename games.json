@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-12T16:38:38Z",
-  "count": 39,
+  "generated_at": "2026-11-12T21:51:39Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -23,12 +23,32 @@
       "content_type": "game"
     },
     {
+      "id": "amazon-amzn1.pg.item.208bb96b-9ae6-4538-a1ff-c1831794f1b5",
+      "title": "Jurassic World Evolution 2",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/jurassic-world-evolution-2-epic/dp/amzn1.pg.item.208bb96b-9ae6-4538-a1ff-c1831794f1b5?ingress=amzn&ref_=SM_JurassicWorldEvolution2_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61+FC1VB92L._FMwebp_.jpg",
+      "end_date": "2026-12-16T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
       "id": "amazon-amzn1.pg.item.6a6eac09-8806-4c39-95a2-c7cf131f89fc",
       "title": "Kiborg",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/kiborg-aga/dp/amzn1.pg.item.6a6eac09-8806-4c39-95a2-c7cf131f89fc?ingress=amzn&ref_=SM_Kiborg_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61iIzNs8oiL._FMwebp_.jpg",
       "end_date": "2026-12-02T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game"
+    },
+    {
+      "id": "amazon-amzn1.pg.item.828a67e3-e1ec-4968-9719-afa81008da16",
+      "title": "Radiolight",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/radiolight-epic/dp/amzn1.pg.item.828a67e3-e1ec-4968-9719-afa81008da16?ingress=amzn&ref_=SM_Radiolight_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/612oXS4R8FL._FMwebp_.jpg",
+      "end_date": "2026-12-16T23:59:59Z",
       "is_permanent": false,
       "content_type": "game"
     },
@@ -106,25 +126,14 @@
       ]
     },
     {
-      "id": "epicgames-3845",
-      "title": "Flotsam",
+      "id": "epicgames-3850",
+      "title": "Knightica",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/flotsam-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aeca99004384.jpg",
-      "end_date": "2026-11-12T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/knightica-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6af5f33e49913.jpg",
+      "end_date": "2026-11-19T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
-      "notices": []
-    },
-    {
-      "id": "epicgames-3844",
-      "title": "Idle Champions of the Forgotten Realms: Morte's Renown Pack",
-      "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/idle-champions-of-the-forgotten-realms-morte-s-renown-pack-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aeca8e792684.jpg",
-      "end_date": "2026-11-12T23:59:00Z",
-      "is_permanent": false,
-      "content_type": "dlc",
       "notices": []
     },
     {
@@ -423,6 +432,19 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6ac3f2b80d4cd.jpg",
       "end_date": null,
       "is_permanent": true,
+      "content_type": "game",
+      "notices": [
+        "alienware_arena"
+      ]
+    },
+    {
+      "id": "steam-3851",
+      "title": "The Legend of California (Playtest) Steam",
+      "platform": "Steam",
+      "store_url": "https://www.gamerpower.com/open/the-legend-of-california-playtest-steam-key-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6af60c747ec99.jpg",
+      "end_date": "2026-11-18T23:59:00Z",
+      "is_permanent": false,
       "content_type": "game",
       "notices": [
         "alienware_arena"
