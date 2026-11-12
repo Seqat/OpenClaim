@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-"""
-Unit tests for normalize_and_deduplicate in backend/main.py.
-"""
+"""Unit tests for normalize_and_deduplicate in backend/main.py."""
 
 from backend.main import normalize_and_deduplicate
 
@@ -42,3 +39,84 @@ def test_dedupe_missing_platform_key():
     res = normalize_and_deduplicate(games)
     # Should not raise KeyError when 'platform' key is missing
     assert isinstance(res, list)
+
+
+def test_dedupe_punctuation_normalization():
+    games = [
+        {"title": "Hero: Origins", "platform": "Steam", "is_permanent": False, "end_date": None},
+        {
+            "title": "Hero - Origins",
+            "platform": "Steam",
+            "is_permanent": False,
+            "end_date": "2026-09-01T23:59:59Z",
+        },
+    ]
+    res = normalize_and_deduplicate(games)
+    assert len(res) == 1
+    assert res[0]["end_date"] == "2026-09-01T23:59:59Z"
+
+
+def test_dedupe_prefers_valid_end_date_over_none_when_temporary():
+    games = [
+        {
+            "id": "old",
+            "title": "Timed Game",
+            "platform": "Steam",
+            "is_permanent": False,
+            "end_date": None,
+        },
+        {
+            "id": "dated",
+            "title": "Timed Game",
+            "platform": "Steam",
+            "is_permanent": False,
+            "end_date": "2026-09-10T17:00:00Z",
+        },
+    ]
+    res = normalize_and_deduplicate(games)
+    assert len(res) == 1
+    assert res[0]["id"] == "dated"
+
+
+def test_dedupe_does_not_replace_valid_end_date_with_none():
+    games = [
+        {
+            "id": "dated",
+            "title": "Timed Game",
+            "platform": "Steam",
+            "is_permanent": False,
+            "end_date": "2026-09-10T17:00:00Z",
+        },
+        {
+            "id": "undated",
+            "title": "Timed Game",
+            "platform": "Steam",
+            "is_permanent": False,
+            "end_date": None,
+        },
+    ]
+    res = normalize_and_deduplicate(games)
+    assert len(res) == 1
+    assert res[0]["id"] == "dated"
+
+
+def test_dedupe_prefers_permanent_over_temporary():
+    games = [
+        {
+            "id": "temp",
+            "title": "Evergreen",
+            "platform": "Steam",
+            "is_permanent": False,
+            "end_date": "2026-09-10T17:00:00Z",
+        },
+        {
+            "id": "perm",
+            "title": "Evergreen",
+            "platform": "Steam",
+            "is_permanent": True,
+            "end_date": None,
+        },
+    ]
+    res = normalize_and_deduplicate(games)
+    assert len(res) == 1
+    assert res[0]["id"] == "perm"

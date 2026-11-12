@@ -19,19 +19,22 @@ Thank you for your interest in contributing to OpenClaim! All bug reports, featu
    git checkout -b fix/date-parsing-bug
    ```
 3. **Make & Test Changes:**
-   Install development dependencies and run the pytest suite:
+   Using **Python 3.11+** (and **Node.js 22+** for frontend tests), install development dependencies and run all checks:
    ```bash
    pip install -r requirements-dev.txt
-   python -m pytest
+   pytest -v
+   ruff check backend tests
+   mypy backend
+   node --test tests/frontend/*.test.mjs
    ```
-4. **Commit Your Changes:** Follow the **Conventional Commits** standard for your commit messages (e.g. `chore:`, `feat:`, `fix:`, `docs:`, `test:`).
-5. **Open a Pull Request (PR):** Submit a PR to the `main` branch with a clear title and description of your changes.
+4. **Commit Your Changes:** Please use **Conventional Commits** style for your commit messages as a guideline (e.g. `chore:`, `feat:`, `fix:`, `docs:`, `test:`).
+5. **Open a Pull Request (PR):** Submit a PR to the `main` or `dev` branch using the repository PR template (`.github/PULL_REQUEST_TEMPLATE.md`) with a clear title and description of your changes.
 
 ---
 
-### 📝 Commit Message Conventions
+### 📝 Commit Message & PR Conventions
 
-Our repository enforces Conventional Commits standards:
+As a guideline, we encourage following **Conventional Commits** for commit messages and PR titles:
 
 - `feat:` When adding a new feature (e.g. `feat: add GOG scraper`)
 - `fix:` When fixing a bug (e.g. `fix: correct iso date parser`)
@@ -65,19 +68,22 @@ OpenClaim projesine katkıda bulunmak istediğiniz için teşekkür ederiz! Her 
    git checkout -b fix/date-parsing-bug
    ```
 3. **Değişiklikleri Yapın ve Test Edin:**
-   Geliştirme bağımlılıklarını yükleyin ve pytest testlerini çalıştırın:
+   **Python 3.11+** (ve frontend testleri için **Node.js 22+**) ortamında geliştirme bağımlılıklarını yükleyip tüm kontrolleri çalıştırın:
    ```bash
    pip install -r requirements-dev.txt
-   python -m pytest
+   pytest -v
+   ruff check backend tests
+   mypy backend
+   node --test tests/frontend/*.test.mjs
    ```
-4. **Commit Atın:** Commit mesajlarınızda **Conventional Commits** standartlarına uyun (ör. `chore:`, `feat:`, `fix:`, `docs:`, `test:`).
-5. **Pull Request (PR) Açın:** Değişikliklerinizi `main` branch'ine yönelik açık bir başlık ve açıklama ile PR olarak gönderin.
+4. **Commit Atın:** Commit mesajlarınızda rehber olarak **Conventional Commits** biçimini tercih edin (ör. `chore:`, `feat:`, `fix:`, `docs:`, `test:`).
+5. **Pull Request (PR) Açın:** Değişikliklerinizi `main` veya `dev` branch'ine yönelik olarak PR şablonunu (`.github/PULL_REQUEST_TEMPLATE.md`) doldurup açık bir başlık ve açıklama ile gönderin.
 
 ---
 
-### 📝 Commit Mesajı Formatı (Commit Message Conventions)
+### 📝 Commit Mesajı ve PR Kuralları (Commit Message Conventions)
 
-Repomuzda Conventional Commits standartları takip edilmektedir:
+Commit mesajları ve PR başlıkları için rehber olarak **Conventional Commits** kurallarını takip etmenizi öneririz:
 
 - `feat:` Yeni bir özellik eklendiğinde (ör. `feat: add GOG scraper`)
 - `fix:` Bir hata düzeltildiğinde (ör. `fix: correct iso date parser`)

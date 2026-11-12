@@ -34,13 +34,21 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast);
 }
 
 .game-card:hover {
     background-color: var(--bg-card-hover);
     transform: translateY(-2px);
     border-color: var(--border-hover);
+}
+
+.game-card.is-claimed {
+    border-color: #065f46;
+}
+
+.game-card.is-claimed .card-media {
+    opacity: 0.68;
 }
 
 /* Card Top Image */
@@ -50,6 +58,7 @@
     padding-top: 52%;
     background: #0f172a;
     overflow: hidden;
+    transition: opacity var(--transition-fast);
 }
 
 .card-img {
@@ -81,7 +90,7 @@
     width: 36px;
     height: 36px;
     margin-bottom: 0.4rem;
-    opacity: 0.4;
+    opacity: 0.55;
 }
 
 /* Card Content Body */
@@ -124,7 +133,7 @@
     font-size: 0.72rem;
     font-weight: 600;
     background: #1e293b;
-    color: #94a3b8;
+    color: #cbd5e1;
     border: 1px solid var(--border-color);
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -181,7 +190,7 @@
     font-size: 0.75rem;
     font-weight: 600;
     background: #0f172a;
-    color: #94a3b8;
+    color: #cbd5e1;
     border: 1px solid var(--border-color);
 }
 
@@ -203,7 +212,7 @@
     border-color: #7f1d1d;
 }
 
-/* Title in Middle */
+/* Title in Middle (Selectable text, not obscured by overlay) */
 .card-title {
     font-size: 1.05rem;
     font-weight: 600;
@@ -257,17 +266,20 @@
 .card-actions-row {
     margin-top: auto;
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-/* Outlined Button */
+/* Outlined Store CTA Button */
 .claim-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    width: 100%;
+    flex: 1;
     padding: 0.65rem 1rem;
-    background: transparent;
+    background: rgba(15, 23, 42, 0.55);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-primary);
@@ -279,12 +291,6 @@
     transition: var(--transition-fast);
 }
 
-.claim-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-}
-
 .claim-btn svg {
     width: 14px;
     height: 14px;
@@ -293,14 +299,61 @@
 }
 
 .claim-btn:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--border-hover);
+    background: #2563eb;
+    border-color: #3b82f6;
     color: #ffffff;
 }
 
 .claim-btn:hover svg {
     color: #ffffff;
     transform: translateX(2px);
+}
+
+.claim-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Mark Claimed Toggle Button */
+.claim-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.65rem 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition-fast);
+}
+
+.claim-toggle-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.claim-toggle-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+}
+
+.claim-toggle-btn.active {
+    background: var(--badge-permanent-bg);
+    border-color: #059669;
+    color: var(--badge-permanent-text);
+}
+
+.claim-toggle-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -389,14 +442,20 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.5rem;
 }
 
 .games-grid.view-list .claim-btn {
     width: auto;
+    flex: 0 0 auto;
     padding: 0.45rem 0.85rem;
     font-size: 0.8rem;
     white-space: nowrap;
+}
+
+.games-grid.view-list .claim-toggle-btn {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.78rem;
 }
 
 /* Skeleton Loading State */
@@ -434,6 +493,47 @@
 .skeleton-line.title { height: 22px; width: 80%; }
 .skeleton-line.btn { height: 38px; border-radius: var(--radius-md); margin-top: auto; }
 
+/* List View Skeleton Loading State */
+.games-grid.view-list .skeleton-card {
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+}
+
+.games-grid.view-list .skeleton-media {
+    width: 96px;
+    height: 54px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.games-grid.view-list .skeleton-body {
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.games-grid.view-list .skeleton-line.meta {
+    width: 140px;
+    flex-shrink: 0;
+}
+
+.games-grid.view-list .skeleton-line.title {
+    flex: 1;
+    width: auto;
+}
+
+.games-grid.view-list .skeleton-line.btn {
+    width: 110px;
+    height: 32px;
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
 /* Empty & Error States */
 .empty-state {
     grid-column: 1 / -1;
@@ -450,7 +550,7 @@
     height: 52px;
     color: var(--text-muted);
     margin-bottom: 1rem;
-    opacity: 0.6;
+    opacity: 0.75;
 }
 
 .empty-title {
@@ -482,6 +582,11 @@
 .reset-filter-btn:hover {
     background: var(--bg-card-hover);
     border-color: var(--border-hover);
+}
+
+.reset-filter-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
 }
 
 /* Back to Top Button */
@@ -523,26 +628,53 @@
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
 }
 
+.back-to-top:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
 .back-to-top svg {
     width: 20px;
     height: 20px;
 }
 
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .game-card:hover,
+    .games-grid.view-list .game-card:hover,
+    .claim-btn:hover svg,
+    .back-to-top,
+    .back-to-top.visible,
+    .back-to-top:hover {
+        transform: none;
+    }
+}
+
 /* Components Responsive Adjustments */
 @media (max-width: 768px) {
-    .games-grid.view-list .game-card {
+    .games-grid.view-list .game-card,
+    .games-grid.view-list .skeleton-card {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .games-grid.view-list .card-media {
+    .games-grid.view-list .card-media,
+    .games-grid.view-list .skeleton-media {
         width: 100%;
         height: 140px;
     }
 
-    .games-grid.view-list .card-body {
+    .games-grid.view-list .card-body,
+    .games-grid.view-list .skeleton-body {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .games-grid.view-list .skeleton-line.meta,
+    .games-grid.view-list .skeleton-line.title,
+    .games-grid.view-list .skeleton-line.btn {
+        width: 100%;
+        flex: none;
     }
 
     .games-grid.view-list .card-info-section {
@@ -556,8 +688,12 @@
         margin: 0.5rem 0 0;
     }
 
-    .games-grid.view-list .claim-btn {
+    .games-grid.view-list .card-actions-row {
         width: 100%;
+    }
+
+    .games-grid.view-list .claim-btn {
+        flex: 1;
     }
 }
 
@@ -565,7 +701,7 @@
     .games-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .back-to-top {
         bottom: 1.25rem;
         right: 1.25rem;

@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
-"""
-Unit tests for filter_expired_games in backend/main.py.
-"""
+"""Unit tests for filter_expired_games in backend/main.py."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta, timezone
+
 from backend.main import filter_expired_games
 
 
 def test_filter_expired_past_outside_grace():
-    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=timezone.utc)
+    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=UTC)
     # Expired 10 hours ago (beyond 6h grace period)
     games = [
         {"title": "Old Game", "end_date": "2026-08-15T02:00:00Z"},
@@ -18,7 +16,7 @@ def test_filter_expired_past_outside_grace():
 
 
 def test_filter_expired_none_and_empty_end_date():
-    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=timezone.utc)
+    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=UTC)
     games = [
         {"title": "Permanent Game 1", "end_date": None},
         {"title": "Permanent Game 2", "end_date": ""},
@@ -34,7 +32,7 @@ def test_filter_expired_none_and_empty_end_date():
 
 
 def test_filter_expired_within_grace_period():
-    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=timezone.utc)
+    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=UTC)
     # Expired 3 hours ago (within 6h grace period)
     games = [
         {"title": "Recent Expired Game", "end_date": "2026-08-15T09:00:00Z"},
@@ -45,7 +43,7 @@ def test_filter_expired_within_grace_period():
 
 
 def test_filter_expired_future_date():
-    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=timezone.utc)
+    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=UTC)
     games = [
         {"title": "Future Game", "end_date": "2026-08-20T18:00:00Z"},
     ]
@@ -54,8 +52,8 @@ def test_filter_expired_future_date():
     assert res[0]["title"] == "Future Game"
 
 
-def test_filter_expired_unparseable_string(caplog):
-    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=timezone.utc)
+def test_filter_expired_unparseable_string():
+    now = datetime(2026, 8, 15, 12, 0, 0, tzinfo=UTC)
     games = [
         {"title": "Unparseable Date Game", "end_date": "not-a-real-date-string"},
     ]
@@ -67,7 +65,7 @@ def test_filter_expired_unparseable_string(caplog):
 
 def test_filter_expired_custom_now_injected():
     # Test that injected custom now is used instead of system time
-    custom_now = datetime(2025, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
+    custom_now = datetime(2025, 1, 1, 12, 0, 0, tzinfo=UTC)
     games = [
         {"title": "Game 2025", "end_date": "2025-01-01T20:00:00Z"},  # Future relative to custom_now
         {"title": "Game 2024", "end_date": "2024-01-01T00:00:00Z"},  # Past relative to custom_now
@@ -75,3 +73,14 @@ def test_filter_expired_custom_now_injected():
     res = filter_expired_games(games, now=custom_now)
     assert len(res) == 1
     assert res[0]["title"] == "Game 2025"
+
+
+def test_filter_expired_naive_and_offset_now_and_max_date():
+    naive_now = datetime(2026, 8, 15, 12, 0, 0)
+    offset_now = datetime(2026, 8, 15, 15, 0, 0, tzinfo=timezone(timedelta(hours=3)))
+    games = [
+        {"title": "Boundary Game", "end_date": "2026-08-15T12:00:00Z"},
+        {"title": "Far Future Game", "end_date": "9999-12-31T23:59:59Z"},
+    ]
+    assert len(filter_expired_games(games, now=naive_now)) == 2
+    assert len(filter_expired_games(games, now=offset_now)) == 2
