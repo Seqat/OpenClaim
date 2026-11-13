@@ -1,116 +1,127 @@
 {
-  "generated_at": "2026-11-12T21:55:53Z",
-  "count": 41,
+  "generated_at": "2026-11-13T00:56:27Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
       "title": "Ad Infinitum",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/ad-infinitum-epic/dp/amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457?ingress=amzn&ref_=SM_AdInfinitum_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61oHRL5seYL._FMwebp_.jpg",
-      "end_date": "2026-11-25T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a",
       "title": "Caravan SandWitch",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/caravan-sandwitch-aga/dp/amzn1.pg.item.98d2b591-efd2-420f-928c-e7a9b409f67a?ingress=amzn&ref_=SM_CaravanSandWitch_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61uVCnb+LJL._FMwebp_.jpg",
-      "end_date": "2026-12-16T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.208bb96b-9ae6-4538-a1ff-c1831794f1b5",
       "title": "Jurassic World Evolution 2",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/jurassic-world-evolution-2-epic/dp/amzn1.pg.item.208bb96b-9ae6-4538-a1ff-c1831794f1b5?ingress=amzn&ref_=SM_JurassicWorldEvolution2_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61+FC1VB92L._FMwebp_.jpg",
-      "end_date": "2026-12-16T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.6a6eac09-8806-4c39-95a2-c7cf131f89fc",
       "title": "Kiborg",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/kiborg-aga/dp/amzn1.pg.item.6a6eac09-8806-4c39-95a2-c7cf131f89fc?ingress=amzn&ref_=SM_Kiborg_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61iIzNs8oiL._FMwebp_.jpg",
-      "end_date": "2026-12-02T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.828a67e3-e1ec-4968-9719-afa81008da16",
       "title": "Radiolight",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/radiolight-epic/dp/amzn1.pg.item.828a67e3-e1ec-4968-9719-afa81008da16?ingress=amzn&ref_=SM_Radiolight_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/612oXS4R8FL._FMwebp_.jpg",
-      "end_date": "2026-12-16T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.70eff815-88f4-47f9-83e0-8a8d2837c7ad",
       "title": "Squirrel with a Gun",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/squirrel-with-a-gun-aga/dp/amzn1.pg.item.70eff815-88f4-47f9-83e0-8a8d2837c7ad?ingress=amzn&ref_=SM_SquirrelwithaGun_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61QjFNhMqwL._FMwebp_.jpg",
-      "end_date": "2026-12-09T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5",
       "title": "Time Travel: Escape Room Game",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/time-travel-escape-room-game-legacy/dp/amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5?ingress=amzn&ref_=SM_TimeTravelEscapeRoomGame_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61MzWa7HYbL._FMwebp_.jpg",
-      "end_date": "2026-11-25T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.1892b601-09dc-470b-9d62-7feac63376a3",
       "title": "Trash Goblin",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/trash-goblin-epic/dp/amzn1.pg.item.1892b601-09dc-470b-9d62-7feac63376a3?ingress=amzn&ref_=SM_TrashGoblin_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61ltwQb4mLL._FMwebp_.jpg",
-      "end_date": "2026-12-02T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.7885fee3-7dda-40c5-8642-596bb1f4a9b3",
       "title": "Vampire: The Masquerade - Swansong",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/vampire-the-masquerade-swansong-epic/dp/amzn1.pg.item.7885fee3-7dda-40c5-8642-596bb1f4a9b3?ingress=amzn&ref_=SM_VampireTheMasqueradeSwansong_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/51ROEzV9RpL._FMwebp_.jpg",
-      "end_date": "2026-11-18T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.59a0703f-be28-476e-9160-8e56e257dee5",
       "title": "WRC Generations",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/wrc-generations-epic/dp/amzn1.pg.item.59a0703f-be28-476e-9160-8e56e257dee5?ingress=amzn&ref_=SM_WRCGenerations_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61bWyXTbwQL._FMwebp_.jpg",
-      "end_date": "2026-12-09T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "amazon-amzn1.pg.item.886d058d-6e68-4f53-8e58-3044de3e6bb4",
       "title": "WarBreeds",
       "platform": "Amazon Luna / Prime",
       "store_url": "https://luna.amazon.com/claims/warbreeds-gog/dp/amzn1.pg.item.886d058d-6e68-4f53-8e58-3044de3e6bb4?ingress=amzn&ref_=SM_WarBreeds_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/71iiIFosTLL._FMwebp_.jpg",
-      "end_date": "2027-01-08T23:59:59Z",
+      "image_url": "",
+      "end_date": null,
       "is_permanent": false,
-      "content_type": "game"
+      "content_type": "game",
+      "notices": []
     },
     {
       "id": "epicgames-3373",
@@ -123,6 +134,19 @@
       "content_type": "dlc",
       "notices": [
         "alienware_arena"
+      ]
+    },
+    {
+      "id": "epicgames-3293",
+      "title": "DungeonLoot: Open Beta Has Arrived!",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/dungeonloot-open-beta-has-arrived",
+      "image_url": "https://www.gamerpower.com/offers/1b/68d2ea0b968f7.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "game",
+      "notices": [
+        "dungeonloot_account"
       ]
     },
     {
@@ -149,7 +173,7 @@
     },
     {
       "id": "steam-2341",
-      "title": "Age of Wonders 4: Special Godir Helmet Steam",
+      "title": "Age of Wonders 4: Special Godir Helmet",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/age-of-wonders-4-special-godir-helmet-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6452677147a74.jpg",
@@ -186,7 +210,7 @@
     },
     {
       "id": "steam-3718",
-      "title": "Deadswitch Combat Vehicle Bundle Steam",
+      "title": "Deadswitch Combat Vehicle Bundle",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/deadswitch-combat-vehicle-bundle-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a5a2cda80145.jpg",
@@ -212,7 +236,7 @@
     },
     {
       "id": "steam-3488",
-      "title": "Deadswitch Combat: Weapons Skins Steam",
+      "title": "Deadswitch Combat: Weapons Skins",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/deadswitch-combat-weapons-skins-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/698b912713a1b.jpg",
@@ -236,7 +260,7 @@
     },
     {
       "id": "steam-152",
-      "title": "Dream of Mirror Online Summer Fun DLC Pack Steam Keys",
+      "title": "Dream of Mirror Online Summer Fun DLC Pack",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/domo-summer-fun-dlc-steam-keys",
       "image_url": "https://www.gamerpower.com/offers/1b/5iia55fd841fb.jpg",
@@ -275,7 +299,7 @@
     },
     {
       "id": "steam-2835",
-      "title": "EVERSPACE 2 Decal DLC Steam",
+      "title": "EVERSPACE 2 Decal DLC",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/everspace-2-decal-dlc-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/662fe7544661a.jpg",
@@ -299,7 +323,7 @@
     },
     {
       "id": "steam-3803",
-      "title": "Everwind AW-51 Pack Steam",
+      "title": "Everwind AW-51 Pack",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/everwind-aw-51-pack-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6ac50956b23c1.jpg",
@@ -312,7 +336,7 @@
     },
     {
       "id": "steam-2485",
-      "title": "Exoprimal: Alienware Decal Steam",
+      "title": "Exoprimal: Alienware Decal",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/exoprimal-alienware-decal-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/64dd14e5c0a92.jpg",
@@ -325,7 +349,7 @@
     },
     {
       "id": "steam-3719",
-      "title": "Fantasy Grounds Dragons NPC Dice Pack Volume 1 Steam",
+      "title": "Fantasy Grounds Dragons NPC Dice Pack Volume 1",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/fantasy-grounds-dragons-npc-dice-pack-volume-1-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6a5a2df1cbecc.jpg",
@@ -338,7 +362,7 @@
     },
     {
       "id": "steam-157",
-      "title": "Free Bomb Bots Arena Gift Pack Keys",
+      "title": "Free Bomb Bots Arena Gift Pack",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/free-bomb-bots-arena-gift-pack-keys",
       "image_url": "https://www.gamerpower.com/offers/1b/5ef306bae0876.jpg",
@@ -400,7 +424,7 @@
     },
     {
       "id": "steam-3785",
-      "title": "RIDE 6 Welcome Bikes Pack Steam",
+      "title": "RIDE 6 Welcome Bikes Pack",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/ride-6-welcome-bikes-pack-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6ab15f524c039.jpg",
@@ -413,7 +437,7 @@
     },
     {
       "id": "steam-3848",
-      "title": "RUNZ Playtest Steam",
+      "title": "RUNZ Playtest",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/runz-playtest-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6af35f1968895.jpg",
@@ -426,7 +450,7 @@
     },
     {
       "id": "steam-3802",
-      "title": "Scallywags Playtest Steam",
+      "title": "Scallywags Playtest",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/scallywags-playtest-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6ac3f2b80d4cd.jpg",
@@ -439,7 +463,7 @@
     },
     {
       "id": "steam-3851",
-      "title": "The Legend of California (Playtest) Steam",
+      "title": "The Legend of California (Playtest)",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/the-legend-of-california-playtest-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6af60c747ec99.jpg",
@@ -476,7 +500,7 @@
     },
     {
       "id": "steam-2817",
-      "title": "Zero King (Beta) Steam",
+      "title": "Zero King (Beta)",
       "platform": "Steam",
       "store_url": "https://www.gamerpower.com/open/zero-king-beta-steam-key-giveaway",
       "image_url": "https://www.gamerpower.com/offers/1b/6601b1f21bec2.jpg",
