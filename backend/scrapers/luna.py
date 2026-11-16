@@ -21,7 +21,7 @@ AMAZON_GAMING_URL = "https://luna.amazon.com/claims/home"
 LUNA_SOURCE = "amazon_luna"
 LUNA_PLATFORM = "Amazon Luna / Prime"
 CARD_LINK_SELECTOR = 'a[href*="/claims/"], a[href*="/dp/"]'
-BLOCKED_RESOURCE_TYPES = frozenset({"image", "media", "font", "stylesheet"})
+BLOCKED_RESOURCE_TYPES = frozenset({"image", "media", "font"})
 
 _IGNORED_TITLES = frozenset(
     {
@@ -40,12 +40,122 @@ _CLAIM_ACTION_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-_EXTRACT_CARDS_JS = """() => {
+_SCROLL_STEP_JS = r"""async (selector) => {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const getScrollHeight = () => Math.max(
+        document.body ? document.body.scrollHeight : 0,
+        document.documentElement ? document.documentElement.scrollHeight : 0
+    );
+    const step = Math.max(Math.floor(window.innerHeight * 0.75), 400);
+    for (let y = 0, i = 0; y <= getScrollHeight() && i < 40; y += step, i++) {
+        window.scrollTo(0, y);
+        await sleep(50);
+    }
+    window.scrollTo(0, getScrollHeight());
+    const links = document.querySelectorAll(selector);
+    for (const el of links) {
+        el.scrollIntoView({block: "center", inline: "center"});
+        await sleep(20);
+    }
+    window.scrollTo(0, getScrollHeight());
+}"""
+
+_DETAIL_FALLBACK_IMAGE_JS = r"""() => {
+    const isValidImgUrl = (url) => {
+        if (!url) return false;
+        const trimmed = url.trim();
+        if (!trimmed) return false;
+        const lower = trimmed.toLowerCase();
+        return !lower.startsWith('data:image/') && !lower.startsWith('blob:');
+    };
+
+    const og = document.querySelector('meta[property="og:image"]');
+    const ogContent = og ? og.getAttribute('content') : '';
+    if (isValidImgUrl(ogContent)) return ogContent.trim();
+
+    const tw = document.querySelector('meta[name="twitter:image"]');
+    const twContent = tw ? tw.getAttribute('content') : '';
+    if (isValidImgUrl(twContent)) return twContent.trim();
+
+    const imgs = document.querySelectorAll('img[src*="media-amazon.com"]');
+    for (const img of imgs) {
+        const src = img.currentSrc || img.getAttribute('src') || '';
+        if (isValidImgUrl(src)) return src.trim();
+    }
+    return '';
+}"""
+
+_EXTRACT_CARDS_JS = r"""() => {
+    const isValidImgUrl = (url) => {
+        if (!url) return false;
+        const trimmed = url.trim();
+        if (!trimmed) return false;
+        const lower = trimmed.toLowerCase();
+        return !lower.startsWith('data:image/') && !lower.startsWith('blob:');
+    };
+
+    const pickFromSrcset = (srcset) => {
+        if (!srcset) return '';
+        const parts = srcset.split(/,(?:\s+|(?=(?:https?:|\/\/|\/)))/i);
+        for (const part of parts) {
+            const candidate = part.trim().split(/\s+/)[0];
+            if (isValidImgUrl(candidate)) return candidate;
+        }
+        return '';
+    };
+
+    const countDistinctDpItems = (root) => {
+        const dpLinks = root.querySelectorAll('a[href*="/dp/"]');
+        const distinct = new Set();
+        for (const dpLink of dpLinks) {
+            const dpHref = dpLink.getAttribute('href') || '';
+            const match = dpHref.match(/amzn1\.pg\.item\.[0-9a-f-]+/i);
+            distinct.add(match ? match[0].toLowerCase() : dpHref.split('?')[0]);
+        }
+        return distinct.size;
+    };
+
+    const extractBgImage = (root) => {
+        const els = [root, ...root.querySelectorAll('div, span, a')];
+        for (const el of els) {
+            const bg = window.getComputedStyle(el).backgroundImage;
+            if (bg && bg !== 'none' && bg.includes('url(')) {
+                const match = bg.match(/url\(["']?(.*?)["']?\)/);
+                if (match && match[1] && isValidImgUrl(match[1])) {
+                    return match[1].trim();
+                }
+            }
+        }
+        return '';
+    };
+
     const links = document.querySelectorAll('a[href*="/claims/"], a[href*="/dp/"]');
     const items = [];
     for (const link of links) {
-        const card = link.closest('div[class*="Card"], div[class*="card"], article, section') || link.parentElement;
+        let card = link.closest(
+            'div[class*="Card"], div[class*="card"], [data-a-target*="card"], [data-a-target*="offer"], article, section, li'
+        ) || link.parentElement;
         if (!card) continue;
+
+        const safeAncestors = [];
+        if (!card.querySelector('img')) {
+            let probe = card;
+            for (let depth = 0; depth < 4; depth++) {
+                const parent = probe.parentElement;
+                if (!parent || parent.tagName === 'BODY' || parent.tagName === 'HTML') {
+                    break;
+                }
+                if (countDistinctDpItems(parent) > 1) {
+                    break;
+                }
+                safeAncestors.push(parent);
+                probe = parent;
+                if (probe.querySelector('img, picture source[srcset]')) {
+                    card = probe;
+                    break;
+                }
+            }
+        }
 
         const cardText = card.innerText || '';
         let title = '';
@@ -63,36 +173,42 @@ _EXTRACT_CARDS_JS = """() => {
         }
 
         let imgUrl = '';
-        const imgs = card.querySelectorAll('img');
-        for (const img of imgs) {
-            const srcset = img.getAttribute('srcset');
-            const dataSrc = img.getAttribute('data-src');
-            const src = img.getAttribute('src');
-            let candidate = '';
-            if (srcset) {
-                candidate = srcset.split(',')[0].trim().split(' ')[0];
-            } else if (dataSrc) {
-                candidate = dataSrc;
-            } else if (src) {
-                candidate = src;
-            }
-            if (candidate && !candidate.startsWith('data:image/svg')) {
+        const sources = card.querySelectorAll('picture source[srcset]');
+        for (const source of sources) {
+            const candidate = pickFromSrcset(source.getAttribute('srcset'));
+            if (candidate) {
                 imgUrl = candidate;
                 break;
             }
         }
 
         if (!imgUrl) {
-            const els = card.querySelectorAll('div, span, a');
-            for (const el of els) {
-                const bg = window.getComputedStyle(el).backgroundImage;
-                if (bg && bg !== 'none' && bg.includes('url(')) {
-                    const match = bg.match(/url\\(["']?(.*?)["']?\\)/);
-                    if (match && match[1] && !match[1].startsWith('data:image/svg')) {
-                        imgUrl = match[1];
+            const imgs = card.querySelectorAll('img');
+            for (const img of imgs) {
+                const candidates = [
+                    img.currentSrc,
+                    pickFromSrcset(img.getAttribute('srcset')),
+                    img.getAttribute('data-src'),
+                    img.getAttribute('src'),
+                ];
+                for (const candidate of candidates) {
+                    if (isValidImgUrl(candidate)) {
+                        imgUrl = candidate.trim();
                         break;
                     }
                 }
+                if (imgUrl) break;
+            }
+        }
+
+        if (!imgUrl) {
+            imgUrl = extractBgImage(card);
+        }
+
+        if (!imgUrl && safeAncestors.length > 0) {
+            for (const ancestor of safeAncestors) {
+                imgUrl = extractBgImage(ancestor);
+                if (imgUrl) break;
             }
         }
 
@@ -127,17 +243,25 @@ def build_amazon_id(store_url: str, fallback_title: str) -> str:
 
 
 async def _handle_asset_route(route: Any) -> None:
-    """Abort non-essential assets (images, media, fonts, stylesheets) by resource type."""
-    if route.request.resource_type in BLOCKED_RESOURCE_TYPES:
+    """Fulfill stylesheets with empty CSS, abort heavy assets, and allow scripts/data."""
+    url = str(getattr(route.request, "url", "")).lower()
+    if route.request.resource_type == "stylesheet" or ".css" in url:
+        await route.fulfill(status=200, body="", content_type="text/css")
+    elif route.request.resource_type in BLOCKED_RESOURCE_TYPES:
         await route.abort()
     else:
         await route.continue_()
 
 
+def _is_valid_image_url(url: str) -> bool:
+    """Return True if a raw image URL is non-empty and not an inline data/blob URI."""
+    lowered = url.strip().lower()
+    return bool(lowered) and not lowered.startswith(("data:image/", "blob:"))
+
+
 def _parse_extracted_cards(raw_cards: list[dict[str, Any]]) -> list[dict[str, str]]:
-    """Filter, deduplicate, and normalize raw card dictionaries extracted from the DOM."""
-    raw_items: list[dict[str, str]] = []
-    seen_titles: set[str] = set()
+    """Filter, merge duplicates by normalized title, and normalize extracted card dicts."""
+    items_by_title: dict[str, dict[str, str]] = {}
 
     for card in raw_cards:
         if not isinstance(card, dict):
@@ -153,26 +277,36 @@ def _parse_extracted_cards(raw_cards: list[dict[str, Any]]) -> list[dict[str, st
         if not title_text or title_text.lower() in _IGNORED_TITLES:
             continue
 
-        norm_title = title_text.casefold()
-        if norm_title in seen_titles:
-            continue
-        seen_titles.add(norm_title)
-
         href = str(card.get("href") or "").strip()
         store_url = urljoin(AMAZON_GAMING_URL, href) if href else ""
 
         img_raw = str(card.get("img_url") or "").strip()
-        image_url = urljoin(AMAZON_GAMING_URL, img_raw) if img_raw else ""
+        image_url = urljoin(AMAZON_GAMING_URL, img_raw) if _is_valid_image_url(img_raw) else ""
 
-        raw_items.append(
-            {
-                "title": title_text,
-                "store_url": store_url,
-                "image_url": image_url,
-            }
-        )
+        card_end_date = parse_detail_page_end_date(card_text) or ""
 
-    return raw_items
+        norm_title = title_text.casefold()
+        existing = items_by_title.get(norm_title)
+        if existing is not None:
+            if image_url and not existing["image_url"]:
+                existing["image_url"] = image_url
+            if (
+                "amzn1.pg.item." not in existing["store_url"].casefold()
+                and "amzn1.pg.item." in store_url.casefold()
+            ):
+                existing["store_url"] = store_url
+            if card_end_date and not existing["card_end_date"]:
+                existing["card_end_date"] = card_end_date
+            continue
+
+        items_by_title[norm_title] = {
+            "title": title_text,
+            "store_url": store_url,
+            "image_url": image_url,
+            "card_end_date": card_end_date,
+        }
+
+    return list(items_by_title.values())
 
 
 async def _scroll_until_stable(
@@ -180,12 +314,12 @@ async def _scroll_until_stable(
     selector: str = CARD_LINK_SELECTOR,
     max_scrolls: int = 12,
 ) -> None:
-    """Scroll to page bottom until the matching card count stabilizes."""
+    """Scroll incrementally and trigger IntersectionObserver until card count stabilizes."""
     prev_count = -1
     stable_rounds = 0
     for _ in range(max_scrolls):
         current_count = await page.locator(selector).count()
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        await page.evaluate(_SCROLL_STEP_JS, selector)
         await page.wait_for_timeout(350)
         new_count = await page.locator(selector).count()
         if new_count == current_count and new_count == prev_count:
@@ -204,30 +338,45 @@ async def fetch_detail_page_end_date(
     total: int,
     semaphore: asyncio.Semaphore,
 ) -> str | None:
-    """Fetch detail page date with asset blocking, SPA hydration polling, and 8000ms timeout."""
+    """Fetch detail page end date and fallback cover image with SPA hydration polling."""
+    card_fallback_date = item.get("card_end_date") or None
     store_url = item.get("store_url")
     if not store_url or not str(store_url).startswith("http"):
-        return None
+        return card_fallback_date
 
     async with semaphore:
         page = await context.new_page()
-        end_date = None
+        end_date: str | None = None
         try:
             await page.route("**/*", _handle_asset_route)
             logger.info(f"[{idx + 1}/{total}] Checking detail page: {item['title']}...")
 
-            await page.goto(store_url, wait_until="domcontentloaded", timeout=8000)
+            await page.goto(store_url, wait_until="domcontentloaded", timeout=12000)
 
             start_poll = time.time()
-            while time.time() - start_poll < 3.5:
+            while time.time() - start_poll < 5.0:
                 detail_text = await page.inner_text("body", timeout=2000)
                 end_date = parse_detail_page_end_date(detail_text)
                 if end_date:
                     break
                 await page.wait_for_timeout(250)
 
+            if not item.get("image_url"):
+                try:
+                    fallback_img = await page.evaluate(_DETAIL_FALLBACK_IMAGE_JS)
+                    if isinstance(fallback_img, str) and _is_valid_image_url(fallback_img):
+                        item["image_url"] = urljoin(AMAZON_GAMING_URL, fallback_img.strip())
+                except Exception as img_err:  # noqa: BLE001
+                    logger.debug(
+                        f"Detail page fallback image extraction note for {item['title']}: {img_err}"
+                    )
+
             if end_date:
                 logger.info(f"  -> {item['title']} end_date: {end_date}")
+            elif card_fallback_date:
+                logger.info(
+                    f"  -> {item['title']} end_date: {card_fallback_date} (from card text fallback)"
+                )
             else:
                 logger.info(f"  -> {item['title']} end_date: null (No expiration date text found)")
         except Exception as err:  # noqa: BLE001
@@ -237,7 +386,7 @@ async def fetch_detail_page_end_date(
         finally:
             await page.close()
 
-        return end_date
+        return end_date or card_fallback_date
 
 
 async def fetch_amazon_result() -> ScraperResult:
@@ -256,7 +405,6 @@ async def fetch_amazon_result() -> ScraperResult:
                     ),
                     viewport={"width": 1280, "height": 900},
                     locale="en-US",
-                    extra_http_headers={"Accept-Language": "en-US,en;q=0.9"},
                 )
                 main_page = await context.new_page()
 
@@ -282,6 +430,7 @@ async def fetch_amazon_result() -> ScraperResult:
                 if not isinstance(raw_cards, list):
                     raw_cards = []
                 logger.info(f"Found {len(raw_cards)} card links on Luna claims home page.")
+                await main_page.close()
 
                 raw_items = _parse_extracted_cards(raw_cards)
 
@@ -301,9 +450,9 @@ async def fetch_amazon_result() -> ScraperResult:
                         logger.warning(
                             f"Detail page task failed for {item['title']}: {result}"
                         )
-                        end_date: str | None = None
+                        end_date: str | None = item.get("card_end_date") or None
                     else:
-                        end_date = result
+                        end_date = result or item.get("card_end_date") or None
 
                     entry = validate_game_entry(
                         {
@@ -321,6 +470,15 @@ async def fetch_amazon_result() -> ScraperResult:
                     games.append(entry)
             finally:
                 await browser.close()
+
+        if not games:
+            logger.warning("No claimable games found on Amazon Luna.")
+            return ScraperResult(
+                source=LUNA_SOURCE,
+                games=[],
+                ok=False,
+                error="No claimable games found on Amazon Luna",
+            )
 
         logger.info(f"Retrieved {len(games)} claimable games from Amazon Luna / Prime Gaming.")
         return ScraperResult(source=LUNA_SOURCE, games=games, ok=True, error=None)
