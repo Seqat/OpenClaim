@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-16T12:14:44Z",
-  "count": 41,
+  "generated_at": "2026-11-16T18:01:58Z",
+  "count": 40,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -445,19 +445,6 @@
       "image_url": "https://www.gamerpower.com/offers/1b/6ac3f2b80d4cd.jpg",
       "end_date": null,
       "is_permanent": true,
-      "content_type": "game",
-      "notices": [
-        "alienware_arena"
-      ]
-    },
-    {
-      "id": "steam-3851",
-      "title": "The Legend of California (Playtest)",
-      "platform": "Steam",
-      "store_url": "https://www.gamerpower.com/open/the-legend-of-california-playtest-steam-key-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6af60c747ec99.jpg",
-      "end_date": "2026-11-18T23:59:00Z",
-      "is_permanent": false,
       "content_type": "game",
       "notices": [
         "alienware_arena"
