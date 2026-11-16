@@ -62,9 +62,9 @@ export const translations = {
 
         // Countdown Statuses
         timer_unlimited: "♾️ Kalıcı",
-        timer_limited: "🎁 Prime",
+        timer_limited: "⏳ Süreli",
         timer_permanent_short: "♾️ Kalıcı",
-        timer_limited_short: "🎁 Prime",
+        timer_limited_short: "⏳ Süreli",
         timer_expired: "Süresi Doldu",
         timer_calculating: "Hesaplanıyor...",
         timer_day_unit: "g",
@@ -145,9 +145,9 @@ export const translations = {
 
         // Countdown Statuses
         timer_unlimited: "♾️ Permanent",
-        timer_limited: "🎁 Prime",
+        timer_limited: "⏳ Limited",
         timer_permanent_short: "♾️ Permanent",
-        timer_limited_short: "🎁 Prime",
+        timer_limited_short: "⏳ Limited",
         timer_expired: "Expired",
         timer_calculating: "Calculating...",
         timer_day_unit: "d",

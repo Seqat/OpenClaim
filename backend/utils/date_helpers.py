@@ -39,6 +39,34 @@ _FALLBACK_FORMATS = (
     "%Y-%m-%d",
 )
 
+_ENG_DATE_PREFIX = (
+    r"\b(?:available\s+(?:through|until)"
+    r"|(?:offer\s+)?ends(?:\s+on)?"
+    r"|expires(?:\s+on)?"
+    r"|claim\s+by"
+    r"|valid\s+(?:through|until))(?:\s*:\s*|\s+)"
+)
+_ENG_MONTH_FIRST_RE = re.compile(
+    rf"{_ENG_DATE_PREFIX}([a-zA-Z]+)\.?\s+(\d{{1,2}})(?:st|nd|rd|th)?\b(?:,?\s+(\d{{4}})\b)?",
+    re.IGNORECASE,
+)
+_ENG_DAY_FIRST_RE = re.compile(
+    rf"{_ENG_DATE_PREFIX}(\d{{1,2}})(?:st|nd|rd|th)?\b\s+([a-zA-Z]+)\.?(?:,?\s+(\d{{4}})\b)?",
+    re.IGNORECASE,
+)
+_TR_UNTIL_RE = re.compile(
+    r"\b(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\s+(\d{4})\b\s*(?:tarihine|tarihinde\s+sona)\b",
+    re.IGNORECASE,
+)
+_TR_LAST_DATE_RE = re.compile(
+    r"\bson\s+(?:geçerlilik\s+)?tarih(?:i)?\s*:?\s*(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\s+(\d{4})\b",
+    re.IGNORECASE,
+)
+_RELATIVE_DAYS_RE = re.compile(
+    r"\((?:in\s+)?(\d+)\s*(?:days?|gün)\s*(?:left|kaldı)?\)|\b(?:ends|expires)\s+in\s+(\d+)\s*days?\b",
+    re.IGNORECASE,
+)
+
 
 def parse_iso_datetime(date_str: str | None) -> datetime | None:
     """Parse a date string into a timezone-aware UTC datetime, or return None."""
@@ -83,61 +111,75 @@ def parse_iso_date(date_str: str | None) -> str | None:
     return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def parse_detail_page_end_date(text: str) -> str | None:
-    """Extract exact expiration date from game detail page text.
+def _lookup_month(mon_raw: str) -> int | None:
+    """Resolve an English or Turkish month name/prefix into its 1..12 month number."""
+    mon_key = mon_raw.replace("İ", "i").replace("I", "ı").lower()[:3]
+    return MONTH_MAP.get(mon_key)
 
-    Parses 'Available through Sep 23, 2026', '23 Eyl 2026 tarihine kadar geçerli',
-    or '(in 46 days)'.
+
+def _build_end_datetime(
+    year_str: str | None,
+    month: int,
+    day: int,
+    now: datetime,
+) -> str | None:
+    """Construct end-of-day UTC ISO string, inferring year when omitted."""
+    try:
+        if year_str is not None:
+            dt = datetime(int(year_str), month, day, 23, 59, 59, tzinfo=UTC)
+            return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        try:
+            dt = datetime(now.year, month, day, 23, 59, 59, tzinfo=UTC)
+        except ValueError:
+            if month == 2 and day == 29 and now.month >= 4:
+                dt = datetime(now.year + 1, month, day, 23, 59, 59, tzinfo=UTC)
+                return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+            return None
+
+        if now - dt > timedelta(days=30):
+            dt = datetime(now.year + 1, month, day, 23, 59, 59, tzinfo=UTC)
+        return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+    except (ValueError, OverflowError):
+        return None
+
+
+def parse_detail_page_end_date(text: str) -> str | None:
+    """Extract exact expiration date from game detail page or card text.
+
+    Supports English month-first/day-first phrases (with optional year inference),
+    Turkish expiration date formats, and explicit relative-day badges.
     """
     if not text:
         return None
 
     now = datetime.now(UTC)
 
-    # 1. Matches "Available through Sep 23, 2026" or "Available until Oct 15, 2026"
-    m_eng = re.search(
-        r"available\s+(?:through|until)\s+([a-zA-Z]+)\s+(\d{1,2}),?\s+(\d{4})",
-        text,
-        re.IGNORECASE,
-    )
-    if m_eng:
-        mon_str = m_eng.group(1).lower()[:3]
-        day_str, year_str = m_eng.group(2), m_eng.group(3)
-        month = MONTH_MAP.get(mon_str)
-        if month:
-            try:
-                dt = datetime(int(year_str), month, int(day_str), 23, 59, 59, tzinfo=UTC)
-                return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-            except (ValueError, OverflowError):
-                return None
+    for match in _ENG_MONTH_FIRST_RE.finditer(text):
+        month = _lookup_month(match.group(1))
+        if month is not None:
+            return _build_end_datetime(match.group(3), month, int(match.group(2)), now)
 
-    # 2. Matches "23 Eyl 2026 tarihine kadar geçerli"
-    m_tr = re.search(
-        r"(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\s+(\d{4})\s*tarihine",
-        text,
-        re.IGNORECASE,
-    )
-    if m_tr:
-        day_str, mon_raw, year_str = m_tr.group(1), m_tr.group(2), m_tr.group(3)
-        text_tr = mon_raw.replace("İ", "i").replace("I", "ı").lower()[:3]
-        month = MONTH_MAP.get(text_tr)
-        if month:
-            try:
-                dt = datetime(int(year_str), month, int(day_str), 23, 59, 59, tzinfo=UTC)
-                return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-            except (ValueError, OverflowError):
-                return None
+    for match in _ENG_DAY_FIRST_RE.finditer(text):
+        month = _lookup_month(match.group(2))
+        if month is not None:
+            return _build_end_datetime(match.group(3), month, int(match.group(1)), now)
 
-    # 3. Matches "(in X days)" or "(X gün kaldı)"
-    m_in_days = re.search(
-        r"\((?:in\s+)?(\d+)\s*(?:days?|gün)\s*(?:left|kaldı)?\)",
-        text,
-        re.IGNORECASE,
-    )
-    if m_in_days:
+    for pattern in (_TR_UNTIL_RE, _TR_LAST_DATE_RE):
+        for match in pattern.finditer(text):
+            month = _lookup_month(match.group(2))
+            if month is not None:
+                return _build_end_datetime(match.group(3), month, int(match.group(1)), now)
+
+    for match in _RELATIVE_DAYS_RE.finditer(text):
+        days_str = match.group(1) or match.group(2)
+        if days_str is None:
+            continue
         try:
-            days = int(m_in_days.group(1))
-            dt = (now + timedelta(days=days)).replace(hour=23, minute=59, second=59, microsecond=0)
+            days = int(days_str)
+            dt = (now + timedelta(days=days)).replace(
+                hour=23, minute=59, second=59, microsecond=0
+            )
             return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
         except (ValueError, OverflowError):
             return None

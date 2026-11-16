@@ -188,6 +188,15 @@ function resetAllFilters() {
     renderGames(resetAllFilters);
 }
 
+function scrollToTop() {
+    const prefersReducedMotion = typeof window.matchMedia === 'function'
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
+}
+
 function debounce(fn, delay = 150) {
     let timeoutId;
     return function (...args) {
@@ -213,6 +222,17 @@ function setupEventListeners() {
     // Platform icons in #filter-tabs fallback on CDN failure
     if (filterTabsContainer) {
         setupImageErrorDelegation(filterTabsContainer);
+    }
+
+    // Header logo click resets filters and scrolls to top without appending '#'
+    const logoLink = document.querySelector('.logo');
+    if (logoLink) {
+        logoLink.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            resetAllFilters();
+            scrollToTop();
+        });
     }
 
     // Delegated click handler on #games-grid for mark-claimed toggle buttons
@@ -343,14 +363,7 @@ function setupEventListeners() {
             }
         }, { passive: true });
 
-        backToTopBtn.addEventListener('click', () => {
-            const prefersReducedMotion = typeof window.matchMedia === 'function'
-                && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            window.scrollTo({
-                top: 0,
-                behavior: prefersReducedMotion ? 'auto' : 'smooth'
-            });
-        });
+        backToTopBtn.addEventListener('click', scrollToTop);
     }
 }
 

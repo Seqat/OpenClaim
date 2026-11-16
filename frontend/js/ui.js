@@ -6,6 +6,7 @@
 
 import {
     state,
+    getActiveLocale,
     getProcessedGames,
     getFacetCounts,
     normalizePlatform,
@@ -221,13 +222,15 @@ export function updateFacetCounts() {
 }
 
 /**
- * Validate URL using the WHATWG URL parser, allowing only http: and https:.
+ * Validate URL using the WHATWG URL parser, allowing only http: and https:
+ * (normalizing protocol-relative //host/path URLs to https:).
  */
 export function safeUrl(url, fallback = '#') {
     const s = String(url || '').trim();
     if (!s) return fallback;
+    const normalized = /^\/\/[^/\\]/.test(s) ? `https:${s}` : s;
     try {
-        const parsed = new URL(s);
+        const parsed = new URL(normalized);
         if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
             return parsed.href;
         }
@@ -235,6 +238,39 @@ export function safeUrl(url, fallback = '#') {
         return fallback;
     }
     return fallback;
+}
+
+/**
+ * Format an ISO end_date string into a localized calendar date/time tooltip.
+ */
+export function formatEndDateTooltip(endDateStr, lang = state.currentLang) {
+    if (!endDateStr) return '';
+    let parsed;
+    if (endDateStr instanceof Date) {
+        parsed = endDateStr;
+    } else if (typeof endDateStr === 'string') {
+        const trimmed = endDateStr.trim();
+        if (!trimmed || trimmed === 'null') return '';
+        parsed = new Date(trimmed);
+    } else {
+        return '';
+    }
+    if (isNaN(parsed.getTime())) return '';
+    if (typeof Intl === 'undefined' || typeof Intl.DateTimeFormat !== 'function') return '';
+    return new Intl.DateTimeFormat(getActiveLocale(lang), {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    }).format(parsed);
+}
+
+function syncTooltipAttribute(el, tooltip) {
+    if (tooltip) {
+        if (el.getAttribute('title') !== tooltip) {
+            el.setAttribute('title', tooltip);
+        }
+    } else if (el.hasAttribute('title')) {
+        el.removeAttribute('title');
+    }
 }
 
 // Known notice codes -> i18n keys. Unknown codes from games.json are ignored.
@@ -310,6 +346,8 @@ export function createGameCardHTML(game) {
     const storeUrl = escapeAttribute(safeUrl(game.store_url));
     const safeTitle = escapeHTML(game.title || 'Game');
     const endDateAttr = game.end_date ? escapeAttribute(game.end_date) : '';
+    const endDateTooltip = formatEndDateTooltip(game.end_date);
+    const countdownTitleAttr = endDateTooltip ? ` title="${escapeAttribute(endDateTooltip)}"` : '';
     const isPermanentAttr = escapeAttribute(String(isPermanent));
     const gameIdAttr = escapeAttribute(game.id || '');
     const claimAria = escapeAttribute((t.card_claim_aria || '').replace('{title}', game.title || 'Game'));
@@ -357,7 +395,7 @@ export function createGameCardHTML(game) {
                         <div 
                             class="countdown-badge" 
                             data-end-date="${endDateAttr}"
-                            data-is-permanent="${isPermanentAttr}"
+                            data-is-permanent="${isPermanentAttr}"${countdownTitleAttr}
                         >
                             ${t.timer_calculating}
                         </div>
@@ -435,6 +473,7 @@ function syncCardElement(cardEl, game, t) {
         const isPermVal = String(game.is_permanent ?? true);
         if (countdownEl.dataset.endDate !== endDateVal) countdownEl.dataset.endDate = endDateVal;
         if (countdownEl.dataset.isPermanent !== isPermVal) countdownEl.dataset.isPermanent = isPermVal;
+        syncTooltipAttribute(countdownEl, formatEndDateTooltip(endDateVal));
     }
 
     // Update notices in current language
@@ -655,6 +694,7 @@ export function updateAllTimers(onExpire = registeredExpireCallback) {
         if (el.className !== nextClass) {
             el.className = nextClass;
         }
+        syncTooltipAttribute(el, formatEndDateTooltip(endDateStr));
     });
 
     if (newlyExpired && typeof onExpire === 'function') {
