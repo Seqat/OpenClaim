@@ -21,7 +21,10 @@ import {
     escapeHTML,
     escapeAttribute,
     getNoticeLines,
-    createGameCardHTML
+    formatEndDateTooltip,
+    createGameCardHTML,
+    updateAllTimers,
+    renderEmptyState
 } from '../../frontend/js/ui.js';
 import { translations, setLanguage } from '../../frontend/js/i18n.js';
 
@@ -206,6 +209,36 @@ test('safeUrl blocks XSS protocols and malformed URLs while allowing http/https'
     assert.equal(safeUrl(null), '#');
 });
 
+test('safeUrl normalizes protocol-relative URLs to https while blocking // XSS tricks', () => {
+    assert.equal(safeUrl('//m.media-amazon.com/images/I/test.jpg'), 'https://m.media-amazon.com/images/I/test.jpg');
+    assert.equal(safeUrl('  //cdn.example.com/a.png?w=100  '), 'https://cdn.example.com/a.png?w=100');
+    assert.equal(safeUrl('//javascript:alert(1)'), '#');
+    assert.equal(safeUrl('//data:text/html,<script>alert(1)</script>'), '#');
+    assert.equal(safeUrl('///evil.com/x'), '#');
+    assert.equal(safeUrl('//\\evil.com/x'), '#');
+    assert.equal(safeUrl('//'), '#');
+    assert.equal(safeUrl('javascript://%0aalert(1)'), '#');
+});
+
+test('formatEndDateTooltip formats valid ISO dates per locale and returns empty string for invalid/missing', () => {
+    const iso = '2026-09-01T15:30:00Z';
+    const expectedEn = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(iso));
+    const expectedTr = new Intl.DateTimeFormat('tr-TR', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(iso));
+
+    assert.equal(formatEndDateTooltip(iso, 'EN'), expectedEn);
+    assert.equal(formatEndDateTooltip(iso, 'TR'), expectedTr);
+
+    state.currentLang = 'EN';
+    assert.equal(formatEndDateTooltip(iso), expectedEn);
+
+    assert.equal(formatEndDateTooltip(null), '');
+    assert.equal(formatEndDateTooltip(undefined), '');
+    assert.equal(formatEndDateTooltip(''), '');
+    assert.equal(formatEndDateTooltip('   '), '');
+    assert.equal(formatEndDateTooltip('null'), '');
+    assert.equal(formatEndDateTooltip('not-a-date'), '');
+});
+
 test('escapeHTML and escapeAttribute escape special HTML characters', () => {
     assert.equal(escapeHTML(`<script>"'&</script>`), '&lt;script&gt;&quot;&#039;&amp;&lt;/script&gt;');
     assert.equal(escapeAttribute(`" onclick="alert('xss')"`), '&quot; onclick=&quot;alert(&#039;xss&#039;)&quot;');
@@ -255,6 +288,38 @@ test('createGameCardHTML escapes XSS payloads, includes a11y/perf attrs, and ref
     assert.ok(!html.includes('M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002-2V7a2 2 0 00-2-2H5z'));
 });
 
+test('createGameCardHTML includes title tooltip on .countdown-badge when end_date is valid and omits it when null', () => {
+    state.currentLang = 'EN';
+    const iso = '2026-09-01T15:30:00Z';
+    const expectedTooltip = escapeAttribute(formatEndDateTooltip(iso, 'EN'));
+
+    const withDateHtml = createGameCardHTML({
+        id: 'g-dated',
+        title: 'Dated Game',
+        platform: 'Steam',
+        store_url: 'https://store.steampowered.com/app/123',
+        image_url: '//m.media-amazon.com/images/I/test.jpg',
+        end_date: iso,
+        is_permanent: false
+    });
+    const withDateBadge = withDateHtml.match(/<div\s+[^>]*class="countdown-badge"[^>]*>/s)?.[0] || '';
+    assert.ok(withDateBadge.includes(`title="${expectedTooltip}"`), `Expected countdown-badge title="${expectedTooltip}", got: ${withDateBadge}`);
+    assert.ok(withDateHtml.includes('src="https://m.media-amazon.com/images/I/test.jpg"'));
+
+    const noDateHtml = createGameCardHTML({
+        id: 'g-nodate',
+        title: 'Amazon Game',
+        platform: 'Amazon Prime',
+        store_url: 'https://gaming.amazon.com/deal',
+        image_url: '',
+        end_date: null,
+        is_permanent: false
+    });
+    const noDateBadge = noDateHtml.match(/<div\s+[^>]*class="countdown-badge"[^>]*>/s)?.[0] || '';
+    assert.ok(noDateBadge.includes('class="countdown-badge"'));
+    assert.ok(!noDateBadge.includes('title='), `Expected no title attribute on countdown-badge, got: ${noDateBadge}`);
+});
+
 // ============================================================================
 // i18n.js & index.html parity tests
 // ============================================================================
@@ -269,6 +334,61 @@ test('TR and EN translation dictionaries have 100% key parity and distinct TR ti
     // setLanguage runs cleanly in Node without document global
     setLanguage('EN');
     assert.equal(state.currentLang, 'EN');
+});
+
+test('timer_limited and timer_limited_short use generic limited labels instead of Prime', () => {
+    assert.equal(translations.TR.timer_limited, '⏳ Süreli');
+    assert.equal(translations.TR.timer_limited_short, '⏳ Süreli');
+    assert.equal(translations.EN.timer_limited, '⏳ Limited');
+    assert.equal(translations.EN.timer_limited_short, '⏳ Limited');
+});
+
+test('updateAllTimers sets, updates across language switches, and removes countdown title tooltips', () => {
+    const createMockBadge = (endDate, isPermanent, initialTitle = null) => {
+        const attrs = new Map();
+        if (initialTitle !== null) attrs.set('title', initialTitle);
+        return {
+            dataset: { endDate, isPermanent: String(isPermanent) },
+            textContent: '',
+            className: 'countdown-badge',
+            getAttribute: (name) => (attrs.has(name) ? attrs.get(name) : null),
+            setAttribute: (name, val) => { attrs.set(name, String(val)); },
+            hasAttribute: (name) => attrs.has(name),
+            removeAttribute: (name) => { attrs.delete(name); }
+        };
+    };
+
+    const futureIso = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
+    const datedBadge = createMockBadge(futureIso, false);
+    const undatedBadge = createMockBadge('', false, 'stale-tooltip');
+
+    const prevDocument = globalThis.document;
+    globalThis.document = {
+        hidden: false,
+        getElementById: () => null,
+        querySelectorAll: (selector) => (selector === '.countdown-badge' ? [datedBadge, undatedBadge] : [])
+    };
+
+    try {
+        state.currentLang = 'EN';
+        updateAllTimers();
+        assert.equal(datedBadge.getAttribute('title'), formatEndDateTooltip(futureIso, 'EN'));
+        assert.equal(undatedBadge.textContent, '⏳ Limited');
+        assert.equal(undatedBadge.hasAttribute('title'), false);
+
+        state.currentLang = 'TR';
+        updateAllTimers();
+        assert.equal(datedBadge.getAttribute('title'), formatEndDateTooltip(futureIso, 'TR'));
+        assert.equal(undatedBadge.textContent, '⏳ Süreli');
+        assert.equal(undatedBadge.hasAttribute('title'), false);
+    } finally {
+        renderEmptyState();
+        if (prevDocument === undefined) {
+            delete globalThis.document;
+        } else {
+            globalThis.document = prevDocument;
+        }
+    }
 });
 
 test('Every data-i18n* key in index.html exists in both TR and EN, and index.html has required a11y/SEO elements', () => {
@@ -293,4 +413,5 @@ test('Every data-i18n* key in index.html exists in both TR and EN, and index.htm
     assert.ok(indexHtml.includes('<link rel="canonical"'), 'Expected canonical link tag');
     assert.ok(indexHtml.includes('<meta name="theme-color"'), 'Expected theme-color meta tag');
     assert.ok(indexHtml.includes('<noscript>'), 'Expected noscript fallback');
+    assert.ok(indexHtml.includes('href="./" class="logo"'), 'Expected .logo link to use href="./" instead of "#"');
 });
