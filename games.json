@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-11-16T12:14:44Z",
-  "count": 40,
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -134,6 +134,19 @@
       "content_type": "dlc",
       "notices": [
         "alienware_arena"
+      ]
+    },
+    {
+      "id": "epicgames-3293",
+      "title": "DungeonLoot: Open Beta Has Arrived!",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/dungeonloot-open-beta-has-arrived",
+      "image_url": "https://www.gamerpower.com/offers/1b/68d2ea0b968f7.jpg",
+      "end_date": null,
+      "is_permanent": true,
+      "content_type": "game",
+      "notices": [
+        "dungeonloot_account"
       ]
     },
     {
