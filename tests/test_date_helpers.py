@@ -2,6 +2,7 @@
 
 import re
 from datetime import UTC, datetime
+from unittest.mock import patch
 
 from backend.utils.date_helpers import (
     parse_detail_page_end_date,
@@ -69,3 +70,93 @@ def test_parse_detail_page_end_date_no_date():
     # tekrar koda dahil edilmesini engellemek için yazılmıştır.
     text_without_date = "In 7 Days to Die, survive for 3 days in a post-apocalyptic world with your friends."
     assert parse_detail_page_end_date(text_without_date) is None
+    assert parse_detail_page_end_date("Survive with friends in 3 days") is None
+    assert parse_detail_page_end_date("Offer ends Dec 2026") is None
+
+
+def test_parse_detail_page_end_date_english_variants_and_day_first():
+    assert parse_detail_page_end_date("Offer ends Dec 25, 2026") == "2026-12-25T23:59:59Z"
+    assert parse_detail_page_end_date("Offer ends on Dec 25, 2026") == "2026-12-25T23:59:59Z"
+    assert parse_detail_page_end_date("Ends Nov 30, 2026") == "2026-11-30T23:59:59Z"
+    assert parse_detail_page_end_date("Ends on Jan 15, 2027") == "2027-01-15T23:59:59Z"
+    assert parse_detail_page_end_date("Expires Feb 10, 2027") == "2027-02-10T23:59:59Z"
+    assert parse_detail_page_end_date("Expires on Mar 5, 2027") == "2027-03-05T23:59:59Z"
+    assert parse_detail_page_end_date("Claim by Dec 16, 2026") == "2026-12-16T23:59:59Z"
+    assert parse_detail_page_end_date("Valid through Nov 25, 2026") == "2026-11-25T23:59:59Z"
+    assert parse_detail_page_end_date("Valid until Dec 9, 2026") == "2026-12-09T23:59:59Z"
+    assert parse_detail_page_end_date("Ends: Dec 2, 2026") == "2026-12-02T23:59:59Z"
+
+    # Day-first variants
+    assert parse_detail_page_end_date("Available through 23 Sep 2026") == "2026-09-23T23:59:59Z"
+    assert parse_detail_page_end_date("Offer ends 25 Dec, 2026") == "2026-12-25T23:59:59Z"
+    assert parse_detail_page_end_date("Expires on 15 Jan 2027") == "2027-01-15T23:59:59Z"
+    assert parse_detail_page_end_date("Claim by 16 Dec 2026") == "2026-12-16T23:59:59Z"
+    assert parse_detail_page_end_date("Valid until 9th Dec 2026") == "2026-12-09T23:59:59Z"
+
+    # Skips non-month token after earlier prefix
+    assert (
+        parse_detail_page_end_date("Offer ends at 12. Valid through Dec 25, 2026")
+        == "2026-12-25T23:59:59Z"
+    )
+
+
+def test_parse_detail_page_end_date_year_inference():
+    class _FixedDateTime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 11, 16, 12, 0, 0, tzinfo=tz or UTC)
+
+    with patch("backend.utils.date_helpers.datetime", _FixedDateTime):
+        # Future date in same year -> 2026
+        assert parse_detail_page_end_date("Claim by Dec 16") == "2026-12-16T23:59:59Z"
+        assert parse_detail_page_end_date("Valid until 16 Dec") == "2026-12-16T23:59:59Z"
+
+        # Within 30 days in the past -> stays 2026
+        assert parse_detail_page_end_date("Ends Nov 1") == "2026-11-01T23:59:59Z"
+        assert parse_detail_page_end_date("Claim by 18 Oct") == "2026-10-18T23:59:59Z"
+
+        # More than 30 days in the past -> rolls over to 2027
+        assert parse_detail_page_end_date("Claim by Oct 15") == "2027-10-15T23:59:59Z"
+        assert parse_detail_page_end_date("Expires Jan 15") == "2027-01-15T23:59:59Z"
+        assert parse_detail_page_end_date("Offer ends on 5 Feb") == "2027-02-05T23:59:59Z"
+
+
+def test_parse_detail_page_end_date_year_inference_leap_day():
+    class _FixedLate2027(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2027, 12, 15, 12, 0, 0, tzinfo=tz or UTC)
+
+    with patch("backend.utils.date_helpers.datetime", _FixedLate2027):
+        assert parse_detail_page_end_date("Claim by Feb 29") == "2028-02-29T23:59:59Z"
+
+
+def test_parse_detail_page_end_date_turkish_and_relative_variants():
+    assert (
+        parse_detail_page_end_date("23 Eyl 2026 tarihinde sona erer") == "2026-09-23T23:59:59Z"
+    )
+    assert parse_detail_page_end_date("Son tarih: 15 Kasım 2026") == "2026-11-15T23:59:59Z"
+    assert (
+        parse_detail_page_end_date("Son geçerlilik tarihi: 5 Mayıs 2026")
+        == "2026-05-05T23:59:59Z"
+    )
+    assert (
+        parse_detail_page_end_date("SON GEÇERLİLİK TARİHİ: 10 EKİM 2026")
+        == "2026-10-10T23:59:59Z"
+    )
+    assert (
+        parse_detail_page_end_date("Son geçerlilik tarih 20 Ağustos 2026")
+        == "2026-08-20T23:59:59Z"
+    )
+
+    class _FixedDateTime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 11, 16, 12, 0, 0, tzinfo=tz or UTC)
+
+    with patch("backend.utils.date_helpers.datetime", _FixedDateTime):
+        assert parse_detail_page_end_date("Offer ends in 5 days") == "2026-11-21T23:59:59Z"
+        assert parse_detail_page_end_date("Expires in 12 days") == "2026-11-28T23:59:59Z"
+        assert parse_detail_page_end_date("Ends in 1 day") == "2026-11-17T23:59:59Z"
+        assert parse_detail_page_end_date("(3 days left)") == "2026-11-19T23:59:59Z"
+        assert parse_detail_page_end_date("(7 gün kaldı)") == "2026-11-23T23:59:59Z"

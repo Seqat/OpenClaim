@@ -242,3 +242,243 @@ def test_main_pipeline_aborts_on_empty_or_sudden_drop(
         backend_main.main()
 
     assert exc_empty.value.code == 1
+
+
+def test_backfill_from_previous_restores_missing_fields_by_id_and_title():
+    previous = [
+        {
+            "id": "amazon-1",
+            "title": "Ad Infinitum",
+            "platform": "Amazon Luna / Prime",
+            "store_url": "https://luna.amazon.com/ad-infinitum",
+            "image_url": "https://m.media-amazon.com/ad.jpg",
+            "end_date": "2099-11-25T23:59:59Z",
+            "is_permanent": False,
+            "content_type": "game",
+            "notices": ["alienware_arena"],
+        },
+        {
+            "id": "amazon-old-slug",
+            "title": "Vampire: The Masquerade - Swansong",
+            "platform": "Amazon Luna / Prime",
+            "store_url": "https://luna.amazon.com/swansong-old",
+            "image_url": "https://m.media-amazon.com/swansong.jpg",
+            "end_date": "2099-11-18T23:59:59Z",
+            "is_permanent": False,
+            "content_type": "game",
+            "notices": ["newsletter_signup"],
+        },
+    ]
+    incoming = [
+        {
+            "id": "amazon-1",
+            "title": "Ad Infinitum",
+            "platform": "Amazon Luna / Prime",
+            "store_url": "https://luna.amazon.com/ad-infinitum",
+            "image_url": "",
+            "end_date": None,
+            "is_permanent": False,
+            "content_type": "game",
+            "notices": [],
+        },
+        {
+            "id": "amazon-new-uuid",
+            "title": "Vampire The Masquerade Swansong",
+            "platform": "Amazon Luna / Prime",
+            "store_url": "https://luna.amazon.com/swansong-new",
+            "image_url": "   ",
+            "end_date": "invalid-date",
+            "is_permanent": False,
+            "content_type": "game",
+            "notices": [],
+        },
+        {
+            "id": "steam-different-platform",
+            "title": "Ad Infinitum",
+            "platform": "Steam",
+            "store_url": "https://store.steampowered.com/app/1",
+            "image_url": "",
+            "end_date": None,
+            "is_permanent": False,
+            "content_type": "game",
+            "notices": [],
+        },
+    ]
+
+    result = backend_main.backfill_from_previous(incoming, previous)
+
+    # Matched by id
+    assert result[0]["image_url"] == "https://m.media-amazon.com/ad.jpg"
+    assert result[0]["end_date"] == "2099-11-25T23:59:59Z"
+    assert result[0]["notices"] == ["alienware_arena"]
+
+    # Matched by (platform, norm_title) despite different id and punctuation
+    assert result[1]["id"] == "amazon-new-uuid"
+    assert result[1]["image_url"] == "https://m.media-amazon.com/swansong.jpg"
+    assert result[1]["end_date"] == "2099-11-18T23:59:59Z"
+    assert result[1]["notices"] == ["newsletter_signup"]
+
+    # Cross-platform entry with identical title must not match
+    assert result[2]["image_url"] == ""
+    assert result[2]["end_date"] is None
+    assert result[2]["notices"] == []
+
+    # Input dicts were not mutated in place
+    assert incoming[0]["image_url"] == ""
+    assert incoming[0]["end_date"] is None
+    assert incoming[0]["notices"] == []
+
+
+def test_backfill_from_previous_preserves_existing_and_permanent_and_prefers_complete():
+    previous = [
+        # Incomplete entries appear first and last to verify score-based preference
+        {
+            "id": "amazon-dup",
+            "title": "Duplicate Luna",
+            "platform": "Amazon Luna / Prime",
+            "image_url": "",
+            "end_date": None,
+            "is_permanent": False,
+            "notices": [],
+        },
+        {
+            "id": "amazon-dup",
+            "title": "Duplicate Luna",
+            "platform": "Amazon Luna / Prime",
+            "image_url": "https://m.media-amazon.com/dup.jpg",
+            "end_date": "2099-12-01T23:59:59Z",
+            "is_permanent": False,
+            "notices": ["amd_account"],
+        },
+        {
+            "id": "steam-perm",
+            "title": "Permanent Deal",
+            "platform": "Steam",
+            "image_url": "https://steam.example.com/perm.jpg",
+            "end_date": "2099-01-01T00:00:00Z",
+            "is_permanent": False,
+            "notices": ["redeem_in_game"],
+        },
+        {
+            "id": "steam-keep",
+            "title": "Keep Fresh",
+            "platform": "Steam",
+            "image_url": "https://steam.example.com/old.jpg",
+            "end_date": "2099-02-01T00:00:00Z",
+            "is_permanent": False,
+            "notices": ["alienware_arena"],
+        },
+    ]
+    incoming = [
+        {
+            "id": "amazon-dup",
+            "title": "Duplicate Luna",
+            "platform": "Amazon Luna / Prime",
+            "image_url": "",
+            "end_date": None,
+            "is_permanent": False,
+            "notices": [],
+        },
+        {
+            "id": "steam-perm",
+            "title": "Permanent Deal",
+            "platform": "Steam",
+            "image_url": "",
+            "end_date": None,
+            "is_permanent": True,
+            "notices": [],
+        },
+        {
+            "id": "steam-keep",
+            "title": "Keep Fresh",
+            "platform": "Steam",
+            "image_url": "https://steam.example.com/new.jpg",
+            "end_date": "2099-09-01T00:00:00Z",
+            "is_permanent": False,
+            "notices": ["dungeonloot_account"],
+        },
+    ]
+
+    result = backend_main.backfill_from_previous(incoming, previous)
+
+    # Complete duplicate won over incomplete duplicate
+    assert result[0]["image_url"] == "https://m.media-amazon.com/dup.jpg"
+    assert result[0]["end_date"] == "2099-12-01T23:59:59Z"
+    assert result[0]["notices"] == ["amd_account"]
+
+    # Permanent deal restores image_url/notices but NEVER receives an end_date
+    assert result[1]["image_url"] == "https://steam.example.com/perm.jpg"
+    assert result[1]["end_date"] is None
+    assert result[1]["notices"] == ["redeem_in_game"]
+
+    # Valid values on incoming are never overwritten
+    assert result[2]["image_url"] == "https://steam.example.com/new.jpg"
+    assert result[2]["end_date"] == "2099-09-01T00:00:00Z"
+    assert result[2]["notices"] == ["dungeonloot_account"]
+
+
+def test_main_pipeline_backfills_missing_fields_when_scraper_succeeds(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    out_file = tmp_path / "games.json"
+    previous = {
+        "generated_at": "2099-01-01T00:00:00Z",
+        "count": 3,
+        "games": [
+            {
+                **_sample_game(
+                    "amazon-1",
+                    "Radiolight",
+                    "Amazon Luna / Prime",
+                    "2099-12-16T23:59:59Z",
+                ),
+                "image_url": "https://m.media-amazon.com/radiolight.jpg",
+                "notices": ["alienware_arena"],
+            },
+            {
+                **_sample_game(
+                    "amazon-expired",
+                    "Expired Deal",
+                    "Amazon Luna / Prime",
+                    "2020-01-01T00:00:00Z",
+                ),
+                "image_url": "https://m.media-amazon.com/expired.jpg",
+            },
+            _sample_game("steam-1", "Portal 2", "Steam", "2099-12-31T23:59:59Z"),
+        ],
+    }
+    out_file.write_text(json.dumps(previous), encoding="utf-8")
+    monkeypatch.setattr(backend_main, "OUTPUT_FILE", out_file)
+
+    gp_res = ScraperResult(
+        source="gamerpower",
+        games=[_sample_game("steam-1", "Portal 2", "Steam", "2099-12-31T23:59:59Z")],
+        ok=True,
+    )
+    # Amazon scraper succeeds, but detail page timed out and lazy-load missed image
+    luna_res = ScraperResult(
+        source="amazon_luna",
+        games=[
+            {
+                **_sample_game("amazon-1", "Radiolight", "Amazon Luna / Prime", None),
+                "image_url": "",
+                "notices": [],
+            },
+            _sample_game("amazon-2", "WarBreeds", "Amazon Luna / Prime", "2099-01-08T23:59:59Z"),
+        ],
+        ok=True,
+    )
+
+    with (
+        patch("backend.main.fetch_gamerpower_result", return_value=gp_res),
+        patch("backend.main.fetch_amazon_result", AsyncMock(return_value=luna_res)),
+    ):
+        backend_main.main()
+
+    data = json.loads(out_file.read_text(encoding="utf-8"))
+    by_id = {g["id"]: g for g in data["games"]}
+    assert set(by_id) == {"amazon-1", "amazon-2", "steam-1"}
+    assert by_id["amazon-1"]["image_url"] == "https://m.media-amazon.com/radiolight.jpg"
+    assert by_id["amazon-1"]["end_date"] == "2099-12-16T23:59:59Z"
+    assert by_id["amazon-1"]["notices"] == ["alienware_arena"]
+    assert by_id["amazon-2"]["image_url"] == "https://example.com/amazon-2.jpg"
