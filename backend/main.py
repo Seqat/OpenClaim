@@ -36,12 +36,123 @@ SOURCE_PLATFORMS: dict[str, frozenset[str]] = {
 }
 
 
+def _norm_title(title: str) -> str:
+    """Normalize a game title for case- and punctuation-insensitive matching."""
+    cleaned = re.sub(r"[^\w\s]", " ", title.casefold())
+    return re.sub(r"\s+", " ", cleaned).strip()
+
+
 def _has_valid_end_date(game: dict[str, Any]) -> bool:
     """Return True if the entry has a parseable non-empty end_date."""
     raw_end_date = game.get("end_date")
     if raw_end_date is None or (isinstance(raw_end_date, str) and not raw_end_date.strip()):
         return False
     return parse_iso_datetime(str(raw_end_date)) is not None
+
+
+def _has_nonempty_text(game: dict[str, Any], field: str) -> bool:
+    """Return True if game[field] contains non-whitespace text."""
+    return bool(str(game.get(field) or "").strip())
+
+
+def _copy_game_entry(game: dict[str, Any]) -> dict[str, Any]:
+    """Return a shallow copy of a game dict with its notices list cloned if present."""
+    copied = dict(game)
+    if isinstance(copied.get("notices"), list):
+        copied["notices"] = list(copied["notices"])
+    return copied
+
+
+def _merge_missing_metadata(
+    target: dict[str, Any],
+    source: dict[str, Any],
+    *,
+    url_fields: tuple[str, ...],
+    include_end_date: bool,
+) -> None:
+    """Populate missing metadata on target in-place from source."""
+    for field in url_fields:
+        if not _has_nonempty_text(target, field) and _has_nonempty_text(source, field):
+            target[field] = str(source[field]).strip()
+
+    if (
+        include_end_date
+        and not bool(target.get("is_permanent"))
+        and not _has_valid_end_date(target)
+        and _has_valid_end_date(source)
+    ):
+        target["end_date"] = source["end_date"]
+
+    if (
+        not target.get("notices")
+        and isinstance(source.get("notices"), list)
+        and source.get("notices")
+    ):
+        target["notices"] = list(source["notices"])
+
+
+def _prev_entry_score(game: dict[str, Any]) -> tuple[int, int, int, int]:
+    """Rank candidate previous entries so more complete records win lookup collisions."""
+    has_img = int(_has_nonempty_text(game, "image_url"))
+    has_end = int(_has_valid_end_date(game))
+    has_notices = int(isinstance(game.get("notices"), list) and bool(game.get("notices")))
+    return (has_img + has_end, has_end, has_img, has_notices)
+
+
+def backfill_from_previous(
+    games: list[dict[str, Any]],
+    previous_games: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Restore missing image_url, end_date, and notices from prior active entries."""
+    by_id: dict[str, dict[str, Any]] = {}
+    by_title: dict[tuple[str, str], dict[str, Any]] = {}
+
+    for prev in previous_games:
+        if not isinstance(prev, dict):
+            continue
+        score = _prev_entry_score(prev)
+
+        prev_id = str(prev.get("id") or "").strip()
+        if prev_id:
+            current_by_id = by_id.get(prev_id)
+            if current_by_id is None or score > _prev_entry_score(current_by_id):
+                by_id[prev_id] = prev
+
+        platform = str(prev.get("platform") or "")
+        title = str(prev.get("title") or "").strip()
+        norm_title = _norm_title(title) if title else ""
+        if norm_title:
+            title_key = (platform, norm_title)
+            current_by_title = by_title.get(title_key)
+            if current_by_title is None or score > _prev_entry_score(current_by_title):
+                by_title[title_key] = prev
+
+    backfilled: list[dict[str, Any]] = []
+    for game in games:
+        if not isinstance(game, dict):
+            continue
+        updated = _copy_game_entry(game)
+
+        game_id = str(updated.get("id") or "").strip()
+        platform = str(updated.get("platform") or "")
+        title = str(updated.get("title") or "").strip()
+        norm_title = _norm_title(title) if title else ""
+
+        matched_prev: dict[str, Any] | None = by_id.get(game_id) if game_id else None
+        if matched_prev is None and norm_title:
+            matched_prev = by_title.get((platform, norm_title))
+
+        if matched_prev is not None:
+            _merge_missing_metadata(
+                updated,
+                matched_prev,
+                url_fields=("image_url",),
+                include_end_date=True,
+            )
+
+        backfilled.append(updated)
+
+    return backfilled
 
 
 def normalize_and_deduplicate(games_list: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -57,23 +168,34 @@ def normalize_and_deduplicate(games_list: list[dict[str, Any]]) -> list[dict[str
         if not title:
             continue
 
-        norm_title = re.sub(r"[^\w\s]", " ", title.casefold())
-        norm_title = re.sub(r"\s+", " ", norm_title).strip()
-        norm_key = (platform, norm_title)
+        norm_key = (platform, _norm_title(title))
 
         if norm_key in deduped:
             existing = deduped[norm_key]
             existing_perm = bool(existing.get("is_permanent"))
             new_perm = bool(game.get("is_permanent"))
-            if (new_perm and not existing_perm) or (
+            new_wins = (new_perm and not existing_perm) or (
                 not existing_perm
                 and not new_perm
                 and not _has_valid_end_date(existing)
                 and _has_valid_end_date(game)
-            ):
-                deduped[norm_key] = game
+            )
+            if new_wins:
+                winner = _copy_game_entry(game)
+                loser = existing
+            else:
+                winner = existing
+                loser = game
+
+            _merge_missing_metadata(
+                winner,
+                loser,
+                url_fields=("image_url", "store_url"),
+                include_end_date=False,
+            )
+            deduped[norm_key] = winner
         else:
-            deduped[norm_key] = game
+            deduped[norm_key] = _copy_game_entry(game)
 
     result = list(deduped.values())
     result.sort(key=lambda g: (str(g.get("platform") or ""), str(g.get("title") or "")))
@@ -230,6 +352,7 @@ def main() -> None:
             )
             combined_games.extend(retained_prev)
 
+    combined_games = backfill_from_previous(combined_games, active_previous_games)
     deduped_games = normalize_and_deduplicate(combined_games)
     final_games = filter_expired_games(deduped_games)
 
