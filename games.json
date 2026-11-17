@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-17T12:50:54Z",
-  "count": 40,
+  "generated_at": "2026-11-17T23:27:00Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -119,6 +119,17 @@
       "store_url": "https://luna.amazon.com/claims/warbreeds-gog/dp/amzn1.pg.item.886d058d-6e68-4f53-8e58-3044de3e6bb4?ingress=amzn&ref_=SM_WarBreeds_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/71iiIFosTLL._FMwebp_.jpg",
       "end_date": "2027-01-08T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
+      "id": "epicgames-3852",
+      "title": "Contractor: The Clean Up Part 2",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/contractor-the-clean-up-part-2-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6afc554f06761.jpg",
+      "end_date": "2026-12-02T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
