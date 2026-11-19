@@ -108,6 +108,26 @@ ALIENWARE_STEPS = (
         ),
         # HTML entities are unescaped before matching
         ("Synthetic", "", "Log in to your free Alienware&nbsp;Arena account", ["alienware_arena"]),
+        # Amplitude / Games2Gether
+        (
+            "Endless Space 2 - Untold Tales DLC (Steam) Giveaway",
+            "Claim your free DLC for Endless Space 2 (limited stock)!",
+            "1. Login or create your free Amplitude account.\r\n"
+            "2. Go to the reward page and link your Steam account.\r\n"
+            "3. Go back to the reward page and click the button to redeem your reward.",
+            ["amplitude_account"],
+        ),
+        ("Synthetic", "Claim via Games2Gether.", "", ["amplitude_account"]),
+        # SteelSeries GG / Intel Gaming Access / Gleam / Lenovo Legion
+        ("Synthetic", "", "Open SteelSeries GG and claim your key.", ["steelseries_gg"]),
+        ("Synthetic", "", "Sign in to Intel Gaming Access to unlock.", ["intel_gaming_access"]),
+        ("Synthetic", "", "Complete the Gleam.io tasks to enter.", ["gleam_giveaway"]),
+        (
+            "Synthetic",
+            "",
+            "Log in to Lenovo Legion Gaming Community to claim.",
+            ["lenovo_legion"],
+        ),
     ],
 )
 def test_detect_notices_positive(title, description, instructions, expected):
@@ -146,12 +166,6 @@ def test_detect_notices_positive(title, description, instructions, expected):
             "Claim your Destiny 2: Be True Emblem Code for free!\r\n\r\nCODE: ML3-FD4-ND9",
             "1. Navigate to the Destiny 2 code redemption page (click on the \"Get Loot\" button).\r\n"
             "2. Choose your platform, sign in to your platform account, then just add your code and redeem it.",
-        ),
-        (
-            "Endless Space 2 - Untold Tales DLC (Steam) Giveaway",
-            "Claim your free DLC for Endless Space 2 (limited stock)!",
-            "1. Login or create your free Amplitude account.\r\n2. Go to the reward page and link your Steam account.\r\n"
-            "3. Go back to the reward page and click the button to redeem your reward.",
         ),
         # Synthetic: "Alienware" in the description with no account requirement
         ("Synthetic", "Unlock the Alienware decal for your ships. Base game required.", ""),
@@ -222,8 +236,12 @@ def test_fetch_gamerpower_games_includes_notices():
     ]
     response = MagicMock()
     response.json.return_value = payload
+    mock_session = MagicMock()
+    mock_session.get.return_value = response
+    mock_session.__enter__.return_value = mock_session
+    mock_session.__exit__.return_value = None
 
-    with patch("backend.scrapers.gamerpower.requests.get", return_value=response):
+    with patch("backend.scrapers.gamerpower.requests.Session", return_value=mock_session):
         games = fetch_gamerpower_games()
 
     by_id = {g["id"]: g for g in games}

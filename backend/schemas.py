@@ -32,6 +32,7 @@ class BaseScraper(Protocol):
     """Protocol implemented by all OpenClaim giveaway scrapers."""
 
     source: str
+    platforms: frozenset[str]
 
     async def fetch(self) -> ScraperResult:
         """Fetch giveaway entries for this source."""
@@ -56,7 +57,17 @@ def validate_game_entry(entry: dict[str, Any]) -> dict[str, Any]:
             raw_url = ""
         if not isinstance(raw_url, str):
             raise TypeError(f"Game entry field '{url_key}' must be a string")
-        normalized[url_key] = raw_url.strip()
+        cleaned_url = raw_url.strip()
+        if url_key == "store_url":
+            if not cleaned_url.startswith(("http://", "https://")):
+                raise ValueError(
+                    f"Game entry field 'store_url' must be an http(s) URL, got {cleaned_url!r}"
+                )
+        elif cleaned_url and not cleaned_url.startswith(("http://", "https://")):
+            raise ValueError(
+                f"Game entry field 'image_url' must be empty or an http(s) URL, got {cleaned_url!r}"
+            )
+        normalized[url_key] = cleaned_url
 
     raw_end_date = entry.get("end_date")
     if raw_end_date is not None:
@@ -83,8 +94,10 @@ def validate_game_entry(entry: dict[str, Any]) -> dict[str, Any]:
     raw_notices = entry.get("notices", [])
     if raw_notices is None:
         raw_notices = []
-    if not isinstance(raw_notices, list) or not all(isinstance(n, str) for n in raw_notices):
-        raise ValueError("Game entry field 'notices' must be a list of strings")
-    normalized["notices"] = sorted(set(raw_notices))
+    if not isinstance(raw_notices, list) or not all(
+        isinstance(n, str) and bool(n.strip()) for n in raw_notices
+    ):
+        raise ValueError("Game entry field 'notices' must be a list of non-empty strings")
+    normalized["notices"] = sorted({n.strip() for n in raw_notices})
 
     return normalized

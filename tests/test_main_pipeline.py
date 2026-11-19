@@ -37,15 +37,16 @@ def test_validate_game_entry_normalizes_and_validates():
             "id": " steam-1 ",
             "title": " Portal ",
             "platform": " Steam ",
+            "store_url": " https://store.steampowered.com/app/400 ",
             "end_date": "",
-            "notices": ["b", "a", "a"],
+            "notices": ["b", " a ", "a"],
         }
     )
     assert valid == {
         "id": "steam-1",
         "title": "Portal",
         "platform": "Steam",
-        "store_url": "",
+        "store_url": "https://store.steampowered.com/app/400",
         "image_url": "",
         "end_date": None,
         "is_permanent": False,
@@ -56,18 +57,66 @@ def test_validate_game_entry_normalizes_and_validates():
     with pytest.raises(TypeError):
         validate_game_entry("not-a-dict")  # type: ignore[arg-type]
     with pytest.raises(ValueError):
-        validate_game_entry({"id": "", "title": "Game", "platform": "Steam"})
+        validate_game_entry(
+            {"id": "", "title": "Game", "platform": "Steam", "store_url": "https://example.com"}
+        )
     with pytest.raises(ValueError):
         validate_game_entry(
-            {"id": "1", "title": "Game", "platform": "Steam", "content_type": "movie"}
+            {"id": "1", "title": "Game", "platform": "Steam", "store_url": ""}
+        )
+    with pytest.raises(ValueError):
+        validate_game_entry(
+            {"id": "1", "title": "Game", "platform": "Steam", "store_url": "javascript:alert(1)"}
+        )
+    with pytest.raises(ValueError):
+        validate_game_entry(
+            {
+                "id": "1",
+                "title": "Game",
+                "platform": "Steam",
+                "store_url": "https://example.com",
+                "image_url": "ftp://example.com/img.png",
+            }
+        )
+    with pytest.raises(ValueError):
+        validate_game_entry(
+            {
+                "id": "1",
+                "title": "Game",
+                "platform": "Steam",
+                "store_url": "https://example.com",
+                "content_type": "movie",
+            }
         )
     with pytest.raises(TypeError):
         validate_game_entry(
-            {"id": "1", "title": "Game", "platform": "Steam", "is_permanent": "yes"}
+            {
+                "id": "1",
+                "title": "Game",
+                "platform": "Steam",
+                "store_url": "https://example.com",
+                "is_permanent": "yes",
+            }
         )
     with pytest.raises(ValueError):
         validate_game_entry(
-            {"id": "1", "title": "Game", "platform": "Steam", "notices": "alienware"}
+            {
+                "id": "1",
+                "title": "Game",
+                "platform": "Steam",
+                "store_url": "https://example.com",
+                "notices": "alienware",
+            }
+        )
+    with pytest.raises(ValueError):
+        validate_game_entry(
+            {
+                "id": "1",
+                "title": "Game",
+                "platform": "Steam",
+                "store_url": "https://example.com",
+                "notices": ["   "],
+            }
         )
 
 

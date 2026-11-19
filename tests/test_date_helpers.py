@@ -72,6 +72,19 @@ def test_parse_detail_page_end_date_no_date():
     assert parse_detail_page_end_date(text_without_date) is None
     assert parse_detail_page_end_date("Survive with friends in 3 days") is None
     assert parse_detail_page_end_date("Offer ends Dec 2026") is None
+    assert parse_detail_page_end_date("Offer ends maybe 5") is None
+    assert parse_detail_page_end_date("Offer ends novel 3") is None
+
+
+def test_parse_detail_page_end_date_continues_after_invalid_match():
+    assert (
+        parse_detail_page_end_date("Available through Feb 30, 2026. Claim by Dec 15, 2026")
+        == "2026-12-15T23:59:59Z"
+    )
+    assert (
+        parse_detail_page_end_date("Claim soon (in 99999999999 days) or (in 5 days)")
+        is not None
+    )
 
 
 def test_parse_detail_page_end_date_english_variants_and_day_first():
@@ -119,6 +132,11 @@ def test_parse_detail_page_end_date_year_inference():
         assert parse_detail_page_end_date("Claim by Oct 15") == "2027-10-15T23:59:59Z"
         assert parse_detail_page_end_date("Expires Jan 15") == "2027-01-15T23:59:59Z"
         assert parse_detail_page_end_date("Offer ends on 5 Feb") == "2027-02-05T23:59:59Z"
+
+        # Turkish yearless dates infer year cleanly
+        assert parse_detail_page_end_date("Son tarih: 15 Kasım") == "2026-11-15T23:59:59Z"
+        assert parse_detail_page_end_date("15 Kasım tarihine kadar") == "2026-11-15T23:59:59Z"
+        assert parse_detail_page_end_date("Son tarih: 15 Ocak") == "2027-01-15T23:59:59Z"
 
 
 def test_parse_detail_page_end_date_year_inference_leap_day():

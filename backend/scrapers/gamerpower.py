@@ -10,7 +10,6 @@ import re
 from typing import Any
 
 import requests
-import requests.api
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -52,12 +51,9 @@ STRONG_DLC_KEYWORDS_PATTERN = re.compile(
     r"gift\s+pack|"
     r"starter\s+kit|"
     r"in-game\s+items?|"
-    r"bundle|bundles|"
-    r"skins?|"
     r"decals?|"
     r"emblems?|"
-    r"currency|"
-    r"helmets?"
+    r"(?:welcome|starter|gift|loot|cosmetic|weapon|vehicle|soldier)\s+bundles?"
     r")\b",
     re.IGNORECASE,
 )
@@ -70,7 +66,17 @@ NOTICE_PATTERNS = {
         re.IGNORECASE,
     ),
     "amd_account": re.compile(r"\bAMD\s+account\b", re.IGNORECASE),
+    "amplitude_account": re.compile(
+        r"\bamplitude\s+account\b|\bgames2gether\b",
+        re.IGNORECASE,
+    ),
     "dungeonloot_account": re.compile(r"\bdungeon\s*loot\b", re.IGNORECASE),
+    "gleam_giveaway": re.compile(r"\bgleam(?:\.io)?\b", re.IGNORECASE),
+    "intel_gaming_access": re.compile(r"\bintel\s+gaming\s+access\b", re.IGNORECASE),
+    "lenovo_legion": re.compile(
+        r"\blenovo\s+legion\s+gaming\s+community\b",
+        re.IGNORECASE,
+    ),
     "newsletter_signup": re.compile(
         r"\bsubscribe\b[^.\n]{0,40}\bnewsletter\b|\bnewsletter\b[^.\n]{0,40}\bsign[\s-]?up\b",
         re.IGNORECASE,
@@ -79,6 +85,7 @@ NOTICE_PATTERNS = {
         r"redeem\s+(?:this\s+)?(?:key|code)\s+(?:in-?game|inside\s+the\s+game)|\bnot\s+steam\s+keys?\b",
         re.IGNORECASE,
     ),
+    "steelseries_gg": re.compile(r"\bsteelseries(?:\s+gg)?\b", re.IGNORECASE),
 }
 
 HTML_TAG_PATTERN = re.compile(r"<[^>]+>")
@@ -88,7 +95,7 @@ _PAREN_STORE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _TRAILING_STORE_KEY_PATTERN = re.compile(
-    r"(?:\s+(?:Steam|Epic Games Store|Epic Games|Ubisoft|GOG|itch\.io)(?:\s+Keys?)?(?:\s+Giveaway)?|\s+(?:Keys?\s+Giveaway|Keys|Giveaway))$",
+    r"(?:\s*[-–—:|])?(?:\s+(?:Steam|Epic Games Store|Epic Games|Epic|Ubisoft|GOG|itch\.io)(?:\s+Keys?)?(?:\s+Giveaway)?|\s+(?:Keys?\s+Giveaway|Keys|Giveaway))$",
     re.IGNORECASE,
 )
 
@@ -180,13 +187,7 @@ def _build_session() -> requests.Session:
 
 
 def _fetch_gamerpower_payload(headers: dict[str, str]) -> Any:
-    """Perform the HTTP GET request, respecting patched requests.get in unit tests."""
-    # tests/test_notices.py patches backend.scrapers.gamerpower.requests.get directly.
-    if requests.get is not requests.api.get:
-        response = requests.get(GAMERPOWER_API_URL, headers=headers, timeout=15)
-        response.raise_for_status()
-        return response.json()
-
+    """Perform the HTTP GET request using a retry-enabled requests Session."""
     with _build_session() as session:
         response = session.get(GAMERPOWER_API_URL, headers=headers, timeout=15)
         response.raise_for_status()
@@ -241,34 +242,52 @@ def fetch_gamerpower_result() -> ScraperResult:
             if not title:
                 continue
 
-            store_url = (
+            store_url = str(
                 item.get("open_giveaway_url")
                 or item.get("gamerpower_url")
                 or item.get("open_giveaway")
                 or ""
-            )
-            image_url = item.get("image") or item.get("thumbnail") or ""
+            ).strip()
+            if not store_url.startswith(("http://", "https://")):
+                logger.warning(
+                    f"Skipping GamerPower item {item_id!r} ('{title}') due to invalid store_url: {store_url!r}"
+                )
+                continue
+
+            image_url = str(item.get("image") or item.get("thumbnail") or "").strip()
             end_date = parse_iso_date(item.get("end_date"))
-            is_permanent = end_date is None
+            # GamerPower "N/A" indicates unknown/limited stock rather than permanent free-to-play.
+            is_permanent = False
             content_type = classify_content_type(title_raw, item.get("type"))
             notices = detect_notices(title_raw, item.get("description"), item.get("instructions"))
 
             for platform in matched_platforms:
                 game_id = f"{platform.lower().replace(' ', '')}-{item_id}"
-                entry = validate_game_entry(
-                    {
-                        "id": str(game_id),
-                        "title": title,
-                        "platform": platform,
-                        "store_url": str(store_url),
-                        "image_url": str(image_url),
-                        "end_date": end_date,
-                        "is_permanent": is_permanent,
-                        "content_type": content_type,
-                        "notices": notices,
-                    }
-                )
+                try:
+                    entry = validate_game_entry(
+                        {
+                            "id": str(game_id),
+                            "title": title,
+                            "platform": platform,
+                            "store_url": store_url,
+                            "image_url": image_url,
+                            "end_date": end_date,
+                            "is_permanent": is_permanent,
+                            "content_type": content_type,
+                            "notices": notices,
+                        }
+                    )
+                except (ValueError, TypeError) as exc:
+                    logger.warning(
+                        f"Skipping invalid GamerPower entry {game_id!r} ('{title}'): {exc}"
+                    )
+                    continue
                 games.append(entry)
+
+        if not games:
+            msg = "No active Steam or Epic Games giveaways found on GamerPower"
+            logger.warning(msg)
+            return ScraperResult(source=GAMERPOWER_SOURCE, games=[], ok=False, error=msg)
 
         logger.info(f"Retrieved {len(games)} Steam & Epic Games from GamerPower.")
         return ScraperResult(source=GAMERPOWER_SOURCE, games=games, ok=True, error=None)
@@ -286,6 +305,7 @@ class GamerPowerScraper:
     """BaseScraper implementation for GamerPower."""
 
     source: str = GAMERPOWER_SOURCE
+    platforms: frozenset[str] = frozenset({"Steam", "Epic Games"})
 
     async def fetch(self) -> ScraperResult:
         """Fetch GamerPower giveaways asynchronously via a worker thread."""

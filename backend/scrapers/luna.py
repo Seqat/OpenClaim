@@ -4,11 +4,12 @@ Scrapes claimable free games from Amazon Luna / Prime Gaming using Playwright he
 """
 
 import asyncio
+import hashlib
 import logging
 import re
 import time
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from playwright.async_api import async_playwright
 
@@ -159,13 +160,21 @@ _EXTRACT_CARDS_JS = r"""() => {
 
         const cardText = card.innerText || '';
         let title = '';
-        const primaryTitleEl = card.querySelector('h1, h2, h3, h4, [class*="title"], [class*="Title"]');
-        if (primaryTitleEl && primaryTitleEl.innerText.trim().length > 1) {
-            title = primaryTitleEl.innerText.trim();
+        const headingEl = card.querySelector('h1, h2, h3, h4');
+        if (headingEl && headingEl.innerText.trim().length > 1) {
+            title = headingEl.innerText.trim();
         } else {
-            const pEl = card.querySelector('p');
-            if (pEl && pEl.innerText.trim().length > 1) {
-                title = pEl.innerText.trim();
+            const titleClassEl = card.querySelector(
+                '[class*="title"]:not([class*="subtitle"]):not([class*="entitlement"]), ' +
+                '[class*="Title"]:not([class*="Subtitle"]):not([class*="Entitlement"])'
+            );
+            if (titleClassEl && titleClassEl.innerText.trim().length > 1) {
+                title = titleClassEl.innerText.trim();
+            } else {
+                const pEl = card.querySelector('p');
+                if (pEl && pEl.innerText.trim().length > 1) {
+                    title = pEl.innerText.trim();
+                }
             }
         }
         if (!title) {
@@ -233,19 +242,57 @@ def clean_amazon_title(title: str) -> str:
     return cleaned.strip()
 
 
+_AMAZON_LAUNCHER_SUFFIXES: tuple[tuple[str, str], ...] = (
+    ("-microsoft-store", "redeem_microsoft_store"),
+    ("-ms-store", "redeem_microsoft_store"),
+    ("-msstore", "redeem_microsoft_store"),
+    ("-xbox", "redeem_microsoft_store"),
+    ("-ea-app", "redeem_ea_app"),
+    ("-origin", "redeem_ea_app"),
+    ("-ea", "redeem_ea_app"),
+    ("-ubisoft", "redeem_ubisoft"),
+    ("-uplay", "redeem_ubisoft"),
+    ("-legacy", "redeem_legacy_games"),
+    ("-epic", "redeem_epic"),
+    ("-gog", "redeem_gog"),
+    ("-aga", "redeem_amazon_app"),
+)
+
+
+def detect_amazon_notices(store_url: str) -> list[str]:
+    """Detect redemption store/launcher notice code from Amazon Luna claim URL slug."""
+    if not store_url:
+        return []
+    path = urlparse(store_url).path
+    match = re.search(r"/claims/([^/]+)", path, re.IGNORECASE)
+    if not match:
+        return []
+    offer_slug = match.group(1).lower()
+    for suffix, code in _AMAZON_LAUNCHER_SUFFIXES:
+        if offer_slug.endswith(suffix):
+            return [code]
+    return []
+
+
 def build_amazon_id(store_url: str, fallback_title: str) -> str:
     """Build a stable ID from the amzn1.pg.item.<uuid> segment in store_url."""
     m = re.search(r"(amzn1\.pg\.item\.[0-9a-f-]+)", store_url or "", re.IGNORECASE)
     if m:
         return f"amazon-{m.group(1)}"
     slug = re.sub(r"[^a-z0-9]+", "-", (fallback_title or "").casefold()).strip("-")
-    return f"amazon-{slug}" if slug else "amazon-unknown"
+    if slug:
+        return f"amazon-{slug}"
+    if store_url or fallback_title:
+        digest = hashlib.sha256(f"{store_url or ''}|{fallback_title or ''}".encode()).hexdigest()
+        return f"amazon-{digest[:12]}"
+    return "amazon-unknown"
 
 
 async def _handle_asset_route(route: Any) -> None:
     """Fulfill stylesheets with empty CSS, abort heavy assets, and allow scripts/data."""
-    url = str(getattr(route.request, "url", "")).lower()
-    if route.request.resource_type == "stylesheet" or ".css" in url:
+    url = str(getattr(route.request, "url", ""))
+    path = urlparse(url).path.lower()
+    if route.request.resource_type == "stylesheet" or path.endswith(".css"):
         await route.fulfill(status=200, body="", content_type="text/css")
     elif route.request.resource_type in BLOCKED_RESOURCE_TYPES:
         await route.abort()
@@ -353,9 +400,15 @@ async def fetch_detail_page_end_date(
 
             await page.goto(store_url, wait_until="domcontentloaded", timeout=12000)
 
-            start_poll = time.time()
-            while time.time() - start_poll < 5.0:
-                detail_text = await page.inner_text("body", timeout=2000)
+            start_poll = time.monotonic()
+            while time.monotonic() - start_poll < 5.0:
+                try:
+                    detail_text = await page.inner_text("body", timeout=2000)
+                except Exception as text_err:  # noqa: BLE001
+                    logger.debug(
+                        f"Detail page inner_text note for {item['title']}: {text_err}"
+                    )
+                    detail_text = ""
                 end_date = parse_detail_page_end_date(detail_text)
                 if end_date:
                     break
@@ -398,10 +451,15 @@ async def fetch_amazon_result() -> ScraperResult:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
             try:
+                raw_version = getattr(browser, "version", "")
+                major_match = (
+                    re.search(r"(\d+)", raw_version) if isinstance(raw_version, str) else None
+                )
+                chrome_major = major_match.group(1) if major_match else "134"
                 context = await browser.new_context(
                     user_agent=(
                         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                        f"(KHTML, like Gecko) Chrome/{chrome_major}.0.0.0 Safari/537.36"
                     ),
                     viewport={"width": 1280, "height": 900},
                     locale="en-US",
@@ -454,19 +512,32 @@ async def fetch_amazon_result() -> ScraperResult:
                     else:
                         end_date = result or item.get("card_end_date") or None
 
-                    entry = validate_game_entry(
-                        {
-                            "id": build_amazon_id(item["store_url"], item["title"]),
-                            "title": item["title"],
-                            "platform": LUNA_PLATFORM,
-                            "store_url": item["store_url"],
-                            "image_url": item["image_url"],
-                            "end_date": end_date,
-                            "is_permanent": False,
-                            "content_type": "game",
-                            "notices": [],
-                        }
-                    )
+                    store_url = str(item.get("store_url") or "").strip()
+                    if not store_url.startswith(("http://", "https://")):
+                        logger.warning(
+                            f"Skipping Amazon Luna item '{item.get('title')}' due to invalid store_url: {store_url!r}"
+                        )
+                        continue
+
+                    try:
+                        entry = validate_game_entry(
+                            {
+                                "id": build_amazon_id(store_url, item["title"]),
+                                "title": item["title"],
+                                "platform": LUNA_PLATFORM,
+                                "store_url": store_url,
+                                "image_url": item["image_url"],
+                                "end_date": end_date,
+                                "is_permanent": False,
+                                "content_type": "game",
+                                "notices": detect_amazon_notices(store_url),
+                            }
+                        )
+                    except (ValueError, TypeError) as exc:
+                        logger.warning(
+                            f"Skipping invalid Amazon Luna entry '{item.get('title')}': {exc}"
+                        )
+                        continue
                     games.append(entry)
             finally:
                 await browser.close()
@@ -496,6 +567,7 @@ class LunaScraper:
     """BaseScraper implementation for Amazon Luna / Prime Gaming."""
 
     source: str = LUNA_SOURCE
+    platforms: frozenset[str] = frozenset({LUNA_PLATFORM})
 
     async def fetch(self) -> ScraperResult:
         """Fetch Amazon Luna giveaways asynchronously."""
