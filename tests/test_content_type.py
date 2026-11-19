@@ -54,6 +54,8 @@ from backend.scrapers.gamerpower import classify_content_type
         ("Some Item Code", "In-game Content", "dlc"),
         ("Loot Crate Giveaway", "Loot", "dlc"),
         ("Full Indie Game", "Game", "game"),
+        ("Metro Redux Bundle", "Game", "game"),
+        ("World of Tanks Blitz - Welcome Bundle", "Game", "dlc"),
         ("Early Access RPG", "Early Access", "game"),
 
         # Edge cases: empty / None

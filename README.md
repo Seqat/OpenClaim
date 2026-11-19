@@ -27,7 +27,8 @@ An open-source web application that automatically tracks free game deals across 
 - 🤖 **GitHub Actions Automation:** Automatic data fetching and publishing (Cron automation).
 - ⚡ **Zero Client-Side API Dependency:** Fast local `games.json` fetching without CORS or rate-limit barriers.
 - 🌐 **Multi-Language Support:** Instant switching between Turkish and English (TR / EN).
-- 🗂️ **Advanced Filtering & Views:** Smart Sorting, Grid / List view modes, and sticky filter controls.
+- 🗂️ **Advanced Filtering & Views:** Smart Sorting, Grid / List view modes, Hide Expired & Hide Claimed toggles, shareable filter URLs, keyboard shortcuts (`/` & `Esc`), and sticky filter controls.
+- 🏷️ **Requirement & Launcher Notices:** Automatic hints for third-party accounts and Amazon Luna launcher redemption targets (Epic, GOG, Amazon Games App, Legacy Games).
 - 👁️ **Modern Design Aesthetics:** Eye-friendly Slate Dark design system with micro-animations.
 
 ---
@@ -43,6 +44,7 @@ OpenClaim/
 │       ├── ci.yml             # PR & push CI (ruff, mypy, pytest, node --test)
 │       └── fetch-games.yml    # Scheduled scraper workflow updating games.json
 ├── backend/
+│   ├── __main__.py            # Package entry point (python -m backend)
 │   ├── main.py                # Pipeline entry point, normalization & deduplication
 │   ├── schemas.py             # ScraperResult & entry validation contracts
 │   ├── scrapers/              # Platform scraper modules
@@ -91,7 +93,7 @@ python3 -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 playwright install chromium
-python backend/main.py
+python -m backend.main
 ```
 
 #### 2. Local Frontend Server
@@ -125,18 +127,18 @@ node --test tests/frontend/*.test.mjs
 4-step guide to add a new scraper:
 
 1. **Create Scraper File:** Add a new `.py` file under `backend/scrapers/` (e.g. `backend/scrapers/myplatform.py`).
-2. **Implement Fetch Function:** Define an async or sync `fetch_*` function returning `List[Dict[str, Any]]`.
-3. **Follow Output Schema:** Ensure each game dictionary contains the following keys:
+2. **Implement `BaseScraper`:** Define a class satisfying `backend.schemas.BaseScraper` with `source: str`, `platforms: frozenset[str]`, and `async def fetch(self) -> ScraperResult` returning validated entries inside `ScraperResult`.
+3. **Follow Output Schema:** Ensure each game dictionary passes `validate_game_entry()` and contains the following keys:
    - `id`: Unique game ID (`str`)
    - `title`: Cleaned game title (`str`)
    - `platform`: Platform name (`str`, e.g. `"Steam"`, `"Epic Games"`)
-   - `store_url`: Game store / claim URL (`str`)
-   - `image_url`: Game cover image URL (`str`)
+   - `store_url`: Game store / claim `http(s)://` URL (`str`)
+   - `image_url`: Game cover `http(s)://` image URL or `""` (`str`)
    - `end_date`: ISO formatted expiration date or `None` (`Optional[str]`)
    - `is_permanent`: Permanent library vs limited time access (`bool`)
    - `content_type`: Content type classification (`"game"` or `"dlc"`) (`Optional[str]`)
-   - `notices`: Optional list of notice codes for extra requirements, e.g. `"alienware_arena"`, `"newsletter_signup"`; missing or empty means none, unknown codes are ignored by the frontend (`Optional[List[str]]`)
-4. **Integrate into Pipeline:** Import your new scraper in `backend/main.py`, execute it inside `main()`, and append results to `all_games`.
+   - `notices`: Optional list of notice codes for extra requirements or launchers, e.g. `"alienware_arena"`, `"newsletter_signup"`, `"redeem_gog"`; missing or empty means none, unknown codes are ignored by the frontend (`Optional[List[str]]`)
+4. **Register in Pipeline:** Import your scraper class in `backend/main.py` and add an instance to `SCRAPERS` (then run `python -m backend.main`).
 
 ---
 
@@ -169,7 +171,8 @@ Steam, Epic Games Store ve Amazon Luna / Prime Gaming platformlarındaki ücrets
 - 🤖 **GitHub Actions Otomasyonu:** Otomatik veri çekme ve yayınlama (Cron otomasyonu).
 - ⚡ **Sıfır İstemci Taraflı API Bağımlılığı:** CORS ve rate-limit engeline takılmadan yerel `games.json` kullanımı.
 - 🌐 **Çoklu Dil Desteği:** Türkçe ve İngilizce (TR / EN) dil seçenekleri.
-- 🗂️ **Gelişmiş Filtreleme ve Görünüm:** Akıllı Sıralama, Grid / List görünüm modları ve yapışkan (sticky) filtre çubuğu.
+- 🗂️ **Gelişmiş Filtreleme ve Görünüm:** Akıllı Sıralama, Grid / List görünüm modları, Süresi dolanları ve Aldıklarımı gizle seçenekleri, paylaşılabilir filtre URL'leri, klavye kısayolları (`/` ve `Esc`) ve yapışkan (sticky) filtre çubuğu.
+- 🏷️ **Gereksinim ve Başlatıcı Bildirimleri:** Üçüncü parti hesap gereksinimleri ve Amazon Luna istemci hedefleri (Epic, GOG, Amazon Games App, Legacy Games) için otomatik ipuçları.
 - 👁️ **Modern Arayüz Tasarımı:** Göz dostu Slate Dark tema mimarisi ve mikro-animasyonlar.
 
 ---
@@ -185,6 +188,7 @@ OpenClaim/
 │       ├── ci.yml             # PR & push CI (ruff, mypy, pytest, node --test)
 │       └── fetch-games.yml    # games.json dosyasını güncelleyen zamanlanmış workflow
 ├── backend/
+│   ├── __main__.py            # Paket giriş noktası (python -m backend)
 │   ├── main.py                # Pipeline giriş noktası, normalizasyon ve deduplikasyon
 │   ├── schemas.py             # ScraperResult ve veri doğrulama kontratları
 │   ├── scrapers/              # Platform scraper modülleri
@@ -233,7 +237,7 @@ python3 -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 playwright install chromium
-python backend/main.py
+python -m backend.main
 ```
 
 #### 2. Frontend Önizleme (Local Web Server)
@@ -267,18 +271,18 @@ node --test tests/frontend/*.test.mjs
 Yeni bir platform scraper'ı eklemek için 4 adımlı rehber:
 
 1. **Scraper Dosyası Oluşturun:** `backend/scrapers/` dizini altında yeni bir `.py` dosyası açın (ör. `backend/scrapers/myplatform.py`).
-2. **Fetch Fonksiyonu Yazın:** `List[Dict[str, Any]]` tipi dönen asenkron veya senkron bir `fetch_*` fonksiyonu tanımlayın.
-3. **Çıktı Şemasına Uyarlayın:** Fonksiyondan dönen her sözlük (dictionary) şu alanları içermelidir:
+2. **`BaseScraper` Uygulayın:** `backend.schemas.BaseScraper` protokolüne uyan; `source: str`, `platforms: frozenset[str]` niteliklerine ve doğrulanan kayıtları `ScraperResult` içinde dönen `async def fetch(self) -> ScraperResult` metoduna sahip bir sınıf tanımlayın.
+3. **Çıktı Şemasına Uyarlayın:** Her sözlüğün `validate_game_entry()` doğrulamasından geçmesini ve şu alanları içermesini sağlayın:
    - `id`: Benzersiz oyun kimliği (`str`)
    - `title`: Temizlenmiş oyun adı (`str`)
    - `platform`: Platform adı (`str`, örn. `"Steam"`, `"Epic Games"`)
-   - `store_url`: Oyun mağazası / talep bağlantısı (`str`)
-   - `image_url`: Oyun kapak görseli bağlantısı (`str`)
+   - `store_url`: Oyun mağazası / talep `http(s)://` bağlantısı (`str`)
+   - `image_url`: Oyun kapak `http(s)://` görsel bağlantısı veya `""` (`str`)
    - `end_date`: ISO formatında bitiş tarihi veya `None` (`Optional[str]`)
    - `is_permanent`: Kalıcı kütüphane mi yoksa süreli erişim mi (`bool`)
    - `content_type`: İçerik türü sınıflandırması (`"game"` veya `"dlc"`) (`Optional[str]`)
-   - `notices`: Ek gereksinimler için isteğe bağlı bildirim kodları listesi, örn. `"alienware_arena"`, `"newsletter_signup"`; alanın olmaması veya boş olması gereksinim olmadığı anlamına gelir, bilinmeyen kodlar arayüz tarafından yok sayılır (`Optional[List[str]]`)
-4. **Pipeline'a Entegre Edin:** `backend/main.py` içinde yeni scraper fonksiyonunu import edin, `main()` içerisinde çağırıp `all_games` listesine ekleyin.
+   - `notices`: Ek gereksinimler veya başlatıcılar için isteğe bağlı bildirim kodları listesi, örn. `"alienware_arena"`, `"newsletter_signup"`, `"redeem_gog"`; alanın olmaması veya boş olması ek gereksinim olmadığı anlamına gelir, bilinmeyen kodlar arayüz tarafından yok sayılır (`Optional[List[str]]`)
+4. **Pipeline'a Kaydedin:** `backend/main.py` içinde yeni scraper sınıfınızı import edip bir örneğini `SCRAPERS` listesine ekleyin (ardından `python -m backend.main` ile çalıştırın).
 
 ---
 

@@ -4,14 +4,17 @@ Executes GamerPower and Amazon Luna scrapers, normalizes and deduplicates result
 and outputs games.json to the project root directory.
 """
 
+import argparse
 import asyncio
+import hashlib
 import json
 import logging
 import os
 import re
 import sys
 import tempfile
-from collections.abc import Awaitable, Callable
+from collections import Counter
+from collections.abc import Sequence
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -21,19 +24,19 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from backend.schemas import ScraperResult
-from backend.scrapers.gamerpower import fetch_gamerpower_result
-from backend.scrapers.luna import fetch_amazon_result
+from backend.schemas import BaseScraper, ScraperResult, validate_game_entry
+from backend.scrapers.gamerpower import GamerPowerScraper
+from backend.scrapers.luna import LunaScraper
 from backend.utils.date_helpers import parse_iso_datetime
 
 logger = logging.getLogger("backend_main")
 
 OUTPUT_FILE = PROJECT_ROOT / "games.json"
 
-SOURCE_PLATFORMS: dict[str, frozenset[str]] = {
-    "gamerpower": frozenset({"Steam", "Epic Games"}),
-    "amazon_luna": frozenset({"Amazon Luna / Prime"}),
-}
+SCRAPERS: tuple[BaseScraper, ...] = (
+    GamerPowerScraper(),
+    LunaScraper(),
+)
 
 
 def _norm_title(title: str) -> str:
@@ -69,6 +72,7 @@ def _merge_missing_metadata(
     *,
     url_fields: tuple[str, ...],
     include_end_date: bool,
+    include_notices: bool = True,
 ) -> None:
     """Populate missing metadata on target in-place from source."""
     for field in url_fields:
@@ -84,7 +88,8 @@ def _merge_missing_metadata(
         target["end_date"] = source["end_date"]
 
     if (
-        not target.get("notices")
+        include_notices
+        and not target.get("notices")
         and isinstance(source.get("notices"), list)
         and source.get("notices")
     ):
@@ -148,6 +153,7 @@ def backfill_from_previous(
                 matched_prev,
                 url_fields=("image_url",),
                 include_end_date=True,
+                include_notices=False,
             )
 
         backfilled.append(updated)
@@ -199,6 +205,27 @@ def normalize_and_deduplicate(games_list: list[dict[str, Any]]) -> list[dict[str
 
     result = list(deduped.values())
     result.sort(key=lambda g: (str(g.get("platform") or ""), str(g.get("title") or "")))
+
+    # Guarantee unique non-empty IDs across distinct entries
+    seen_ids: set[str] = set()
+    for entry in result:
+        raw_id = str(entry.get("id") or "").strip()
+        if not raw_id:
+            continue
+        if raw_id in seen_ids:
+            platform = str(entry.get("platform") or "")
+            title = str(entry.get("title") or "")
+            digest = hashlib.sha256(f"{platform}|{title}".encode()).hexdigest()[:8]
+            candidate_id = f"{raw_id}-{digest}"
+            suffix_idx = 2
+            while candidate_id in seen_ids:
+                candidate_id = f"{raw_id}-{digest}-{suffix_idx}"
+                suffix_idx += 1
+            entry["id"] = candidate_id
+            seen_ids.add(candidate_id)
+        else:
+            seen_ids.add(raw_id)
+
     return result
 
 
@@ -295,33 +322,74 @@ def atomic_write_json(output_file: Path, data: dict[str, Any]) -> None:
         raise
 
 
-async def _run_sync_scraper(source: str, fn: Callable[[], ScraperResult]) -> ScraperResult:
+async def _run_scraper(scraper: BaseScraper) -> ScraperResult:
     try:
-        return await asyncio.to_thread(fn)
+        return await scraper.fetch()
     except Exception as exc:  # noqa: BLE001
-        logger.error(f"Unexpected exception in {source} scraper: {exc}")
-        return ScraperResult(source=source, games=[], ok=False, error=str(exc))
+        logger.error(f"Unexpected exception in {scraper.source} scraper: {exc}")
+        return ScraperResult(source=scraper.source, games=[], ok=False, error=str(exc))
 
 
-async def _run_async_scraper(source: str, coro: Awaitable[ScraperResult]) -> ScraperResult:
-    try:
-        return await coro
-    except Exception as exc:  # noqa: BLE001
-        logger.error(f"Unexpected exception in {source} scraper: {exc}")
-        return ScraperResult(source=source, games=[], ok=False, error=str(exc))
-
-
-async def fetch_all_sources() -> list[ScraperResult]:
-    """Run GamerPower and Amazon Luna scrapers concurrently."""
-    results = await asyncio.gather(
-        _run_sync_scraper("gamerpower", fetch_gamerpower_result),
-        _run_async_scraper("amazon_luna", fetch_amazon_result()),
-    )
+async def fetch_all_sources(
+    scrapers: Sequence[BaseScraper] = SCRAPERS,
+) -> list[ScraperResult]:
+    """Run all registered BaseScraper implementations concurrently."""
+    results = await asyncio.gather(*(_run_scraper(scraper) for scraper in scrapers))
     return list(results)
 
 
-def main() -> None:
+def _env_truthy(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    """Parse CLI arguments for the OpenClaim pipeline."""
+    parser = argparse.ArgumentParser(description="OpenClaim free games fetch pipeline")
+    parser.add_argument(
+        "--allow-drop",
+        action="store_true",
+        default=_env_truthy("OPENCLAIM_ALLOW_DROP"),
+        help="Allow >50%% drop in active game count compared to previous games.json",
+    )
+    return parser.parse_args(argv)
+
+
+def _write_step_summary(
+    results: Sequence[ScraperResult],
+    final_games: Sequence[dict[str, Any]],
+    expired_count: int,
+) -> None:
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
+    if not summary_path:
+        return
+
+    platform_counts = Counter(str(g.get("platform") or "Unknown") for g in final_games)
+    lines = [
+        "### OpenClaim Fetch Pipeline Summary",
+        "",
+        f"- **Active deals:** {len(final_games)}",
+        f"- **Expired filtered:** {expired_count}",
+        "",
+        "#### Scrapers",
+    ]
+    for res in results:
+        status = f"OK ({len(res.games)})" if res.ok else f"FAILED ({res.error or 'unknown error'})"
+        lines.append(f"- `{res.source}`: {status}")
+    lines.extend(["", "#### By Platform"])
+    for platform, count in sorted(platform_counts.items()):
+        lines.append(f"- {platform}: {count}")
+
+    try:
+        with open(summary_path, "a", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+    except OSError as exc:
+        logger.warning(f"Could not write GITHUB_STEP_SUMMARY: {exc}")
+
+
+def main(argv: Sequence[str] | None = None) -> None:
     """Run the OpenClaim backend fetch, merge, filter, and atomic write pipeline."""
+    args = parse_args([] if argv is None else list(argv))
+
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
@@ -332,7 +400,9 @@ def main() -> None:
     previous_games = load_previous_games(OUTPUT_FILE)
     active_previous_games = filter_expired_games(previous_games)
 
-    results = asyncio.run(fetch_all_sources())
+    active_scrapers = tuple(SCRAPERS)
+    scraper_by_source = {scraper.source: scraper for scraper in active_scrapers}
+    results = asyncio.run(fetch_all_sources(active_scrapers))
     if all(not r.ok for r in results):
         logger.error("All scrapers failed. Aborting write to preserve existing games.json.")
         sys.exit(1)
@@ -342,7 +412,8 @@ def main() -> None:
         if result.ok:
             combined_games.extend(result.games)
         else:
-            source_platforms = SOURCE_PLATFORMS.get(result.source, frozenset())
+            scraper = scraper_by_source.get(result.source)
+            source_platforms = scraper.platforms if scraper is not None else frozenset()
             retained_prev = [
                 g for g in active_previous_games if g.get("platform") in source_platforms
             ]
@@ -356,10 +427,21 @@ def main() -> None:
     deduped_games = normalize_and_deduplicate(combined_games)
     final_games = filter_expired_games(deduped_games)
 
+    validated_games: list[dict[str, Any]] = []
+    for entry in final_games:
+        try:
+            validated_games.append(validate_game_entry(entry))
+        except (ValueError, TypeError) as exc:
+            logger.warning(
+                f"Dropping invalid game entry {entry.get('id')!r} "
+                f"('{entry.get('title', 'Unknown')}'): {exc}"
+            )
+    final_games = validated_games
+
     expired_count = len(deduped_games) - len(final_games)
     logger.info(
         f"Total deduplicated games: {len(deduped_games)}. "
-        f"Filtered out {expired_count} expired games. "
+        f"Filtered out {expired_count} expired/invalid games. "
         f"Active free games: {len(final_games)}"
     )
 
@@ -376,12 +458,18 @@ def main() -> None:
         and active_previous_games
         and len(final_games) < len(active_previous_games) * 0.5
     ):
-        logger.error(
-            f"Sudden drop in free games count (fetched {len(final_games)}, "
-            f"previously active {len(active_previous_games)}). "
-            "Scrapers might be broken. Aborting write."
-        )
-        sys.exit(1)
+        if args.allow_drop:
+            logger.warning(
+                f"Sudden drop override enabled (--allow-drop): fetched {len(final_games)}, "
+                f"previously active {len(active_previous_games)}."
+            )
+        else:
+            logger.error(
+                f"Sudden drop in free games count (fetched {len(final_games)}, "
+                f"previously active {len(active_previous_games)}). "
+                "Scrapers might be broken. Aborting write."
+            )
+            sys.exit(1)
 
     now_utc = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     output_data = {
@@ -391,8 +479,9 @@ def main() -> None:
     }
 
     atomic_write_json(OUTPUT_FILE, output_data)
+    _write_step_summary(results, final_games, expired_count)
     logger.info(f"Successfully saved {len(final_games)} games to {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

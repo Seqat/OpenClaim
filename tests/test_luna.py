@@ -18,6 +18,7 @@ from backend.scrapers.luna import (
     _scroll_until_stable,
     build_amazon_id,
     clean_amazon_title,
+    detect_amazon_notices,
     fetch_amazon_games,
     fetch_amazon_result,
     fetch_detail_page_end_date,
@@ -36,6 +37,42 @@ def test_clean_amazon_title_and_build_id():
     assert build_amazon_id("https://luna.amazon.com/claims/steelrising", "Steelrising!") == (
         "amazon-steelrising"
     )
+    # Non-ASCII titles without item UUID hash deterministically to avoid amazon-unknown collisions
+    id_a = build_amazon_id("https://luna.amazon.com/claims/game-a", "龍が如く")
+    id_b = build_amazon_id("https://luna.amazon.com/claims/game-b", "サイバーパンク")
+    assert id_a.startswith("amazon-") and id_a != "amazon-unknown"
+    assert id_b.startswith("amazon-") and id_b != "amazon-unknown"
+    assert id_a != id_b
+    assert build_amazon_id("", "") == "amazon-unknown"
+
+
+def test_detect_amazon_notices():
+    assert (
+        detect_amazon_notices(
+            "https://luna.amazon.com/claims/ad-infinitum-epic/dp/amzn1.pg.item.123"
+        )
+        == ["redeem_epic"]
+    )
+    assert (
+        detect_amazon_notices(
+            "https://luna.amazon.com/claims/warbreeds-gog/dp/amzn1.pg.item.123"
+        )
+        == ["redeem_gog"]
+    )
+    assert (
+        detect_amazon_notices(
+            "https://luna.amazon.com/claims/kiborg-aga/dp/amzn1.pg.item.123"
+        )
+        == ["redeem_amazon_app"]
+    )
+    assert (
+        detect_amazon_notices(
+            "https://luna.amazon.com/claims/escape-room-legacy/dp/amzn1.pg.item.123"
+        )
+        == ["redeem_legacy_games"]
+    )
+    assert detect_amazon_notices("https://luna.amazon.com/claims/steelrising/dp/amzn1.pg.item.1") == []
+    assert detect_amazon_notices("") == []
 
 
 def test_parse_extracted_cards_filters_and_resolves_urls():
@@ -170,10 +207,15 @@ async def test_handle_asset_route_fulfills_stylesheets_and_blocks_only_asset_typ
         route.abort.assert_not_awaited()
         route.continue_.assert_not_awaited()
 
-    for allowed in ("document", "script", "xhr", "fetch"):
+    for allowed_type, allowed_url in (
+        ("document", "https://luna.amazon.com/claims/game"),
+        ("script", "https://m.media-amazon.com/app.css.chunk.js"),
+        ("xhr", "https://luna.amazon.com/api/data?theme=main.css"),
+        ("fetch", "https://luna.amazon.com/api/data"),
+    ):
         route = MagicMock()
-        route.request.resource_type = allowed
-        route.request.url = "https://luna.amazon.com/api/data"
+        route.request.resource_type = allowed_type
+        route.request.url = allowed_url
         route.abort = AsyncMock()
         route.continue_ = AsyncMock()
         route.fulfill = AsyncMock()
@@ -328,7 +370,7 @@ async def test_fetch_detail_page_end_date_fallback_image_and_card_date():
         "card_end_date": "2026-11-25T23:59:59Z",
     }
 
-    with patch("backend.scrapers.luna.time.time", side_effect=[0.0, 0.0, 5.1]):
+    with patch("backend.scrapers.luna.time.monotonic", side_effect=[0.0, 0.0, 5.1]):
         end_date = await fetch_detail_page_end_date(
             context, item, 0, 1, asyncio.Semaphore(1)
         )
@@ -482,7 +524,7 @@ async def test_fetch_amazon_result_falls_back_to_card_end_date_and_detail_cover_
 
     with (
         patch("backend.scrapers.luna.async_playwright", return_value=async_pw_cm),
-        patch("backend.scrapers.luna.time.time", side_effect=itertools.count(0, 3)),
+        patch("backend.scrapers.luna.time.monotonic", side_effect=itertools.count(0, 3)),
     ):
         result = await fetch_amazon_result()
 
@@ -520,6 +562,72 @@ async def test_fetch_amazon_result_closes_browser_on_navigation_error():
     assert result.games == []
     assert "Navigation crashed" in (result.error or "")
     browser.close.assert_awaited_once()
+
+
+@pytest.mark.asyncio
+async def test_fetch_amazon_result_skips_invalid_store_url_without_crashing():
+    locator_mock = MagicMock()
+    locator_mock.count = AsyncMock(return_value=2)
+
+    main_page = MagicMock()
+    main_page.goto = AsyncMock()
+    main_page.wait_for_timeout = AsyncMock()
+    main_page.query_selector = AsyncMock(return_value=None)
+    main_page.locator.return_value = locator_mock
+    main_page.close = AsyncMock()
+    main_page.evaluate = AsyncMock(
+        side_effect=[
+            None,
+            None,
+            None,
+            [
+                {
+                    "href": "",
+                    "card_text": "Missing URL Game\nClaim",
+                    "title": "Missing URL Game",
+                    "img_url": "",
+                },
+                {
+                    "href": "/claims/valid-gog/dp/amzn1.pg.item.33333333-3333-3333-3333-333333333333",
+                    "card_text": "Valid Game\nClaim\nEnds Dec 20, 2026",
+                    "title": "Valid Game",
+                    "img_url": "https://m.media-amazon.com/images/I/valid.jpg",
+                },
+            ],
+        ]
+    )
+
+    detail_page = MagicMock()
+    detail_page.route = AsyncMock()
+    detail_page.goto = AsyncMock()
+    detail_page.inner_text = AsyncMock(return_value="Offer ends Dec 20, 2026")
+    detail_page.wait_for_timeout = AsyncMock()
+    detail_page.evaluate = AsyncMock()
+    detail_page.close = AsyncMock()
+
+    context = MagicMock()
+    context.new_page = AsyncMock(side_effect=[main_page, detail_page])
+
+    browser = MagicMock()
+    browser.version = "136.0.7103.48"
+    browser.new_context = AsyncMock(return_value=context)
+    browser.close = AsyncMock()
+
+    playwright_ctx = MagicMock()
+    playwright_ctx.chromium.launch = AsyncMock(return_value=browser)
+
+    async_pw_cm = MagicMock()
+    async_pw_cm.__aenter__ = AsyncMock(return_value=playwright_ctx)
+    async_pw_cm.__aexit__ = AsyncMock(return_value=False)
+
+    with patch("backend.scrapers.luna.async_playwright", return_value=async_pw_cm):
+        result = await fetch_amazon_result()
+
+    assert result.ok is True
+    assert len(result.games) == 1
+    assert result.games[0]["title"] == "Valid Game"
+    assert result.games[0]["notices"] == ["redeem_gog"]
+    assert "Chrome/136.0.0.0" in browser.new_context.call_args.kwargs["user_agent"]
 
 
 @pytest.mark.asyncio

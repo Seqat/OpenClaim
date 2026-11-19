@@ -18,6 +18,7 @@ export const state = {
     searchQuery: '',
     currentLang: 'TR',
     hideExpired: false,
+    hideClaimed: false,
     claimedIds: new Set(),
     isLoading: false,
     hasError: false,
@@ -46,7 +47,7 @@ export function getActiveLocale(lang = state.currentLang) {
 
 /**
  * Determine initial language priority:
- * localStorage > navigator.language > Default: TR
+ * localStorage > navigator.languages / navigator.language > Default: TR
  */
 export function getInitialLanguage() {
     const storage = getSafeLocalStorage();
@@ -61,12 +62,20 @@ export function getInitialLanguage() {
         }
     }
 
-    const navLang = (typeof navigator !== 'undefined' && navigator.language ? navigator.language : '').toLowerCase();
-    if (navLang.startsWith('tr')) {
-        return 'TR';
-    }
-    if (navLang.startsWith('en')) {
-        return 'EN';
+    if (typeof navigator !== 'undefined') {
+        const langs = Array.isArray(navigator.languages) && navigator.languages.length > 0
+            ? navigator.languages
+            : (navigator.language ? [navigator.language] : []);
+        const normalized = langs
+            .map(l => String(l || '').trim().toLowerCase())
+            .filter(Boolean);
+        for (const lang of normalized) {
+            if (lang.startsWith('tr')) return 'TR';
+            if (lang.startsWith('en')) return 'EN';
+        }
+        if (normalized.length > 0) {
+            return 'EN';
+        }
     }
 
     return 'TR';
@@ -118,6 +127,21 @@ export function getInitialHideExpired() {
     if (storage) {
         try {
             return storage.getItem('openclaim_hide_expired') === 'true';
+        } catch (e) {
+            console.warn('localStorage read error:', e);
+        }
+    }
+    return false;
+}
+
+/**
+ * Determine initial hide-claimed toggle state from localStorage.
+ */
+export function getInitialHideClaimed() {
+    const storage = getSafeLocalStorage();
+    if (storage) {
+        try {
+            return storage.getItem('openclaim_hide_claimed') === 'true';
         } catch (e) {
             console.warn('localStorage read error:', e);
         }
@@ -200,6 +224,21 @@ export function saveHideExpired(val) {
     if (storage) {
         try {
             storage.setItem('openclaim_hide_expired', state.hideExpired ? 'true' : 'false');
+        } catch (e) {
+            console.warn('localStorage write error:', e);
+        }
+    }
+}
+
+/**
+ * Save hide-claimed preference to state and localStorage
+ */
+export function saveHideClaimed(val) {
+    state.hideClaimed = Boolean(val);
+    const storage = getSafeLocalStorage();
+    if (storage) {
+        try {
+            storage.setItem('openclaim_hide_claimed', state.hideClaimed ? 'true' : 'false');
         } catch (e) {
             console.warn('localStorage write error:', e);
         }
@@ -291,6 +330,15 @@ export function readStateFromURL(searchString) {
         parsed.expired = false;
     }
 
+    const claimed = params.get('claimed');
+    if (claimed === 'hide' || claimed === '1' || claimed === 'true') {
+        state.hideClaimed = true;
+        parsed.claimed = true;
+    } else if (claimed === 'show' || claimed === '0' || claimed === 'false') {
+        state.hideClaimed = false;
+        parsed.claimed = false;
+    }
+
     return parsed;
 }
 
@@ -313,6 +361,9 @@ export function buildURLSearchParams(currentState = state) {
     }
     if (currentState.hideExpired) {
         params.set('expired', 'hide');
+    }
+    if (currentState.hideClaimed) {
+        params.set('claimed', 'hide');
     }
     return params;
 }
@@ -358,11 +409,26 @@ export function isGameExpired(game, now = Date.now()) {
     return !isNaN(endTime) && endTime <= now;
 }
 
+function foldSearchText(text) {
+    return String(text || '')
+        .replace(/[İIı]/g, 'i')
+        .toLowerCase();
+}
+
 function matchesSearch(game, query, locale) {
     if (!query) return true;
-    const titleMatch = (game.title || '').toLocaleLowerCase(locale).includes(query);
-    const platformMatch = (game.platform || '').toLocaleLowerCase(locale).includes(query);
-    return titleMatch || platformMatch;
+    const title = game.title || '';
+    const platform = game.platform || '';
+    const localeMatch =
+        title.toLocaleLowerCase(locale).includes(query) ||
+        platform.toLocaleLowerCase(locale).includes(query);
+    if (localeMatch) return true;
+
+    const foldedQuery = foldSearchText(query);
+    return (
+        foldSearchText(title).includes(foldedQuery) ||
+        foldSearchText(platform).includes(foldedQuery)
+    );
 }
 
 function matchesContent(game, contentFilter) {
@@ -384,6 +450,7 @@ export function getFacetCounts(now = Date.now()) {
 
     for (const game of state.games) {
         if (state.hideExpired && isGameExpired(game, now)) continue;
+        if (state.hideClaimed && isClaimed(game.id)) continue;
         if (!matchesSearch(game, query, locale)) continue;
 
         const platformKey = normalizePlatform(game.platform);
@@ -434,6 +501,10 @@ export function getProcessedGames(now = Date.now()) {
         }
 
         if (state.hideExpired && isGameExpired(game, now)) {
+            return false;
+        }
+
+        if (state.hideClaimed && isClaimed(game.id)) {
             return false;
         }
 

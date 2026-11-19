@@ -33,6 +33,8 @@ def test_clean_title():
     assert clean_title("Mechabellum (Epic Games) Key Giveaway") == "Mechabellum"
     assert clean_title("SteamWorld Dig") == "SteamWorld Dig"
     assert clean_title("The Skeleton Key") == "The Skeleton Key"
+    assert clean_title("Some Game Epic Key Giveaway") == "Some Game"
+    assert clean_title("Some Game (Steam) - Key Giveaway") == "Some Game"
 
 
 def test_classify_content_type_explicit_game_type():
@@ -98,14 +100,74 @@ def test_fetch_gamerpower_platform_strictness_and_multi_platform():
 
 def test_fetch_gamerpower_session_mounts_retry_adapter():
     mock_response = MagicMock()
-    mock_response.json.return_value = []
+    mock_response.json.return_value = [
+        {
+            "id": 400,
+            "title": "Valid Steam Game",
+            "platforms": "PC, Steam",
+            "status": "Active",
+            "type": "Game",
+            "end_date": "N/A",
+            "open_giveaway_url": "https://www.gamerpower.com/open/valid-steam",
+            "image": "https://www.gamerpower.com/img/valid.jpg",
+        }
+    ]
 
     with patch("requests.Session.get", return_value=mock_response) as mock_get:
         result = fetch_gamerpower_result()
 
     assert result.ok is True
-    assert result.games == []
+    assert len(result.games) == 1
+    assert result.games[0]["is_permanent"] is False
+    assert result.games[0]["end_date"] is None
     mock_get.assert_called_once()
+
+
+def test_fetch_gamerpower_skips_invalid_entries_and_fails_on_empty_matches():
+    payload = [
+        {
+            "id": 501,
+            "title": "Bad URL Game",
+            "platforms": "PC, Steam",
+            "status": "Active",
+            "type": "Game",
+            "end_date": "N/A",
+            "open_giveaway_url": "not-a-url",
+            "image": "",
+        },
+        {
+            "id": 502,
+            "title": "Good Game",
+            "platforms": "PC, Steam",
+            "status": "Active",
+            "type": "Game",
+            "end_date": "N/A",
+            "open_giveaway_url": "https://www.gamerpower.com/open/good-game",
+            "image": "",
+        },
+    ]
+    mock_response = MagicMock()
+    mock_response.json.return_value = payload
+    mock_session = MagicMock()
+    mock_session.get.return_value = mock_response
+    mock_session.__enter__.return_value = mock_session
+    mock_session.__exit__.return_value = None
+
+    with patch("backend.scrapers.gamerpower.requests.Session", return_value=mock_session):
+        result = fetch_gamerpower_result()
+
+    assert result.ok is True
+    assert [g["id"] for g in result.games] == ["steam-502"]
+    assert result.games[0]["is_permanent"] is False
+
+    # Empty list (no matching active giveaways) returns ok=False
+    mock_response.json.return_value = []
+    with patch("backend.scrapers.gamerpower.requests.Session", return_value=mock_session):
+        empty_result = fetch_gamerpower_result()
+
+    assert empty_result.ok is False
+    assert empty_result.games == []
+    assert empty_result.error is not None
 
 
 def test_fetch_gamerpower_error_returns_failed_result():
@@ -147,7 +209,18 @@ async def test_gamerpower_scraper_protocol():
     assert isinstance(scraper, BaseScraper)
 
     mock_response = MagicMock()
-    mock_response.json.return_value = []
+    mock_response.json.return_value = [
+        {
+            "id": 600,
+            "title": "Protocol Test Game",
+            "platforms": "PC, Steam",
+            "status": "Active",
+            "type": "Game",
+            "end_date": "N/A",
+            "open_giveaway_url": "https://www.gamerpower.com/open/protocol",
+            "image": "",
+        }
+    ]
     mock_session = MagicMock()
     mock_session.get.return_value = mock_response
     mock_session.__enter__.return_value = mock_session

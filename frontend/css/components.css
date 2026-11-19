@@ -9,11 +9,14 @@
     object-fit: contain;
     vertical-align: middle;
     flex-shrink: 0;
-    filter: brightness(0) invert(0.9);
     transition: var(--transition-fast);
 }
 
-.filter-btn.active .platform-icon {
+img.platform-icon {
+    filter: brightness(0) invert(0.9);
+}
+
+.filter-btn.active img.platform-icon {
     filter: brightness(0) invert(1);
 }
 
@@ -182,6 +185,7 @@
 
 /* Countdown Badge (Right Side) */
 .countdown-badge {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -192,6 +196,38 @@
     background: #0f172a;
     color: #cbd5e1;
     border: 1px solid var(--border-color);
+}
+
+.countdown-badge:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.countdown-badge[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    z-index: 20;
+    padding: 0.3rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: #0b0f17;
+    border: 1px solid var(--border-sticky);
+    color: var(--text-primary);
+    font-size: 0.72rem;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+.countdown-badge[data-tooltip]:hover::after,
+.countdown-badge[data-tooltip]:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .countdown-badge.urgent {
@@ -312,6 +348,12 @@
 .claim-btn:focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
+}
+
+.claim-btn.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* Mark Claimed Toggle Button */
@@ -679,7 +721,7 @@
 
     .games-grid.view-list .card-info-section {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
     .games-grid.view-list .card-notices {

@@ -8,6 +8,11 @@ on:
     - cron: '20 15 * * 4'
     - cron: '50 15 * * 4'
   workflow_dispatch:
+    inputs:
+      allow_drop:
+        description: 'Allow >50% drop in game count (manual recovery)'
+        type: boolean
+        default: false
 
 jobs:
   fetch-games:
@@ -57,7 +62,12 @@ jobs:
           fi
 
       - name: Run backend pipeline
-        run: python backend/main.py
+        run: |
+          if [ "${{ inputs.allow_drop }}" = "true" ]; then
+            python -m backend.main --allow-drop
+          else
+            python -m backend.main
+          fi
 
       - name: Validate generated games.json schema
         run: python tests/test_games_json_schema.py
@@ -69,6 +79,7 @@ jobs:
           git status
           if [ -n "$(git status --porcelain games.json)" ]; then
             tmp_games=$(mktemp)
+            trap 'rm -f "$tmp_games"' EXIT
             cp games.json "$tmp_games"
             git checkout -- games.json
             git pull --rebase origin "${GITHUB_REF_NAME}"
@@ -86,4 +97,10 @@ jobs:
 
       - name: Report failure
         if: failure()
-        run: echo "::error::Fetch pipeline failed - games.json korundu, güncellenmedi"
+        run: |
+          echo "::error::Fetch pipeline failed - games.json korundu, güncellenmedi"
+          {
+            echo "### OpenClaim Fetch Pipeline Failed"
+            echo ""
+            echo "The scheduled/manual fetch pipeline failed. Existing \`games.json\` was preserved without modification."
+          } >> "$GITHUB_STEP_SUMMARY"

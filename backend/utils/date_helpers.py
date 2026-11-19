@@ -7,28 +7,62 @@ import re
 from datetime import UTC, datetime, timedelta
 
 MONTH_MAP = {
+    # English full names & abbreviations
     "jan": 1,
+    "january": 1,
     "feb": 2,
+    "february": 2,
     "mar": 3,
+    "march": 3,
     "apr": 4,
+    "april": 4,
     "may": 5,
     "jun": 6,
+    "june": 6,
     "jul": 7,
+    "july": 7,
     "aug": 8,
+    "august": 8,
     "sep": 9,
+    "sept": 9,
+    "september": 9,
     "oct": 10,
+    "october": 10,
     "nov": 11,
+    "november": 11,
     "dec": 12,
+    "december": 12,
+    # Turkish full names & abbreviations (plus ASCII-folded variants)
     "oca": 1,
+    "ocak": 1,
     "şub": 2,
+    "şubat": 2,
+    "sub": 2,
+    "subat": 2,
+    "mart": 3,
     "nis": 4,
+    "nisan": 4,
+    "mayıs": 5,
+    "mayis": 5,
     "haz": 6,
+    "haziran": 6,
     "tem": 7,
+    "temmuz": 7,
     "ağu": 8,
+    "ağustos": 8,
+    "agu": 8,
+    "agustos": 8,
     "eyl": 9,
+    "eylül": 9,
+    "eylul": 9,
     "eki": 10,
+    "ekim": 10,
     "kas": 11,
+    "kasım": 11,
+    "kasim": 11,
     "ara": 12,
+    "aralık": 12,
+    "aralik": 12,
 }
 
 _ISO_SENTINELS = frozenset({"N/A", "NONE", "UNKNOWN", "UNSPECIFIED"})
@@ -55,11 +89,11 @@ _ENG_DAY_FIRST_RE = re.compile(
     re.IGNORECASE,
 )
 _TR_UNTIL_RE = re.compile(
-    r"\b(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\s+(\d{4})\b\s*(?:tarihine|tarihinde\s+sona)\b",
+    r"\b(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\.?(?:\s+(\d{4}))?\s+(?:tarihine|tarihinde\s+sona)\b",
     re.IGNORECASE,
 )
 _TR_LAST_DATE_RE = re.compile(
-    r"\bson\s+(?:geçerlilik\s+)?tarih(?:i)?\s*:?\s*(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\s+(\d{4})\b",
+    r"\bson\s+(?:geçerlilik\s+)?tarih(?:i)?\s*:?\s*(\d{1,2})\s+([a-zA-ZğüşıöçĞÜŞİÖÇ]+)\.?(?:\s+(\d{4}))?\b",
     re.IGNORECASE,
 )
 _RELATIVE_DAYS_RE = re.compile(
@@ -112,8 +146,8 @@ def parse_iso_date(date_str: str | None) -> str | None:
 
 
 def _lookup_month(mon_raw: str) -> int | None:
-    """Resolve an English or Turkish month name/prefix into its 1..12 month number."""
-    mon_key = mon_raw.replace("İ", "i").replace("I", "ı").lower()[:3]
+    """Resolve a recognized English or Turkish month name/abbreviation into 1..12."""
+    mon_key = mon_raw.replace("İ", "i").replace("I", "ı").lower().rstrip(".")
     return MONTH_MAP.get(mon_key)
 
 
@@ -158,18 +192,24 @@ def parse_detail_page_end_date(text: str) -> str | None:
     for match in _ENG_MONTH_FIRST_RE.finditer(text):
         month = _lookup_month(match.group(1))
         if month is not None:
-            return _build_end_datetime(match.group(3), month, int(match.group(2)), now)
+            parsed = _build_end_datetime(match.group(3), month, int(match.group(2)), now)
+            if parsed is not None:
+                return parsed
 
     for match in _ENG_DAY_FIRST_RE.finditer(text):
         month = _lookup_month(match.group(2))
         if month is not None:
-            return _build_end_datetime(match.group(3), month, int(match.group(1)), now)
+            parsed = _build_end_datetime(match.group(3), month, int(match.group(1)), now)
+            if parsed is not None:
+                return parsed
 
     for pattern in (_TR_UNTIL_RE, _TR_LAST_DATE_RE):
         for match in pattern.finditer(text):
             month = _lookup_month(match.group(2))
             if month is not None:
-                return _build_end_datetime(match.group(3), month, int(match.group(1)), now)
+                parsed = _build_end_datetime(match.group(3), month, int(match.group(1)), now)
+                if parsed is not None:
+                    return parsed
 
     for match in _RELATIVE_DAYS_RE.finditer(text):
         days_str = match.group(1) or match.group(2)
@@ -182,6 +222,6 @@ def parse_detail_page_end_date(text: str) -> str | None:
             )
             return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
         except (ValueError, OverflowError):
-            return None
+            continue
 
     return None
