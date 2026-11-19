@@ -50,11 +50,16 @@ export function getElements() {
         viewToggleContainer: document.getElementById('view-toggle'),
         langToggleContainer: document.getElementById('lang-toggle'),
         hideExpiredCheckbox: document.getElementById('hide-expired-checkbox'),
+        hideClaimedCheckbox: document.getElementById('hide-claimed-checkbox'),
+        shareFiltersBtn: document.getElementById('share-filters-btn'),
         backToTopBtn: document.getElementById('back-to-top'),
         totalCountEl: document.getElementById('total-count'),
         steamCountEl: document.getElementById('steam-count'),
         epicCountEl: document.getElementById('epic-count'),
         amazonCountEl: document.getElementById('amazon-count'),
+        otherCountEl: document.getElementById('other-count'),
+        otherStatItem: document.getElementById('other-stat-item'),
+        otherStatDivider: document.getElementById('other-stat-divider'),
         lastUpdatedEl: document.getElementById('last-updated')
     };
 }
@@ -203,16 +208,28 @@ export function toggleClearSearchButton() {
  * Calculate stats for header stats ribbon
  */
 export function updateStatsRibbon() {
-    const { totalCountEl, steamCountEl, epicCountEl, amazonCountEl } = getElements();
+    const {
+        totalCountEl,
+        steamCountEl,
+        epicCountEl,
+        amazonCountEl,
+        otherCountEl,
+        otherStatItem,
+        otherStatDivider
+    } = getElements();
     const total = state.games.length;
     const steam = state.games.filter(g => normalizePlatform(g.platform) === 'steam').length;
     const epic = state.games.filter(g => normalizePlatform(g.platform) === 'epic').length;
     const amazon = state.games.filter(g => normalizePlatform(g.platform) === 'amazon').length;
+    const other = state.games.filter(g => normalizePlatform(g.platform) === 'other').length;
 
     if (totalCountEl) totalCountEl.textContent = total;
     if (steamCountEl) steamCountEl.textContent = steam;
     if (epicCountEl) epicCountEl.textContent = epic;
     if (amazonCountEl) amazonCountEl.textContent = amazon;
+    if (otherCountEl) otherCountEl.textContent = other;
+    if (otherStatItem) otherStatItem.hidden = other === 0;
+    if (otherStatDivider) otherStatDivider.hidden = other === 0;
 }
 
 /**
@@ -297,8 +314,16 @@ function syncTooltipAttribute(el, tooltip) {
         if (el.getAttribute('title') !== tooltip) {
             el.setAttribute('title', tooltip);
         }
-    } else if (el.hasAttribute('title')) {
-        el.removeAttribute('title');
+        if (el.getAttribute('data-tooltip') !== tooltip) {
+            el.setAttribute('data-tooltip', tooltip);
+        }
+        if (el.getAttribute('tabindex') !== '0') {
+            el.setAttribute('tabindex', '0');
+        }
+    } else {
+        if (el.hasAttribute('title')) el.removeAttribute('title');
+        if (el.hasAttribute('data-tooltip')) el.removeAttribute('data-tooltip');
+        if (el.hasAttribute('tabindex')) el.removeAttribute('tabindex');
     }
 }
 
@@ -347,21 +372,21 @@ function getPlatformPresentation(game) {
         return {
             platformKey,
             platformLabel: 'Steam',
-            platformImgTag: `<img src="${PLATFORM_LOGOS.steam}" alt="" data-platform-icon="steam" class="platform-icon" />`
+            platformImgTag: PLATFORM_FALLBACK_SVGS.steam
         };
     }
     if (platformKey === 'epic') {
         return {
             platformKey,
             platformLabel: 'Epic Games',
-            platformImgTag: `<img src="${PLATFORM_LOGOS.epic}" alt="" data-platform-icon="epic" class="platform-icon" />`
+            platformImgTag: PLATFORM_FALLBACK_SVGS.epic
         };
     }
     if (platformKey === 'amazon') {
         return {
             platformKey,
             platformLabel: 'Amazon Prime',
-            platformImgTag: `<img src="${PLATFORM_LOGOS.amazon}" alt="" data-platform-icon="amazon" class="platform-icon" />`
+            platformImgTag: PLATFORM_FALLBACK_SVGS.amazon
         };
     }
     return {
@@ -413,7 +438,10 @@ export function createGameCardHTML(game) {
     const safeTitle = escapeHTML(titleText);
     const endDateAttr = game.end_date ? escapeAttribute(game.end_date) : '';
     const endDateTooltip = formatEndDateTooltip(game.end_date);
-    const countdownTitleAttr = endDateTooltip ? ` title="${escapeAttribute(endDateTooltip)}"` : '';
+    const escapedTooltip = endDateTooltip ? escapeAttribute(endDateTooltip) : '';
+    const countdownTooltipAttrs = escapedTooltip
+        ? ` title="${escapedTooltip}" data-tooltip="${escapedTooltip}" tabindex="0"`
+        : '';
     const isPermanentAttr = escapeAttribute(String(isPermanent));
     const gameIdAttr = escapeAttribute(game.id || '');
     const langAttr = escapeAttribute(state.currentLang);
@@ -463,7 +491,7 @@ export function createGameCardHTML(game) {
                             data-end-date="${endDateAttr}"
                             data-is-permanent="${isPermanentAttr}"
                             data-tooltip-lang="${langAttr}"
-                            data-tooltip-end-date="${endDateAttr}"${countdownTitleAttr}
+                            data-tooltip-end-date="${endDateAttr}"${countdownTooltipAttrs}
                         >
                             ${t.timer_calculating}
                         </div>

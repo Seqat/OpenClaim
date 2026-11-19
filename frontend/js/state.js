@@ -18,6 +18,7 @@ export const state = {
     searchQuery: '',
     currentLang: 'TR',
     hideExpired: false,
+    hideClaimed: false,
     claimedIds: new Set(),
     isLoading: false,
     hasError: false,
@@ -134,6 +135,21 @@ export function getInitialHideExpired() {
 }
 
 /**
+ * Determine initial hide-claimed toggle state from localStorage.
+ */
+export function getInitialHideClaimed() {
+    const storage = getSafeLocalStorage();
+    if (storage) {
+        try {
+            return storage.getItem('openclaim_hide_claimed') === 'true';
+        } catch (e) {
+            console.warn('localStorage read error:', e);
+        }
+    }
+    return false;
+}
+
+/**
  * Load persisted claimed deal IDs from localStorage.
  */
 export function getInitialClaimedIds() {
@@ -208,6 +224,21 @@ export function saveHideExpired(val) {
     if (storage) {
         try {
             storage.setItem('openclaim_hide_expired', state.hideExpired ? 'true' : 'false');
+        } catch (e) {
+            console.warn('localStorage write error:', e);
+        }
+    }
+}
+
+/**
+ * Save hide-claimed preference to state and localStorage
+ */
+export function saveHideClaimed(val) {
+    state.hideClaimed = Boolean(val);
+    const storage = getSafeLocalStorage();
+    if (storage) {
+        try {
+            storage.setItem('openclaim_hide_claimed', state.hideClaimed ? 'true' : 'false');
         } catch (e) {
             console.warn('localStorage write error:', e);
         }
@@ -299,6 +330,15 @@ export function readStateFromURL(searchString) {
         parsed.expired = false;
     }
 
+    const claimed = params.get('claimed');
+    if (claimed === 'hide' || claimed === '1' || claimed === 'true') {
+        state.hideClaimed = true;
+        parsed.claimed = true;
+    } else if (claimed === 'show' || claimed === '0' || claimed === 'false') {
+        state.hideClaimed = false;
+        parsed.claimed = false;
+    }
+
     return parsed;
 }
 
@@ -321,6 +361,9 @@ export function buildURLSearchParams(currentState = state) {
     }
     if (currentState.hideExpired) {
         params.set('expired', 'hide');
+    }
+    if (currentState.hideClaimed) {
+        params.set('claimed', 'hide');
     }
     return params;
 }
@@ -407,6 +450,7 @@ export function getFacetCounts(now = Date.now()) {
 
     for (const game of state.games) {
         if (state.hideExpired && isGameExpired(game, now)) continue;
+        if (state.hideClaimed && isClaimed(game.id)) continue;
         if (!matchesSearch(game, query, locale)) continue;
 
         const platformKey = normalizePlatform(game.platform);
@@ -457,6 +501,10 @@ export function getProcessedGames(now = Date.now()) {
         }
 
         if (state.hideExpired && isGameExpired(game, now)) {
+            return false;
+        }
+
+        if (state.hideClaimed && isClaimed(game.id)) {
             return false;
         }
 

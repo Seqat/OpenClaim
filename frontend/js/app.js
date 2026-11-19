@@ -12,8 +12,10 @@ import {
     getInitialViewMode,
     getInitialContentFilter,
     getInitialHideExpired,
+    getInitialHideClaimed,
     getInitialClaimedIds,
     saveHideExpired,
+    saveHideClaimed,
     toggleClaimed,
     readStateFromURL,
     syncStateToURL
@@ -37,6 +39,7 @@ const STALE_THRESHOLD_MS = 24 * 60 * 60 * 1000;
 let footerIntervalId = null;
 let debouncedSearchRender = null;
 let listenersBound = false;
+let shareCopiedTimeoutId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
@@ -121,10 +124,11 @@ function renderCurrentState() {
 }
 
 function syncControlsFromState() {
-    const { searchInput, sortSelect, hideExpiredCheckbox } = getElements();
+    const { searchInput, sortSelect, hideExpiredCheckbox, hideClaimedCheckbox } = getElements();
     if (searchInput) searchInput.value = state.searchQuery || '';
     if (sortSelect) sortSelect.value = state.currentSortOption || 'smart';
     if (hideExpiredCheckbox) hideExpiredCheckbox.checked = Boolean(state.hideExpired);
+    if (hideClaimedCheckbox) hideClaimedCheckbox.checked = Boolean(state.hideClaimed);
     toggleClearSearchButton();
     applyPlatformFilterUI();
     applyContentFilter(state.currentContentFilter, false);
@@ -135,6 +139,7 @@ async function initApp() {
     state.currentViewMode = getInitialViewMode();
     state.currentContentFilter = getInitialContentFilter();
     state.hideExpired = getInitialHideExpired();
+    state.hideClaimed = getInitialHideClaimed();
     state.claimedIds = getInitialClaimedIds();
 
     // Apply URL query overrides (without clobbering saved localStorage defaults)
@@ -175,7 +180,7 @@ async function initApp() {
 }
 
 function resetAllFilters() {
-    const { searchInput, sortSelect, hideExpiredCheckbox } = getElements();
+    const { searchInput, sortSelect, hideExpiredCheckbox, hideClaimedCheckbox } = getElements();
 
     debouncedSearchRender?.cancel();
     if (searchInput) searchInput.value = '';
@@ -183,8 +188,10 @@ function resetAllFilters() {
     state.currentPlatformFilter = 'all';
     state.currentSortOption = 'smart';
     state.hideExpired = false;
+    state.hideClaimed = false;
     if (sortSelect) sortSelect.value = 'smart';
     if (hideExpiredCheckbox) hideExpiredCheckbox.checked = false;
+    if (hideClaimedCheckbox) hideClaimedCheckbox.checked = false;
 
     toggleClearSearchButton();
     // Do NOT overwrite localStorage openclaim_content preference on temporary filter reset
@@ -231,6 +238,8 @@ function setupEventListeners() {
         viewToggleContainer,
         langToggleContainer,
         hideExpiredCheckbox,
+        hideClaimedCheckbox,
+        shareFiltersBtn,
         backToTopBtn
     } = getElements();
 
@@ -271,6 +280,35 @@ function setupEventListeners() {
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) {
                 renderFooterTimestamp();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const activeSearch = getElements().searchInput;
+            if (!activeSearch) return;
+
+            if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                const target = e.target;
+                const tag = target && target.tagName ? target.tagName.toUpperCase() : '';
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target?.isContentEditable) {
+                    return;
+                }
+                e.preventDefault();
+                activeSearch.focus();
+                return;
+            }
+
+            if (e.key === 'Escape' && document.activeElement === activeSearch) {
+                if (activeSearch.value) {
+                    debouncedSearchRender?.cancel();
+                    activeSearch.value = '';
+                    state.searchQuery = '';
+                    toggleClearSearchButton();
+                    syncStateToURL();
+                    renderGames(resetAllFilters);
+                } else {
+                    activeSearch.blur();
+                }
             }
         });
     }
@@ -320,6 +358,42 @@ function setupEventListeners() {
             saveHideExpired(e.target.checked);
             syncStateToURL();
             renderGames(resetAllFilters);
+        });
+    }
+
+    // Hide Claimed Toggle Listener
+    if (hideClaimedCheckbox) {
+        hideClaimedCheckbox.addEventListener('change', (e) => {
+            saveHideClaimed(e.target.checked);
+            syncStateToURL();
+            renderGames(resetAllFilters);
+        });
+    }
+
+    // Share Current Filtered URL Button
+    if (shareFiltersBtn) {
+        shareFiltersBtn.addEventListener('click', async () => {
+            syncStateToURL();
+            const urlToCopy = window.location.href;
+            try {
+                if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+                    await navigator.clipboard.writeText(urlToCopy);
+                }
+                shareFiltersBtn.classList.add('copied');
+                if (shareCopiedTimeoutId) clearTimeout(shareCopiedTimeoutId);
+                shareCopiedTimeoutId = setTimeout(() => {
+                    shareFiltersBtn.classList.remove('copied');
+                    shareCopiedTimeoutId = null;
+                }, 1800);
+
+                const statusEl = document.getElementById('results-status');
+                const t = translations[state.currentLang] || translations.TR;
+                if (statusEl && t.share_link_copied) {
+                    statusEl.textContent = t.share_link_copied;
+                }
+            } catch (err) {
+                console.warn('Clipboard copy failed:', err);
+            }
         });
     }
 
