@@ -314,6 +314,12 @@
     outline-offset: 2px;
 }
 
+.claim-btn.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Mark Claimed Toggle Button */
 .claim-toggle-btn {
     display: inline-flex;
@@ -679,7 +685,7 @@
 
     .games-grid.view-list .card-info-section {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
     .games-grid.view-list .card-notices {

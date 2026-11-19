@@ -74,25 +74,37 @@ export function handlePlatformIconError(imgEl) {
     }
 }
 
+function handleImgFailure(target) {
+    if (!target || target.tagName !== 'IMG') return;
+    if (target.classList.contains('card-img')) {
+        target.style.display = 'none';
+        if (target.nextElementSibling && target.nextElementSibling.classList.contains('card-img-fallback')) {
+            target.nextElementSibling.style.display = 'flex';
+        }
+    } else if (target.classList.contains('platform-icon')) {
+        handlePlatformIconError(target);
+    }
+}
+
 /**
- * Attach capture-phase error listener once to a container for card & platform images.
+ * Attach capture-phase error listener once to a container for card & platform images,
+ * and replace any images that already failed before the listener was attached.
  */
 export function setupImageErrorDelegation(container) {
-    if (!container || container.dataset.imgErrorDelegated === 'true') return;
-    container.dataset.imgErrorDelegated = 'true';
-    container.addEventListener('error', (e) => {
-        const target = e.target;
-        if (!target || target.tagName !== 'IMG') return;
-
-        if (target.classList.contains('card-img')) {
-            target.style.display = 'none';
-            if (target.nextElementSibling && target.nextElementSibling.classList.contains('card-img-fallback')) {
-                target.nextElementSibling.style.display = 'flex';
+    if (!container) return;
+    if (container.dataset.imgErrorDelegated !== 'true') {
+        container.dataset.imgErrorDelegated = 'true';
+        container.addEventListener('error', (e) => {
+            handleImgFailure(e.target);
+        }, true);
+    }
+    if (typeof container.querySelectorAll === 'function') {
+        container.querySelectorAll('img').forEach(img => {
+            if (img.complete && img.naturalWidth === 0) {
+                handleImgFailure(img);
             }
-        } else if (target.classList.contains('platform-icon')) {
-            handlePlatformIconError(target);
-        }
-    }, true);
+        });
+    }
 }
 
 /**
@@ -101,6 +113,7 @@ export function setupImageErrorDelegation(container) {
 export function showSkeletonLoaders() {
     const { gridContainer } = getElements();
     if (!gridContainer) return;
+    gridContainer.setAttribute('aria-busy', 'true');
     const skeletons = Array(8).fill(0).map(() => `
         <div class="skeleton-card" aria-hidden="true">
             <div class="skeleton-media"></div>
@@ -115,10 +128,15 @@ export function showSkeletonLoaders() {
 }
 
 /**
- * Apply View Mode ('grid' or 'list') to container and toggle buttons
+ * Apply View Mode ('grid' or 'list') to container and toggle buttons.
+ * Pass persist=false during initial hydration so localStorage is untouched.
  */
-export function applyViewMode(mode) {
-    saveViewMode(mode);
+export function applyViewMode(mode, persist = true) {
+    if (persist) {
+        saveViewMode(mode);
+    } else {
+        state.currentViewMode = mode === 'list' ? 'list' : 'grid';
+    }
     const { gridContainer, viewToggleContainer } = getElements();
 
     if (gridContainer) {
@@ -240,6 +258,20 @@ export function safeUrl(url, fallback = '#') {
     return fallback;
 }
 
+const endDateFormatters = new Map();
+
+function getEndDateFormatter(locale) {
+    let formatter = endDateFormatters.get(locale);
+    if (!formatter) {
+        formatter = new Intl.DateTimeFormat(locale, {
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        });
+        endDateFormatters.set(locale, formatter);
+    }
+    return formatter;
+}
+
 /**
  * Format an ISO end_date string into a localized calendar date/time tooltip.
  */
@@ -257,10 +289,7 @@ export function formatEndDateTooltip(endDateStr, lang = state.currentLang) {
     }
     if (isNaN(parsed.getTime())) return '';
     if (typeof Intl === 'undefined' || typeof Intl.DateTimeFormat !== 'function') return '';
-    return new Intl.DateTimeFormat(getActiveLocale(lang), {
-        dateStyle: 'medium',
-        timeStyle: 'short'
-    }).format(parsed);
+    return getEndDateFormatter(getActiveLocale(lang)).format(parsed);
 }
 
 function syncTooltipAttribute(el, tooltip) {
@@ -277,9 +306,21 @@ function syncTooltipAttribute(el, tooltip) {
 const NOTICE_I18N_KEYS = {
     alienware_arena: 'notice_alienware_arena',
     amd_account: 'notice_amd_account',
+    amplitude_account: 'notice_amplitude_account',
     dungeonloot_account: 'notice_dungeonloot_account',
+    gleam_giveaway: 'notice_gleam_giveaway',
+    intel_gaming_access: 'notice_intel_gaming_access',
+    lenovo_legion: 'notice_lenovo_legion',
     newsletter_signup: 'notice_newsletter_signup',
-    redeem_in_game: 'notice_redeem_in_game'
+    redeem_in_game: 'notice_redeem_in_game',
+    steelseries_gg: 'notice_steelseries_gg',
+    redeem_epic: 'notice_redeem_epic',
+    redeem_gog: 'notice_redeem_gog',
+    redeem_amazon_app: 'notice_redeem_amazon_app',
+    redeem_legacy_games: 'notice_redeem_legacy_games',
+    redeem_microsoft_store: 'notice_redeem_microsoft_store',
+    redeem_ea_app: 'notice_redeem_ea_app',
+    redeem_ubisoft: 'notice_redeem_ubisoft'
 };
 
 const NOTICE_ICON_SVG = `<svg class="notice-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>`;
@@ -330,11 +371,35 @@ function getPlatformPresentation(game) {
     };
 }
 
+function buildClaimActionHTML(validatedStoreUrl, titleText, t) {
+    if (validatedStoreUrl) {
+        const storeUrl = escapeAttribute(validatedStoreUrl);
+        const claimAria = escapeAttribute((t.card_claim_aria || '').replace('{title}', titleText));
+        return `
+            <a 
+                href="${storeUrl}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="claim-btn"
+                aria-label="${claimAria}"
+            >
+                <span>${escapeHTML(t.card_claim_btn)}</span>
+                ${CLAIM_ARROW_SVG}
+            </a>
+        `;
+    }
+    return `
+        <span class="claim-btn is-disabled" role="link" aria-disabled="true">
+            <span>${escapeHTML(t.card_store_unavailable || 'Unavailable')}</span>
+        </span>
+    `;
+}
+
 /**
  * Generate HTML string for single game card
  */
 export function createGameCardHTML(game) {
-    const isPermanent = game.is_permanent ?? true;
+    const isPermanent = game.is_permanent ?? false;
     const isDLC = (game.content_type === 'dlc');
     const t = translations[state.currentLang] || translations.TR;
     const { platformKey, platformLabel, platformImgTag } = getPlatformPresentation(game);
@@ -343,19 +408,20 @@ export function createGameCardHTML(game) {
     const hasImage = Boolean(validatedImage);
     const imageSrc = hasImage ? escapeAttribute(validatedImage) : '';
 
-    const storeUrl = escapeAttribute(safeUrl(game.store_url));
-    const safeTitle = escapeHTML(game.title || 'Game');
+    const validatedStoreUrl = safeUrl(game.store_url, '');
+    const titleText = game.title || 'Game';
+    const safeTitle = escapeHTML(titleText);
     const endDateAttr = game.end_date ? escapeAttribute(game.end_date) : '';
     const endDateTooltip = formatEndDateTooltip(game.end_date);
     const countdownTitleAttr = endDateTooltip ? ` title="${escapeAttribute(endDateTooltip)}"` : '';
     const isPermanentAttr = escapeAttribute(String(isPermanent));
     const gameIdAttr = escapeAttribute(game.id || '');
-    const claimAria = escapeAttribute((t.card_claim_aria || '').replace('{title}', game.title || 'Game'));
+    const langAttr = escapeAttribute(state.currentLang);
 
     const claimed = isClaimed(game.id);
     const claimMarkText = claimed ? (t.card_claimed_badge || 'Claimed') : (t.card_mark_claimed || 'Mark Claimed');
     const claimToggleAria = escapeAttribute(
-        ((claimed ? t.card_unclaim_aria : t.card_claim_mark_aria) || '').replace('{title}', game.title || 'Game')
+        ((claimed ? t.card_unclaim_aria : t.card_claim_mark_aria) || '').replace('{title}', titleText)
     );
 
     const noticeLines = getNoticeLines(game, t);
@@ -395,7 +461,9 @@ export function createGameCardHTML(game) {
                         <div 
                             class="countdown-badge" 
                             data-end-date="${endDateAttr}"
-                            data-is-permanent="${isPermanentAttr}"${countdownTitleAttr}
+                            data-is-permanent="${isPermanentAttr}"
+                            data-tooltip-lang="${langAttr}"
+                            data-tooltip-end-date="${endDateAttr}"${countdownTitleAttr}
                         >
                             ${t.timer_calculating}
                         </div>
@@ -406,16 +474,7 @@ export function createGameCardHTML(game) {
                 </div>
 
                 <div class="card-actions-row">
-                    <a 
-                        href="${storeUrl}" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="claim-btn"
-                        aria-label="${claimAria}"
-                    >
-                        <span>${escapeHTML(t.card_claim_btn)}</span>
-                        ${CLAIM_ARROW_SVG}
-                    </a>
+                    ${buildClaimActionHTML(validatedStoreUrl, titleText, t)}
                     ${gameIdAttr ? `
                         <button
                             type="button"
@@ -461,19 +520,43 @@ function syncCardElement(cardEl, game, t) {
         if (titleEl.getAttribute('title') !== titleText) titleEl.setAttribute('title', titleText);
     }
 
+    const imgEl = cardEl.querySelector('.card-img');
+    if (imgEl && imgEl.getAttribute('alt') !== titleText) {
+        imgEl.setAttribute('alt', titleText);
+    }
+    const fallbackSpan = cardEl.querySelector('.card-img-fallback span');
+    if (fallbackSpan && fallbackSpan.textContent !== titleText) {
+        fallbackSpan.textContent = titleText;
+    }
+
+    const metaLeft = cardEl.querySelector('.card-meta-left');
+    const isDLC = game.content_type === 'dlc';
     const dlcBadge = cardEl.querySelector('.dlc-badge');
-    if (dlcBadge) {
-        const dlcText = t.card_dlc_badge || 'DLC';
-        if (dlcBadge.textContent !== dlcText) dlcBadge.textContent = dlcText;
+    const dlcText = t.card_dlc_badge || 'DLC';
+    if (isDLC) {
+        if (dlcBadge) {
+            if (dlcBadge.textContent !== dlcText) dlcBadge.textContent = dlcText;
+        } else if (metaLeft) {
+            const span = document.createElement('span');
+            span.className = 'dlc-badge';
+            span.textContent = dlcText;
+            metaLeft.appendChild(span);
+        }
+    } else if (dlcBadge) {
+        dlcBadge.remove();
     }
 
     const countdownEl = cardEl.querySelector('.countdown-badge');
     if (countdownEl) {
         const endDateVal = game.end_date || '';
-        const isPermVal = String(game.is_permanent ?? true);
+        const isPermVal = String(game.is_permanent ?? false);
         if (countdownEl.dataset.endDate !== endDateVal) countdownEl.dataset.endDate = endDateVal;
         if (countdownEl.dataset.isPermanent !== isPermVal) countdownEl.dataset.isPermanent = isPermVal;
-        syncTooltipAttribute(countdownEl, formatEndDateTooltip(endDateVal));
+        if (countdownEl.dataset.tooltipLang !== state.currentLang || countdownEl.dataset.tooltipEndDate !== endDateVal) {
+            syncTooltipAttribute(countdownEl, formatEndDateTooltip(endDateVal));
+            countdownEl.dataset.tooltipLang = state.currentLang;
+            countdownEl.dataset.tooltipEndDate = endDateVal;
+        }
     }
 
     // Update notices in current language
@@ -502,16 +585,31 @@ function syncCardElement(cardEl, game, t) {
         }
     }
 
-    // Update claim link
+    // Update claim link / disabled placeholder
     const claimBtn = cardEl.querySelector('.claim-btn');
     if (claimBtn) {
-        const storeUrl = safeUrl(game.store_url);
-        if (claimBtn.getAttribute('href') !== storeUrl) claimBtn.setAttribute('href', storeUrl);
-        const claimAria = (t.card_claim_aria || '').replace('{title}', titleText);
-        claimBtn.setAttribute('aria-label', claimAria);
-        const span = claimBtn.querySelector('span');
-        if (span && span.textContent !== t.card_claim_btn) {
-            span.textContent = t.card_claim_btn;
+        const validatedStoreUrl = safeUrl(game.store_url, '');
+        const expectsLink = Boolean(validatedStoreUrl);
+        const isLink = claimBtn.tagName === 'A';
+        if (expectsLink !== isLink) {
+            const replacement = createCardElementFromHTML(buildClaimActionHTML(validatedStoreUrl, titleText, t));
+            if (replacement) claimBtn.replaceWith(replacement);
+        } else if (isLink) {
+            if (claimBtn.getAttribute('href') !== validatedStoreUrl) {
+                claimBtn.setAttribute('href', validatedStoreUrl);
+            }
+            const claimAria = (t.card_claim_aria || '').replace('{title}', titleText);
+            claimBtn.setAttribute('aria-label', claimAria);
+            const span = claimBtn.querySelector('span');
+            if (span && span.textContent !== t.card_claim_btn) {
+                span.textContent = t.card_claim_btn;
+            }
+        } else {
+            const span = claimBtn.querySelector('span');
+            const unavailableLabel = t.card_store_unavailable || 'Unavailable';
+            if (span && span.textContent !== unavailableLabel) {
+                span.textContent = unavailableLabel;
+            }
         }
     }
 
@@ -547,6 +645,7 @@ if (typeof document !== 'undefined') {
  * Render game cards grid/list using DOM diffing/reconciliation by data-id
  */
 export function renderGames(onResetFilters) {
+    if (state.isLoading) return;
     if (state.hasError) {
         renderErrorState(state.errorMessage);
         return;
@@ -554,6 +653,7 @@ export function renderGames(onResetFilters) {
 
     const { gridContainer } = getElements();
     if (!gridContainer) return;
+    gridContainer.setAttribute('aria-busy', 'false');
 
     setupImageErrorDelegation(gridContainer);
 
@@ -694,7 +794,15 @@ export function updateAllTimers(onExpire = registeredExpireCallback) {
         if (el.className !== nextClass) {
             el.className = nextClass;
         }
-        syncTooltipAttribute(el, formatEndDateTooltip(endDateStr));
+        const normalizedEndDate = endDateStr || '';
+        if (
+            el.dataset.tooltipLang !== state.currentLang ||
+            el.dataset.tooltipEndDate !== normalizedEndDate
+        ) {
+            syncTooltipAttribute(el, formatEndDateTooltip(normalizedEndDate));
+            el.dataset.tooltipLang = state.currentLang;
+            el.dataset.tooltipEndDate = normalizedEndDate;
+        }
     });
 
     if (newlyExpired && typeof onExpire === 'function') {
@@ -709,6 +817,7 @@ export function renderEmptyState(onResetFilters) {
     cachedTimerEls = null;
     const { gridContainer } = getElements();
     if (!gridContainer) return;
+    gridContainer.setAttribute('aria-busy', 'false');
     const t = translations[state.currentLang] || translations.TR;
     gridContainer.innerHTML = `
         <div class="empty-state">
@@ -736,8 +845,14 @@ export function renderErrorState(message) {
     cachedTimerEls = null;
     const { gridContainer } = getElements();
     if (!gridContainer) return;
+    gridContainer.setAttribute('aria-busy', 'false');
     const t = translations[state.currentLang] || translations.TR;
     const errDesc = (t.error_desc || '').replace('{error}', escapeHTML(message));
+
+    const statusEl = typeof document !== 'undefined' ? document.getElementById('results-status') : null;
+    if (statusEl) {
+        statusEl.textContent = `${t.error_title}: ${message || ''}`.trim();
+    }
 
     gridContainer.innerHTML = `
         <div class="empty-state">

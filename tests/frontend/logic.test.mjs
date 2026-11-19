@@ -277,7 +277,10 @@ test('createGameCardHTML escapes XSS payloads, includes a11y/perf attrs, and ref
 
     assert.ok(!html.includes('<img src=x onerror=alert(1)>'));
     assert.ok(html.includes('&lt;img src=x onerror=alert(1)&gt;'));
-    assert.ok(html.includes('href="#"'));
+    assert.ok(!html.includes('javascript:alert(1)'));
+    assert.ok(html.includes('aria-disabled="true"'));
+    assert.ok(html.includes('class="claim-btn is-disabled"'));
+    assert.ok(!html.includes('target="_blank"'));
     assert.ok(html.includes('decoding="async"'));
     assert.ok(html.includes('referrerpolicy="no-referrer"'));
     assert.ok(html.includes('data-is-permanent="false"'));

@@ -46,7 +46,7 @@ export function getActiveLocale(lang = state.currentLang) {
 
 /**
  * Determine initial language priority:
- * localStorage > navigator.language > Default: TR
+ * localStorage > navigator.languages / navigator.language > Default: TR
  */
 export function getInitialLanguage() {
     const storage = getSafeLocalStorage();
@@ -61,12 +61,20 @@ export function getInitialLanguage() {
         }
     }
 
-    const navLang = (typeof navigator !== 'undefined' && navigator.language ? navigator.language : '').toLowerCase();
-    if (navLang.startsWith('tr')) {
-        return 'TR';
-    }
-    if (navLang.startsWith('en')) {
-        return 'EN';
+    if (typeof navigator !== 'undefined') {
+        const langs = Array.isArray(navigator.languages) && navigator.languages.length > 0
+            ? navigator.languages
+            : (navigator.language ? [navigator.language] : []);
+        const normalized = langs
+            .map(l => String(l || '').trim().toLowerCase())
+            .filter(Boolean);
+        for (const lang of normalized) {
+            if (lang.startsWith('tr')) return 'TR';
+            if (lang.startsWith('en')) return 'EN';
+        }
+        if (normalized.length > 0) {
+            return 'EN';
+        }
     }
 
     return 'TR';
@@ -358,11 +366,26 @@ export function isGameExpired(game, now = Date.now()) {
     return !isNaN(endTime) && endTime <= now;
 }
 
+function foldSearchText(text) {
+    return String(text || '')
+        .replace(/[İIı]/g, 'i')
+        .toLowerCase();
+}
+
 function matchesSearch(game, query, locale) {
     if (!query) return true;
-    const titleMatch = (game.title || '').toLocaleLowerCase(locale).includes(query);
-    const platformMatch = (game.platform || '').toLocaleLowerCase(locale).includes(query);
-    return titleMatch || platformMatch;
+    const title = game.title || '';
+    const platform = game.platform || '';
+    const localeMatch =
+        title.toLocaleLowerCase(locale).includes(query) ||
+        platform.toLocaleLowerCase(locale).includes(query);
+    if (localeMatch) return true;
+
+    const foldedQuery = foldSearchText(query);
+    return (
+        foldSearchText(title).includes(foldedQuery) ||
+        foldSearchText(platform).includes(foldedQuery)
+    );
 }
 
 function matchesContent(game, contentFilter) {

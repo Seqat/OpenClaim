@@ -34,6 +34,9 @@ import {
 } from './ui.js';
 
 const STALE_THRESHOLD_MS = 24 * 60 * 60 * 1000;
+let footerIntervalId = null;
+let debouncedSearchRender = null;
+let listenersBound = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
@@ -137,13 +140,14 @@ async function initApp() {
     // Apply URL query overrides (without clobbering saved localStorage defaults)
     readStateFromURL();
 
-    setLanguage(state.currentLang, renderCurrentState);
-    applyViewMode(state.currentViewMode);
-    syncControlsFromState();
-
     state.isLoading = true;
     state.hasError = false;
     state.errorMessage = '';
+
+    setLanguage(state.currentLang, null, false);
+    applyViewMode(state.currentViewMode, false);
+    syncControlsFromState();
+
     showSkeletonLoaders();
     setupEventListeners();
 
@@ -156,6 +160,8 @@ async function initApp() {
         state.generatedAt = generatedAt;
 
         renderFooterTimestamp();
+        if (footerIntervalId) clearInterval(footerIntervalId);
+        footerIntervalId = setInterval(renderFooterTimestamp, 60_000);
         updateStatsRibbon();
         renderGames(resetAllFilters);
         startTimerLoop(() => renderGames(resetAllFilters));
@@ -171,6 +177,7 @@ async function initApp() {
 function resetAllFilters() {
     const { searchInput, sortSelect, hideExpiredCheckbox } = getElements();
 
+    debouncedSearchRender?.cancel();
     if (searchInput) searchInput.value = '';
     state.searchQuery = '';
     state.currentPlatformFilter = 'all';
@@ -199,10 +206,18 @@ function scrollToTop() {
 
 function debounce(fn, delay = 150) {
     let timeoutId;
-    return function (...args) {
+    const debounced = function (...args) {
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => fn.apply(this, args), delay);
+        timeoutId = setTimeout(() => {
+            timeoutId = undefined;
+            fn.apply(this, args);
+        }, delay);
     };
+    debounced.cancel = () => {
+        clearTimeout(timeoutId);
+        timeoutId = undefined;
+    };
+    return debounced;
 }
 
 function setupEventListeners() {
@@ -251,9 +266,18 @@ function setupEventListeners() {
         });
     }
 
+    if (!listenersBound) {
+        listenersBound = true;
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                renderFooterTimestamp();
+            }
+        });
+    }
+
     // Search Input Listener with 150ms Debounce
     if (searchInput) {
-        const debouncedRender = debounce(() => {
+        debouncedSearchRender = debounce(() => {
             syncStateToURL();
             renderGames(resetAllFilters);
         }, 150);
@@ -262,13 +286,14 @@ function setupEventListeners() {
             const locale = getActiveLocale();
             state.searchQuery = e.target.value.trim().toLocaleLowerCase(locale);
             toggleClearSearchButton();
-            debouncedRender();
+            debouncedSearchRender();
         });
     }
 
     // Clear Search Button
     if (clearSearchBtn) {
         clearSearchBtn.addEventListener('click', () => {
+            debouncedSearchRender?.cancel();
             if (searchInput) {
                 searchInput.value = '';
                 state.searchQuery = '';
@@ -369,5 +394,11 @@ function setupEventListeners() {
 
 // Expose setLanguage globally for window.OpenClaim API
 window.OpenClaim = {
-    setLanguage: (lang) => setLanguage(lang, renderCurrentState)
+    setLanguage: (lang) => {
+        const { searchInput } = getElements();
+        if (searchInput && searchInput.value) {
+            state.searchQuery = searchInput.value.trim().toLocaleLowerCase(getActiveLocale(lang));
+        }
+        setLanguage(lang, renderCurrentState);
+    }
 };
