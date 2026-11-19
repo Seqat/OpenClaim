@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-19T12:34:32Z",
-  "count": 39,
+  "generated_at": "2026-11-19T22:41:00Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -9,6 +9,19 @@
       "store_url": "https://luna.amazon.com/claims/ad-infinitum-epic/dp/amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457?ingress=amzn&ref_=SM_AdInfinitum_S01_FGWP_CRWN",
       "image_url": "https://m.media-amazon.com/images/I/61oHRL5seYL._FMwebp_.jpg",
       "end_date": "2026-11-25T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": [
+        "redeem_epic"
+      ]
+    },
+    {
+      "id": "amazon-amzn1.pg.item.a5c7d537-4c60-4940-86b8-0d1c13db9163",
+      "title": "CLeM",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/clem-epic/dp/amzn1.pg.item.a5c7d537-4c60-4940-86b8-0d1c13db9163?ingress=amzn&ref_=SM_CLeM_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/51tpmZnRBWL._FMwebp_.jpg",
+      "end_date": "2026-12-23T23:59:59Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": [
@@ -133,6 +146,19 @@
       ]
     },
     {
+      "id": "amazon-amzn1.pg.item.51cac85b-21fe-4e69-b048-3c70dfaf50d3",
+      "title": "Werewolf: The Apocalypse - Earthblood",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/werewolf-the-apocalypse-earthblood-epic/dp/amzn1.pg.item.51cac85b-21fe-4e69-b048-3c70dfaf50d3?ingress=amzn&ref_=SM_WerewolfTheApocalypseEarthblood_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/61CX7s9IE1L._FMwebp_.jpg",
+      "end_date": "2026-12-23T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": [
+        "redeem_epic"
+      ]
+    },
+    {
       "id": "epicgames-3852",
       "title": "Contractor: The Clean Up Part 2",
       "platform": "Epic Games",
@@ -170,12 +196,12 @@
       ]
     },
     {
-      "id": "epicgames-3850",
-      "title": "Knightica",
+      "id": "epicgames-3853",
+      "title": "Mark of the Deep",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/knightica-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6af5f33e49913.jpg",
-      "end_date": "2026-11-19T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/mark-of-the-deep-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6aff1d0e4942d.jpg",
+      "end_date": "2026-11-26T23:59:00Z",
       "is_permanent": false,
       "content_type": "game",
       "notices": []
