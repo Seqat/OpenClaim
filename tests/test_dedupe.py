@@ -251,3 +251,16 @@ def test_dedupe_does_not_overwrite_present_winner_metadata():
     assert res[0]["image_url"] == "https://example.com/winner.jpg"
     assert res[0]["store_url"] == "https://example.com/winner"
     assert res[0]["notices"] == ["amd_account"]
+
+
+def test_dedupe_disambiguates_duplicate_ids_across_distinct_titles():
+    games = [
+        {"id": "amazon-unknown", "title": "First Game", "platform": "Amazon Luna / Prime"},
+        {"id": "amazon-unknown", "title": "Second Game", "platform": "Amazon Luna / Prime"},
+    ]
+    res = normalize_and_deduplicate(games)
+    assert len(res) == 2
+    ids = [g["id"] for g in res]
+    assert len(set(ids)) == 2
+    assert ids[0] == "amazon-unknown"
+    assert ids[1].startswith("amazon-unknown-")
