@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-24T04:39:23Z",
-  "count": 41,
+  "generated_at": "2026-11-24T19:23:54Z",
+  "count": 42,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
@@ -13,6 +13,19 @@
       "content_type": "game",
       "notices": [
         "redeem_epic"
+      ]
+    },
+    {
+      "id": "amazon-amzn1.pg.item.5e2bfe23-c415-4cce-8634-ab6aa1ed76ae",
+      "title": "Arcadia Fallen",
+      "platform": "Amazon Luna / Prime",
+      "store_url": "https://luna.amazon.com/claims/arcadia-fallen-aga/dp/amzn1.pg.item.5e2bfe23-c415-4cce-8634-ab6aa1ed76ae?ingress=amzn&ref_=SM_ArcadiaFallen_S01_FGWP_CRWN",
+      "image_url": "https://m.media-amazon.com/images/I/715omrthEkL._FMwebp_.jpg",
+      "end_date": "2026-12-28T23:59:59Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": [
+        "redeem_amazon_app"
       ]
     },
     {
