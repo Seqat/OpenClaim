@@ -1,20 +1,7 @@
 {
-  "generated_at": "2026-11-25T13:58:19Z",
-  "count": 42,
+  "generated_at": "2026-11-26T00:01:54Z",
+  "count": 40,
   "games": [
-    {
-      "id": "amazon-amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457",
-      "title": "Ad Infinitum",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/ad-infinitum-epic/dp/amzn1.pg.item.69de011b-6575-41ab-9964-971e59cf7457?ingress=amzn&ref_=SM_AdInfinitum_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61oHRL5seYL._FMwebp_.jpg",
-      "end_date": "2026-11-25T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": [
-        "redeem_epic"
-      ]
-    },
     {
       "id": "amazon-amzn1.pg.item.5e2bfe23-c415-4cce-8634-ab6aa1ed76ae",
       "title": "Arcadia Fallen",
@@ -104,19 +91,6 @@
       "content_type": "game",
       "notices": [
         "redeem_amazon_app"
-      ]
-    },
-    {
-      "id": "amazon-amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5",
-      "title": "Time Travel: Escape Room Game",
-      "platform": "Amazon Luna / Prime",
-      "store_url": "https://luna.amazon.com/claims/time-travel-escape-room-game-legacy/dp/amzn1.pg.item.c3af790f-8ce0-42b2-8c16-ebecb97303f5?ingress=amzn&ref_=SM_TimeTravelEscapeRoomGame_S01_FGWP_CRWN",
-      "image_url": "https://m.media-amazon.com/images/I/61MzWa7HYbL._FMwebp_.jpg",
-      "end_date": "2026-11-25T23:59:59Z",
-      "is_permanent": false,
-      "content_type": "game",
-      "notices": [
-        "redeem_legacy_games"
       ]
     },
     {
