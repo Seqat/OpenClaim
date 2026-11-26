@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-26T13:37:33Z",
-  "count": 40,
+  "generated_at": "2026-11-26T23:53:40Z",
+  "count": 41,
   "games": [
     {
       "id": "amazon-amzn1.pg.item.5e2bfe23-c415-4cce-8634-ab6aa1ed76ae",
@@ -146,6 +146,17 @@
       ]
     },
     {
+      "id": "epicgames-3857",
+      "title": "Bread and Fred",
+      "platform": "Epic Games",
+      "store_url": "https://www.gamerpower.com/open/bread-and-fred-epic-games-giveaway",
+      "image_url": "https://www.gamerpower.com/offers/1b/6b0857f437cbd.jpg",
+      "end_date": "2026-12-03T23:59:00Z",
+      "is_permanent": false,
+      "content_type": "game",
+      "notices": []
+    },
+    {
       "id": "epicgames-3852",
       "title": "Contractor: The Clean Up Part 2",
       "platform": "Epic Games",
@@ -183,14 +194,14 @@
       ]
     },
     {
-      "id": "epicgames-3853",
-      "title": "Mark of the Deep",
+      "id": "epicgames-3856",
+      "title": "Firestone: Free $100 Welcome Gift",
       "platform": "Epic Games",
-      "store_url": "https://www.gamerpower.com/open/mark-of-the-deep-epic-games-giveaway",
-      "image_url": "https://www.gamerpower.com/offers/1b/6aff1d0e4942d.jpg",
-      "end_date": "2026-11-26T23:59:00Z",
+      "store_url": "https://www.gamerpower.com/open/firestone-free-100-welcome-gift",
+      "image_url": "https://www.gamerpower.com/offers/1b/6b08579a35b70.jpg",
+      "end_date": "2026-12-03T23:59:00Z",
       "is_permanent": false,
-      "content_type": "game",
+      "content_type": "dlc",
       "notices": []
     },
     {
